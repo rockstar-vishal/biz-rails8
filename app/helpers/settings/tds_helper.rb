@@ -1,0 +1,2 @@
+module Settings::TdsHelper
+end

@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   namespace :settings do
+    get "tds/index"
+    get "taxes/index"
+    get "cost_types/index"
+    get "transactions/index"
+    get "fund_sources/index"
     get "bank/index"
   end
   
@@ -30,6 +35,11 @@ Rails.application.routes.draw do
   get 'accounts', to: "settings/accounts#index",  as: 'accounts'
   get 'interest', to: "settings/interest#index",  as: 'interest'
   get 'bank', to: "settings/bank#index",  as: 'bank'
+  get 'fund_sources', to: "settings/fund_sources#index",  as: 'fund_sources'
+  get 'transactions', to: "settings/transactions#index",  as: 'transactions'
+  get 'cost_types', to: "settings/cost_types#index",  as: 'cost_types'
+  get 'taxes', to: "settings/taxes#index",  as: 'taxes'
+  get 'tds', to: "settings/tds#index",  as: 'tds'
 
   get "up" => "rails/health#show", as: :rails_health_check
 

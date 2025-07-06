@@ -1,0 +1,33 @@
+<%= render_sheet id:"recordtransaction", direction: "right", width: "w-full sm:max-w-full lg:max-w-full  md:w-full lg:w-2/3 xl:w-2/3	 ",  class:"!slide-in-from-right bg-white/50 backdrop-blur-xl p-0" do %>
+<%= sheet_trigger do %>
+       <%= render_button as: :link, href: "", class: "bg-brand/5 text-brand border border-gray-200 gap-2 hover:bg-brand hover:text-white" do %>
+            <%= render 'icons/add' %>
+            <span>Add Transaction</span>
+        <% end %>
+<% end %>
+<%= sheet_content do %>
+<div class="">
+  <div>
+    <div class="p-4 flex items-center justify-between ">
+      <h3 class="text-base font-semibold">Add Transaction </h3>
+      </div>
+    <form action="">
+      <div class="min-h-[calc(100vh-125px)] h-[calc(100vh-125px)] p-4 overflow-y-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
+          <%= render 'projects/flat/booking/transactionFrom' %>
+        </div>
+      </div>
+      <div class="bg-white border-t border-gray-300 p-4">
+        <div class="flex justify-between items-center">
+          <%= render_button "Update Transactions", as: :link, href: "", class: "bg-brand h-auto" %>
+          <button data-ui--sheet-target="closeButton" type="button"
+            class="bg-gray-200 text-gray-800 hover:bg-gray-300 h-auto rounded-md text-sm py-2 px-4">Close
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
+<% end %>
+<% end %>
