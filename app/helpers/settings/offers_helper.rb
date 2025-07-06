@@ -1,0 +1,2 @@
+module Settings::OffersHelper
+end

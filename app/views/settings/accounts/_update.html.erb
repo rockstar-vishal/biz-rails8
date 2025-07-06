@@ -1,0 +1,73 @@
+<%= render_sheet direction: "right", width: "w-full sm:max-w-full lg:max-w-full  md:w-3/5 lg:w-3/5 xl:w-1/2 ",  class:"!slide-in-from-right bg-white/50 backdrop-blur-xl p-0" do %>
+  <%= sheet_trigger do %>
+   <span class="inline-flex items-center  bg-blue-500 hover:bg-blue-800 text-white text-xs py-1 px-2 rounded-md cursor-pointer mr-2"><%= render 'icons/update' %> </span> 	
+  <% end %>
+
+  <%= sheet_content do %>
+  <div class="">
+    <div class="p-4 flex items-center justify-between">
+      <h3 class="text-base font-semibold">Add Accounts</h3>
+    </div>
+    <form action="">
+      <div class="modal-height p-4">
+        <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4">
+          
+         
+              <div class="col-span-full flex gap-2 items-stretch w-full bg-white rounded-lg border border-gray-200">
+              <div class="w-full grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 p-4">
+                 <div class="mb-2 ">
+                  <%= render_label name: "", label: "Category Types", class: "mb-2 block" %>
+                  <select name="budilding" id="select-building" class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                    <option value="">Please select</option>
+                    <option value="t1">Flat Based</option>
+                    <option value="t2">GST</option>
+                  </select>
+                </div>
+          <div class="mb-2">
+            <%= render_label name:"", label:"Account No", class:"mb-2 block" %>
+            <%= render_input name: "", id: "", placeholder:"Account No", class:"h-auto p-3 " %>
+          </div>
+            <div class="mb-2">
+            <%= render_label name:"", label:"Beneficiary Name", class:"mb-2 block" %>
+            <%= render_input name: "", id: "", placeholder:"Beneficiary Name", class:"h-auto p-3 " %>
+          </div>
+               <div class="mb-2">
+            <%= render_label name:"", label:"Branch", class:"mb-2 block" %>
+            <%= render_input name: "", id: "", placeholder:"Branch", class:"h-auto p-3 " %>
+          </div>
+           <div class="mb-2">
+            <%= render_label name:"", label:"Bank Name", class:"mb-2 block" %>
+            <%= render_input name: "", id: "", placeholder:"Bank Name", class:"h-auto p-3 " %>
+          </div>
+           <div class="mb-2">
+            <%= render_label name:"", label:"Ifsc Code", class:"mb-2 block" %>
+            <%= render_input name: "", id: "", placeholder:"Ifsc Code", class:"h-auto p-3 " %>
+          </div>
+              </div>
+              <div class="w-full max-w-[200px] flex items-center gap-2 bg-green-50 p-2 rounded-e-lg justify-center">
+                <%= render_button as: :link, href: "", class: "w-auto bg-brand h-auto py-3 mt-2 gap-2" do %>
+                  <%= render 'icons/add' %>
+                  <span>Add</span>
+                <% end %>
+                <%= render_button as: :link, href: "", class: "w-auto bg-red-500 h-auto py-2 mt-2 gap-2" do %>
+                  <%= render 'icons/delete' %>
+                <% end %>
+              </div>
+            </div>
+          
+        </div>
+      
+           
+      </div>
+      <div class="bg-white border-t border-gray-300 p-4">
+        <div class="flex justify-between items-center">
+          <%= render_button "Save", as: :link, href: "", class: "bg-brand h-auto " %>
+          <button data-ui--sheet-target="closeButton" type="button"
+            class="bg-gray-200 text-gray-800 hover:bg-gray-300 h-auto rounded-md text-sm py-2 px-4">Close
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,62 @@
+<%= render_sheet direction: "right", width: "w-full sm:max-w-full lg:max-w-full  md:w-3/5 lg:w-3/5 xl:w-1/2 ",  class:"!slide-in-from-right bg-white/50 backdrop-blur-xl p-0" do %>
+  <%= sheet_trigger do %>
+   <span class="inline-flex items-center  bg-blue-500 hover:bg-blue-800 text-white text-xs py-1 px-2 rounded-md cursor-pointer mr-2"><%= render 'icons/update' %> </span> 
+  <% end %>
+
+  <%= sheet_content do %>
+  <div class="">
+    <div class="p-4 flex items-center justify-between">
+      <h3 class="text-base font-semibold">Edit Offers</h3>
+    </div>
+    <form action="">
+      <div class="modal-height p-4">
+        <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="col-span-full flex items-center justify-between">
+            <h3 class="text-base font-semibold">Basic Details</h3>
+          </div>
+          <div class="mb-4">
+            <%= render_label name:"", label:"Name", class:"mb-2 block" %>
+            <%= render_input name: "", id: "", placeholder:"Name", class:"h-auto p-3 " %>
+          </div>
+               <div class="mb-4">
+            <%= render_label name:"", label:"Percent", class:"mb-2 block" %>
+            <%= render_input name: "", id: "", placeholder:"Percent", class:"h-auto p-3 " %>
+          </div>
+          <div class="col-span-full flex items-center justify-between">
+            <h3 class="text-base font-semibold">Amount</h3>
+          </div>
+            <div class="mb-4">
+            <%= render_label name:"", label:"Amount", class:"mb-2 block" %>
+            <%= render_input name: "", id: "", placeholder:"Amount", class:"h-auto p-3 " %>
+          </div>
+           <div class="mb-4">
+            <%= render_label name:"", label:"Max Amount", class:"mb-2 block" %>
+            <%= render_input name: "",  placeholder:"Max Amount", class:"h-auto pt-3 pb-2.5 " %>
+          </div>
+          <div class="col-span-full flex items-center justify-between">
+            <h3 class="text-base font-semibold">Additional Details</h3>
+          </div>
+          <div class="mb-4 col-span-full">
+            <%= render_label name:"", label:"Description", class:"mb-2 block" %>
+            <%= render_textarea name: "", placeholder:"Description..." %>
+          </div>
+          
+          
+          
+          
+        </div>
+      
+           
+      </div>
+      <div class="bg-white border-t border-gray-300 p-4">
+        <div class="flex justify-between items-center">
+          <%= render_button "Save", as: :link, href: "", class: "bg-brand h-auto " %>
+          <button data-ui--sheet-target="closeButton" type="button"
+            class="bg-gray-200 text-gray-800 hover:bg-gray-300 h-auto rounded-md text-sm py-2 px-4">Close
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <% end %>
+<% end %>

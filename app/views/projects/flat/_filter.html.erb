@@ -1,0 +1,45 @@
+
+<%= render_dialog do %>
+    <%= dialog_trigger do %>
+        <%= render_button as: :link, href: "", class: "bg-white text-gray-500 border gap-2 hover:bg-gray-50" do %>
+    <%= render 'icons/filter' %>
+    <span>Filter</span>
+  <% end %>
+    <% end %>
+    <%= dialog_content do %>
+        <span class="text-xs mb-4 font-bold block">Advance Filters</span>
+        <div class="rounded-lg  p-4 shadow-xl bg-white">
+          <div class="flex flex-col space-y-1.5  pb-4 border-b border-gray-200 mb-4">
+
+            <h3 class="font-semibold leading-none tracking-tight">Your Selection : Tower 1</h3>
+          </div>
+          <form action="">
+            <div class="mb-4 w-full">
+              <%= render_label name: "", label: "Configuration", class: "mb-2 block" %>
+              <select name="budilding" id="select-building"
+                class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                <option value="">Please select</option>
+                <option value="t1">2BHK</option>
+                <option value="t2">3BHK</option>
+              </select>
+            </div>
+            <div class="mb-2 w-full">
+              <%= render_label name: "", label: "Registration Status", class: "mb-2 block" %>
+              <select name="budilding" id="select-building"
+                class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                <option value="">Please select</option>
+                <option value="t1">Registered</option>
+                <option value="t2">Non Registered</option>
+              </select>
+            </div>
+
+            <div class=" pt-4">
+              <%= render_button "Search", as: :link, href: "/", class:"w-full bg-brand hover:bg-brand/80" %>
+            </div>
+
+          </form>
+
+        </div>
+      
+    <% end %>
+<% end %>

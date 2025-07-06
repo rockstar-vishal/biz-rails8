@@ -1,0 +1,59 @@
+<%= render_accordion do %>
+    <%= accordion_title do %>
+        <h3 class="text-base font-semibold col-span-full ">Client Details</h3>
+    <% end %>
+    <%= accordion_description do %>
+        <div class="grid grid-cols-1 gap-4">
+            <div class="mb-2">
+                <%= render_label name: "", label: "Name", class: "mb-2 block" %>
+                <%= render_input name: "", id: "", placeholder: "Name", class: "h-auto p-3" %>
+            </div>
+            <div class="mb-2">
+                <%= render_label name: "", label: "Email", class: "mb-2 block" %>
+                <%= render_input name: "", id: "", placeholder: "Email", class: "h-auto p-3" %>
+            </div>
+            <div class="mb-2">
+                <%= render_label name: "", label: "Contact", class: "mb-2 block" %>
+                <%= render_input name: "", id: "", placeholder: "Contact", class: "h-auto p-3" %>
+            </div>
+        </div>
+    <% end %>
+<% end %>
+
+
+<%= render_accordion do %>
+    <%= accordion_title do %>
+        <h3 class="text-base font-semibold col-span-full ">Pan Card</h3>
+    <% end %>
+    <%= accordion_description do %>
+        <div class="grid grid-cols-1 gap-4">
+            <div class="mb-2">
+                <%= render_label name: "", label: "Pan Card", class: "mb-2 block" %>
+                <%= render_input name: "", id: "", placeholder: "Pan Card", class: "h-auto p-3" %>
+            </div>
+           
+          
+        </div>
+    <% end %>
+<% end %>
+
+
+<%= render_accordion do %>
+    <%= accordion_title do %>
+        <h3 class="text-base font-semibold col-span-full ">Status</h3>
+    <% end %>
+    <%= accordion_description do %>
+        <div class="grid grid-cols-1 gap-4">
+             <div class="mb-2">
+                <%= render_label name: "", label: "Select Booking Status", class: "mb-2 block" %>
+                <select name="budilding" id="select-building"
+                    class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                    <option value="">Please select</option>
+                    <option value="t1">Jitendra</option>
+                    <option value="t2">JP</option>
+                </select>
+            </div>
+        </div>
+    <% end %>
+<% end %>
+

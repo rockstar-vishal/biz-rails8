@@ -1,0 +1,172 @@
+<div>
+  <div class="mt-1 mb-4 flex justify-between items-center">
+    <a href="/building"
+            class="flex  justify-between items-center p-2 text-xs border border-gray-200 rounded-lg rounded-lg bg-white hover:shadow-md transition-all">
+            <div class="flex items-center gap-1">
+                <span class="text-gray-800 "><%= render 'icons/back' %></span>
+                <div class="flex flex-col">
+                    <span class="text-gray-500">Back</span>
+                </div>
+            </div>
+        </a>
+    <%= render 'shared/breadcrumb' %>
+  </div>
+  <div class="flex gap-4">
+    <div class="border border-gray-200 rounded-lg  bg-gradient-to-bl from-[#ffe4e6] to-[#ccfbf1] backdrop-blur-xl project-height-fix w-[400px] min-h-[calc(100vh-150px)] ">
+      <div class="bg-gradient-to-tr from-[#22c55e] via-[#0e7490] to-[#3b82f6] relative overflow-hidden">
+        <div class="w-full absolute top-5 right-0">
+          <%= image_tag 'card-project2.png', alt: 'Company Logo', class: 'w-full ml-auto opacity-30' %>
+        </div>
+        
+        <div class="border-t border-white/50 p-4 relative z-10">
+          <div class="space-y-2 ">
+            <div class="flex flex-col border-b border-white/50 pb-2">
+                <span class="text-xs text-white">Project Name</span>
+                <h3 class="text-white text-sm font-bold">Global Inspira</h3>
+            </div>
+            <div class="flex flex-col ">
+                <span class="text-xs text-white">Building Name</span>
+                <h3 class="text-white text-sm font-bold">Tower 1</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-2">
+       
+        <a href="/"
+            class="flex gap-2 justify-between items-center p-3 text-xs border border-gray-200 rounded-lg rounded-lg bg-white backdrop-blur-sm overflow-hidden mb-2 hover:shadow-2xl transition-all">
+            <div class="flex gap-3 items-center">
+                <span class="text-blue-500 "><%= render 'icons/csv' %></span>
+                <div class="flex flex-col">
+                    <span class="text-black text-sm">Download</span>
+                    <span class="text-gray-500">Cancelled Bookings</span>
+                </div>
+            </div>
+            <span class="text-gray-400 "><%= render 'icons/download' %></span>
+        </a>
+      </div>
+    </div>
+    <div class="w-full border border-gray-200 rounded-lg bg-white/50 ">
+        <div class="">
+              <h1 class="font-bold p-4">View Cancelled Bookings</h1>
+            <div class="table-responsive  ">
+                <%= render_table class:"overflow-hidden"  do %>
+                    <%= table_head class:"rounded-t-md  py-2 px-4 bg-gradient-to-bl from-[#ffe4e6] to-[#ccfbf1]" do %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Flat No</span>	
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Cancellation</span>
+                            <span class="text-gray-700 text-sm font-bold block">Date</span>	
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Cancellation</span>
+                            <span class="text-gray-700 text-sm font-bold block">Charges</span>		
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Cancellation</span>
+                            <span class="text-gray-700 text-sm font-bold block">Reason</span>	
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Cancellation</span>
+                            <span class="text-gray-700 text-sm font-bold block">Comments</span>			
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Cancellation</span>
+                            <span class="text-gray-700 text-sm font-bold block">Intimation Letter</span>			
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Cancellation</span>
+                            <span class="text-gray-700 text-sm font-bold block">Booking Letter</span>			
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Delete</span>
+						
+                        <% end %>
+                    <% end %>
+                    <%= table_body do %>
+                        <%= table_row do %>
+                            <%= table_column do %>
+                                T1-103	
+                            <% end %>
+                            <%= table_column do %>
+                                18th June 24	
+                            <% end %>
+                            <%= table_column do %>
+                                &#8377; 0.00	
+                            <% end %>
+                            <%= table_column do %>
+                                Personnel Issues		
+                            <% end %>
+                            <%= table_column do %>
+                                Price too high		
+                            <% end %>
+                            <%= table_column do %>
+                                <span class="inline-flex items-center  bg-blue-500 hover:bg-blue-800 text-white text-xs py-1 px-2.5 rounded-md cursor-pointer"><%= render 'icons/download' %> Download</span> 		
+                            <% end %>
+                             <%= table_column do %>
+                                <span class="inline-flex items-center  bg-blue-500 hover:bg-blue-800 text-white text-xs py-1 px-2.5 rounded-md cursor-pointer"><%= render 'icons/download' %> Download</span> 		
+                            <% end %>
+                             <%= table_column do %>
+                                <span class="inline-flex items-center  bg-red-100 hover:bg-red-500 text-red-500  hover:text-white text-xs py-1 px-2.5 rounded-md cursor-pointer"><%= render 'icons/delete' %></span> 		
+                            <% end %>
+                        <% end %>
+                        <%= table_row do %>
+                            <%= table_column do %>
+                                T1-103	
+                            <% end %>
+                            <%= table_column do %>
+                                18th June 24	
+                            <% end %>
+                            <%= table_column do %>
+                                &#8377; 0.00	
+                            <% end %>
+                            <%= table_column do %>
+                                Personnel Issues		
+                            <% end %>
+                            <%= table_column do %>
+                                Price too high		
+                            <% end %>
+                            <%= table_column do %>
+                                <span class="inline-flex items-center  bg-blue-500 hover:bg-blue-800 text-white text-xs py-1 px-2.5 rounded-md cursor-pointer"><%= render 'icons/download' %> Download</span> 		
+                            <% end %>
+                             <%= table_column do %>
+                                <span class="inline-flex items-center  bg-blue-500 hover:bg-blue-800 text-white text-xs py-1 px-2.5 rounded-md cursor-pointer"><%= render 'icons/download' %> Download</span> 		
+                            <% end %>
+                             <%= table_column do %>
+                                <span class="inline-flex items-center  bg-red-100 hover:bg-red-500 text-red-500  hover:text-white text-xs py-1 px-2.5 rounded-md cursor-pointer"><%= render 'icons/delete' %></span> 		
+                            <% end %>
+                        <% end %>
+                        <%= table_row do %>
+                            <%= table_column do %>
+                                T1-103	
+                            <% end %>
+                            <%= table_column do %>
+                                18th June 24	
+                            <% end %>
+                            <%= table_column do %>
+                                &#8377; 0.00	
+                            <% end %>
+                            <%= table_column do %>
+                                Personnel Issues		
+                            <% end %>
+                            <%= table_column do %>
+                                Price too high		
+                            <% end %>
+                            <%= table_column do %>
+                                <span class="inline-flex items-center  bg-blue-500 hover:bg-blue-800 text-white text-xs py-1 px-2.5 rounded-md cursor-pointer"><%= render 'icons/download' %>Download</span> 		
+                            <% end %>
+                             <%= table_column do %>
+                                <span class="inline-flex items-center  bg-blue-500 hover:bg-blue-800 text-white text-xs py-1 px-2.5 rounded-md cursor-pointer"><%= render 'icons/download' %> Download</span> 		
+                            <% end %>
+                             <%= table_column do %>
+                                <span class="inline-flex items-center  bg-red-100 hover:bg-red-500 text-red-500  hover:text-white text-xs py-1 px-2.5 rounded-md cursor-pointer"><%= render 'icons/delete' %></span> 		
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

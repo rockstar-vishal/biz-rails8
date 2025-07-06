@@ -1,0 +1,151 @@
+
+<%= render_sheet  direction: "right", width: "w-full sm:max-w-full lg:max-w-full  md:w-full lg:w-full xl:w-full	 ",  class:"!slide-in-from-right bg-white/50 backdrop-blur-xl p-0" do %>
+  <%= sheet_trigger do %>
+    <div  class="bg-white rounded-lg text-sm p-3 shadow-xl cursor-pointer"> View Plan Details</div>
+  <% end %>
+ 
+  <%= sheet_content do %>
+   <div class=" min-h-[calc(100vh-10px)] overflow-y-auto">
+    <div class="p-4 flex items-center justify-between ">
+      <h3 class="text-base font-semibold">Payment Plan Details</h3>
+    </div>
+     <div class="table-responsive">
+            <div class="overflow-hidden p-4">
+                <%= render_table class:"rounded-md border bg-white"  do %>
+                    <%= table_head class:"rounded-t-md  py-2 px-4 bg-gradient-to-bl from-[#ffe4e6] to-[#ccfbf1]" do %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Name</span>	
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Type</span>
+                            <span class="text-gray-700 text-sm font-bold block">Cost</span>		
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Amount</span>
+                            <span class="text-gray-700 text-sm font-bold block">Total</span>		
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Amount</span>
+                            <span class="text-gray-700 text-sm font-bold block">Principle</span>		
+                        <% end %>
+                         <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Amount</span>
+                            <span class="text-gray-700 text-sm font-bold block">TDS</span>		
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Amount</span>
+                            <span class="text-gray-700 text-sm font-bold block">Tax</span>		
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Amount</span>
+                            <span class="text-gray-700 text-sm font-bold block">Total</span>		
+                        <% end %>
+                         <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Received </span>
+                            <span class="text-gray-700 text-sm font-bold block">Principle</span>		
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Received </span>
+                            <span class="text-gray-700 text-sm font-bold block">TDS </span>		
+                        <% end %>
+                         <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Received </span>
+                            <span class="text-gray-700 text-sm font-bold block">Tax </span>		
+                        <% end %>
+                         <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Pending </span>
+                            <span class="text-gray-700 text-sm font-bold block">Principle </span>		
+                        <% end %>
+                         <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Pending </span>
+                            <span class="text-gray-700 text-sm font-bold block">TDS </span>		
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Pending </span>
+                            <span class="text-gray-700 text-sm font-bold block">Tax </span>		
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Pending </span>
+                            <span class="text-gray-700 text-sm font-bold block">No of Days	</span>		
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Amount </span>
+                            <span class="text-gray-700 text-sm font-bold block">Paid</span>		
+                        <% end %>
+                         <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">- </span>
+                            <span class="text-gray-700 text-sm font-bold block">Interest</span>		
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Due </span>
+                            <span class="text-gray-700 text-sm font-bold block">Date</span>		
+                        <% end %>
+                        
+                    <% end %>
+                    <%= table_body do %>
+                        <%= table_row do %>
+                            <%= table_column do %>
+                            <div class="whitespace-nowrap">
+                                Flat Base Cost	
+                            </div>
+                                	
+                            <% end %>
+                            <%= table_column do %>
+                                Agreement 5%		
+                            <% end %>
+                            <%= table_column do %>
+                                &#8377; 0.00	
+                            <% end %>
+                            <%= table_column do %>
+                                &#8377; 0.00	
+                            <% end %>
+                            <%= table_column do %>
+                                &#8377; 0.00	
+                            <% end %>
+                            <%= table_column do %>
+                                &#8377; 0.00	
+                            <% end %>
+                            <%= table_column do %>
+                                &#8377; 0.00	
+                            <% end %>
+                            <%= table_column do %>
+                                &#8377; 0.00	
+                            <% end %>
+                            <%= table_column do %>
+                                &#8377; 0.00	
+                            <% end %>
+                            <%= table_column do %>
+                                &#8377; 0.00	
+                            <% end %>
+                            <%= table_column do %>
+                                &#8377; 0.00	
+                            <% end %>
+                            <%= table_column do %>
+                                &#8377; 0.00	
+                            <% end %>
+                            <%= table_column do %>
+                                &#8377; 0.00	
+                            <% end %>
+                            <%= table_column do %>
+                                0 Days
+                            <% end %>
+                            <%= table_column do %>
+                                No
+                            <% end %>
+                            <%= table_column do %>
+                                &#8377; 0.00	
+                            <% end %>
+                            <%= table_column do %>
+                                12th June 25
+                            <% end %>
+                        <% end %>
+                       
+                       
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+   
+  </div>
+  <% end %>
+<% end %>

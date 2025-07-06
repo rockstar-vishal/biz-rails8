@@ -1,0 +1,159 @@
+<div>
+   <div class="mt-1 mb-4 flex  items-center w-full">
+        <span class="w-1/3 "><a href="/building"
+                class=" inline-flex  justify-between items-center p-2 text-xs border border-gray-200 rounded-lg rounded-lg bg-white hover:shadow-md transition-all">
+                <div class="flex items-center gap-1">
+                    <span class="text-gray-800 "><%= render 'icons/back' %></span>
+                    <div class="flex flex-col">
+                        <span class="text-gray-500">Back</span>
+
+                    </div>
+                </div>
+            </a></span>
+
+        <span class="w-1/3 text-black text-base font-semibold flex justify-center">Booking Details</span>
+        <span class="w-1/3 flex justify-end">
+            <%= render 'shared/breadcrumb' %>
+        </span>
+    </div>
+  <div class="flex gap-4 ">
+    <div class="border border-gray-200 rounded-lg  bg-gradient-to-bl from-[#ffe4e6] to-[#ccfbf1]  project-height-fix w-[450px] min-h-[calc(100vh-150px)] relative">
+      <div class="bg-gradient-to-tr from-[#22c55e] via-[#0e7490] to-[#3b82f6] relative overflow-hidden rounded-t-lg sticky top-0 z-10 bg-red-500">
+        <div class="w-full absolute top-5 right-0 flex items-end h-full">
+          <%= image_tag 'card-project2.png', alt: 'Company Logo', class: 'w-full ml-auto opacity-30' %>
+        </div>
+              <div class="border-t border-white/50 p-4 relative z-10">
+          <div class="space-y-2 ">
+            <div class="flex  justify-between items-center">
+                <div class="flex flex-col">
+                    <span class="text-xs text-white">Flat No</span>
+                    <h3 class="text-white text-sm font-bold">T1-101</h3>
+                </div>
+                  <div class="flex flex-col">
+                    <span class="text-xs text-white">Floor</span>
+                    <h3 class="text-white text-sm font-bold">22</h3>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xs text-white">Building</span>
+                    <h3 class="text-white text-sm font-bold">Tower 1</h3>
+                </div>
+                
+            </div>
+            
+           
+      
+          </div>
+           </div>
+      
+      </div>
+      <div class="p-2">
+      <span class="block  mb-2 text-xs text-black">Updates</span>
+       <%= render 'projects/flat/booking/updateBooking' %>
+       <%= render 'projects/flat/booking/updateInterest' %>
+        <%= render 'projects/flat/booking/updateTransaction' %>
+  
+
+        <span class="block mt-4 mb-2 text-xs text-black">Letters Download</span>
+        <a href="/"
+    class="flex gap-2 justify-between items-center p-2 text-xs border border-gray-200 rounded-lg rounded-lg bg-white backdrop-blur-sm overflow-hidden mb-2 hover:shadow-2xl transition-all">
+    <div class="flex gap-3 items-center">
+        <span class="text-blue-500 "><%= render 'icons/docx' %></span>
+        <div class="flex flex-col">
+            <span class="text-black text-sm">Welcome</span>
+            <span class="text-gray-500">Letter</span>
+        </div>
+    </div>
+    <span class="text-gray-400 "><%= render 'icons/download' %></span>
+    </a>
+    <a href="/"
+        class="flex gap-2 justify-between items-center p-2 text-xs border border-gray-200 rounded-lg rounded-lg bg-white backdrop-blur-sm overflow-hidden mb-2 hover:shadow-2xl transition-all">
+        <div class="flex gap-3 items-center">
+            <span class="text-blue-500 "><%= render 'icons/docx' %></span>
+            <div class="flex flex-col">
+                <span class="text-black text-sm">Allotment</span>
+                <span class="text-gray-500">Letter</span>
+            </div>
+        </div>
+        <span class="text-gray-400 "><%= render 'icons/download' %></span>
+    </a>
+    <a href="/"
+        class="flex gap-2 justify-between items-center p-2 text-xs border border-gray-200 rounded-lg rounded-lg bg-white backdrop-blur-sm overflow-hidden mb-2 hover:shadow-2xl transition-all">
+        <div class="flex gap-3 items-center">
+            <span class="text-blue-500 "><%= render 'icons/docx' %></span>
+            <div class="flex flex-col">
+                <span class="text-black text-sm">Intimation of Registration</span>
+                <span class="text-gray-500">Letter</span>
+            </div>
+        </div>
+        <span class="text-gray-400 "><%= render 'icons/download' %></span>
+    </a>
+     <a href="/"
+        class="flex gap-2 justify-between items-center p-2 text-xs border border-gray-200 rounded-lg rounded-lg bg-white backdrop-blur-sm overflow-hidden mb-2 hover:shadow-2xl transition-all">
+        <div class="flex gap-3 items-center">
+            <span class="text-blue-500 "><%= render 'icons/docx' %></span>
+            <div class="flex flex-col">
+                <span class="text-black text-sm">Transfer Request</span>
+                <span class="text-gray-500">Letter</span>
+            </div>
+        </div>
+        <span class="text-gray-400 "><%= render 'icons/download' %></span>
+    </a>
+     <a href="/"
+        class="flex gap-2 justify-between items-center p-2 text-xs border border-gray-200 rounded-lg rounded-lg bg-white backdrop-blur-sm overflow-hidden mb-2 hover:shadow-2xl transition-all">
+        <div class="flex gap-3 items-center">
+            <span class="text-blue-500 "><%= render 'icons/docx' %></span>
+            <div class="flex flex-col">
+                <span class="text-black text-sm">Demand</span>
+                <span class="text-gray-500">Letter</span>
+            </div>
+        </div>
+        <span class="text-gray-400 "><%= render 'icons/download' %></span>
+    </a>
+     <a href="/"
+        class="flex gap-2 justify-between items-center p-2 text-xs border border-gray-200 rounded-lg rounded-lg bg-white backdrop-blur-sm overflow-hidden mb-2 hover:shadow-2xl transition-all">
+        <div class="flex gap-3 items-center">
+            <span class="text-blue-500 "><%= render 'icons/docx' %></span>
+            <div class="flex flex-col">
+                <span class="text-black text-sm">Reminder</span>
+                <span class="text-gray-500">Letter</span>
+            </div>
+        </div>
+        <span class="text-gray-400 "><%= render 'icons/download' %></span>
+    </a>
+     <a href="/"
+        class="flex gap-2 justify-between items-center p-2 text-xs border border-gray-200 rounded-lg rounded-lg bg-white backdrop-blur-sm overflow-hidden mb-2 hover:shadow-2xl transition-all">
+        <div class="flex gap-3 items-center">
+            <span class="text-blue-500 "><%= render 'icons/docx' %></span>
+            <div class="flex flex-col">
+                <span class="text-black text-sm">Agreement</span>
+                <span class="text-gray-500">Letter</span>
+            </div>
+        </div>
+        <span class="text-gray-400 "><%= render 'icons/download' %></span>
+    </a>
+     <a href="/"
+        class="flex gap-2 justify-between items-center p-2 text-xs border border-gray-200 rounded-lg rounded-lg bg-white backdrop-blur-sm overflow-hidden mb-2 hover:shadow-2xl transition-all">
+        <div class="flex gap-3 items-center">
+            <span class="text-blue-500 "><%= render 'icons/docx' %></span>
+            <div class="flex flex-col">
+                <span class="text-black text-sm">Cost Sheet</span>
+                <span class="text-gray-500">Letter</span>
+            </div>
+        </div>
+        <span class="text-gray-400 "><%= render 'icons/download' %></span>
+    </a>
+        
+      </div>
+    </div>
+    <div class="w-full space-y-4 project-height-fix ">
+        <%= render 'projects/flat/booking/clientDetails' %>
+        <%= render 'projects/flat/booking/flatDetail' %>
+        <%= render 'projects/flat/booking/salesExecutive' %>
+        <%= render 'projects/flat/booking/flatCost' %>
+        <%= render 'projects/flat/booking/paymentplan' %>
+        <%= render 'projects/flat/booking/brokerage' %>
+        <%= render 'projects/flat/booking/otherDetails' %>
+    </div>
+    
+</div>
+</div>

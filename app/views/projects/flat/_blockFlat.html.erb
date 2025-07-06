@@ -1,0 +1,108 @@
+<%= render_sheet direction: "right", width: "w-full sm:max-w-full lg:max-w-full md:w-2/3 lg:w-1/2 xl:w-1/2", class: "!slide-in-from-right bg-white/50 backdrop-blur-xl p-0" do %>
+  <%= sheet_trigger do %>
+    <span class="block py-1 w-full flex  items-center justify-center text-white text-xs cursor-pointer  border-r bg-action">Block</span>
+  <% end %>
+
+  <%= sheet_content do %>
+    <div class="text-black">
+       <div
+      class="bg-gradient-to-tr from-[#22c55e] via-[#0e7490] to-[#3b82f6] relative overflow-hidden pointer-event-none z-10">
+      <div class="w-full absolute top-5 right-0 flex items-end h-full">
+        <%= image_tag 'card-project2.png', alt: 'Company Logo', class: ' ml-auto opacity-30' %>
+      </div>
+      <div class="border-b border-white/50 p-4 relative z-10">
+        <div class="space-y-2 ">
+          <div class="flex  gap-6 items-center">
+            <div class="flex flex-col">
+              <span class="text-xs text-white">Flat No</span>
+              <h3 class="text-white text-sm font-bold">T1-101</h3>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-xs text-white">Floor</span>
+              <h3 class="text-white text-sm font-bold">22</h3>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-xs text-white">Building</span>
+              <h3 class="text-white text-sm font-bold">Tower 1</h3>
+            </div>
+            <div class="ml-auto"> <button data-ui--sheet-target="closeButton" type="button"
+                class="text-white p-2"><%= render 'icons/close' %>
+              </button></div>
+          </div>
+        </div>
+      </div>
+      <div class="px-4 py-2">
+        <h3 class="text-white text-sm font-bold">Block Flat</h3>
+      </div>
+    </div>
+      <form action="">
+        <div class="min-h-[calc(100vh-170px)] h-[calc(100vh-170px)] p-4 overflow-y-auto">
+          <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-4">
+            
+           <div class="mb-2">
+              <%= render_label name: "start_date", label: "Start Date", class: "mb-2 block" %>
+              <%= render_input name: "start_date", id: "start_date", placeholder: "Start Date", class: "h-auto p-3", type:"date" %>
+            </div>
+             <div class="col-span-full flex items-center justify-between">
+              <h3 class="text-base font-semibold">Add Sales executive</h3>
+            </div>
+            <div class="col-span-full flex gap-2 items-stretch w-full bg-white rounded-lg border border-gray-200">
+              <div class="w-full grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 p-4">
+                <div class="mb-2 w-full">
+                  <%= render_label name: "", label: "Sales Person", class: "mb-2 block" %>
+                  <select name="budilding" id="select-building" class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                    <option value="">Please select</option>
+                    <option value="t1">Flat Based</option>
+                    <option value="t2">GST</option>
+                  </select>
+                </div>
+              </div>
+              <div class="w-full max-w-[200px] flex items-center gap-2 bg-green-50 p-2 rounded-e-lg justify-center">
+                <%= render_button as: :link, href: "", class: "w-auto bg-brand h-auto py-3 mt-2 gap-2" do %>
+                  <%= render 'icons/add' %>
+                  <span>Add</span>
+                <% end %>
+                <%= render_button as: :link, href: "", class: "w-auto bg-red-500 h-auto py-2 mt-2 gap-2" do %>
+                  <%= render 'icons/delete' %>
+                <% end %>
+              </div>
+            </div>
+            <div class="col-span-full flex gap-2 items-stretch w-full bg-white rounded-lg border border-gray-200 mb-3">
+              <div class="w-full grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 p-4">
+                <div class="mb-2 w-full">
+                  <%= render_label name: "", label: "Sales Person", class: "mb-2 block" %>
+                  <select name="budilding" id="select-building" class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                    <option value="">Please select</option>
+                    <option value="t1">Flat Based</option>
+                    <option value="t2">GST</option>
+                  </select>
+                </div>
+              </div>
+              <div class="w-full max-w-[200px] flex items-center gap-2 bg-green-50 p-2 rounded-e-lg justify-center">
+                <%= render_button as: :link, href: "", class: "w-auto bg-brand h-auto py-3 mt-2 gap-2" do %>
+                  <%= render 'icons/add' %>
+                  <span>Add</span>
+                <% end %>
+                <%= render_button as: :link, href: "", class: "w-auto bg-red-500 h-auto py-2 mt-2 gap-2" do %>
+                  <%= render 'icons/delete' %>
+                <% end %>
+              </div>
+            </div>
+            <div class="mb-4 col-span-full">
+            <%= render_label name:"comments", label:"Comments", class:"mb-2 block" %>
+            <%= render_textarea name: "comments", placeholder:"Comment..." %>
+
+          </div>
+          </div>
+        </div>
+        <div class="bg-white border-t border-gray-300 p-4">
+          <div class="flex justify-between items-center">
+            <%= render_button "Block Flat", as: :link, href: "", class: "bg-brand h-auto" %>
+            <button data-ui--sheet-target="closeButton" type="button" class="bg-gray-200 text-gray-800 hover:bg-gray-300 h-auto rounded-md text-sm py-2 px-4">Close
+      </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  <% end %>
+<% end %>

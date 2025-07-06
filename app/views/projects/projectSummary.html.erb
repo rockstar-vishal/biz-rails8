@@ -1,0 +1,209 @@
+<div>
+      <div class="mt-1 mb-4 flex  items-center w-full">
+        <span class="w-1/3 "><a href="/building"
+            class=" inline-flex  justify-between items-center p-2 text-xs border border-gray-200 rounded-lg rounded-lg bg-white hover:shadow-md transition-all">
+            <div class="flex items-center gap-1">
+                <span class="text-gray-800 "><%= render 'icons/back' %></span>
+                <div class="flex flex-col">
+                    <span class="text-gray-500">Back</span>
+                    
+                </div>
+            </div>
+        </a></span>
+    
+        <span class="w-1/3 text-black text-base font-semibold flex justify-center">Booking CRM</span>
+        <span class="w-1/3 flex justify-end">
+            <%= render 'shared/breadcrumb' %>
+        </span>
+  </div>
+  <div class="flex gap-4">
+  
+    <div class="w-full border border-gray-200 rounded-lg bg-white/50 project-height-fix min-h-[calc(100vh-150px)]">
+        <div class="">
+              <div class="border-b border-gray-200 rounded-t-lg flex gap-4 py-2 px-4 items-center">
+        <div class="flex gap-2">
+            <%= render_input name: "search", id: "search", placeholder: "Search by name, email or phone...", class: "h-auto p-2.5 min-w-[400px]" %>
+            <%= render_button as: :link, href: "", class: "bg-brand h-auto py-2 px-4 gap-2  hover:bg-brand/80" do %>
+                <%= render 'icons/searchsm' %>
+              <% end %>
+        </div> 
+        <div class="ml-auto flex gap-2">
+          <%= render_button as: :link, href: "/todaysCall", class: "bg-green-50 text-green-500 border border-gray-200 gap-2 hover:bg-green-700 hover:text-white" do %>
+           <span class="font-bold text-white rounded-md bg-green-500 py-1 px-2 text-xs">05</span>
+            <span>Today's Call</span>
+          <% end %>
+          <%= render_button as: :link, href: "/backlog", class: "bg-red-50 text-red-500 border border-gray-200 gap-2 hover:bg-red-700 hover:text-white" do %>
+           <span class="font-bold text-white rounded-md bg-red-500 py-1 px-2 text-xs">05</span>
+            <span>Backlogs</span>
+          <% end %>
+          <%= render_button class: "bg-gray-50 text-gray-500 border border-gray-200 gap-2 hover:bg-gray-900 hover:text-white" do %>
+            <%= render 'icons/csv' %>
+            <span>Export</span>
+          <% end %>
+          <%= render 'projects/lead/filter' %>
+        </div>
+      </div>
+            <div class=" table-responsive">
+                <%= render_table class:"overflow-hidden"  do %>
+                    <%= table_head class:"rounded-t-md  py-2 px-4 bg-gradient-to-bl from-[#ffe4e6] to-[#ccfbf1]" do %>
+                        <%= table_header do %>
+                        <span class="text-xs text-gray-700 block">Client</span>
+                            <span class="text-gray-700 text-sm font-bold block"> Name</span>	
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Client</span>
+                            <span class="text-gray-700 text-sm font-bold block">Email</span>	
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Client </span>
+                            <span class="text-gray-700 text-sm font-bold block">Number</span>		
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Building</span>
+                            <span class="text-gray-700 text-sm font-bold block">Name</span>	
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Configuration</span>			
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Booking </span>
+                            <span class="text-gray-700 text-sm font-bold block">Reference</span>			
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Unit</span>			
+                        <% end %>
+                         <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Total </span>
+                            <span class="text-gray-700 text-sm font-bold block">Amount</span>			
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Collected </span>
+                            <span class="text-gray-700 text-sm font-bold block">Amount</span>			
+                        <% end %>
+                         <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Pending </span>
+                            <span class="text-gray-700 text-sm font-bold block">Amount</span>			
+                        <% end %>
+                         <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Agreement </span>
+                            <span class="text-gray-700 text-sm font-bold block">Balance</span>			
+                        <% end %>
+                         <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Interest </span>
+                            <span class="text-gray-700 text-sm font-bold block">Pending</span>			
+                        <% end %>
+                         <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Slab </span>
+                            <span class="text-gray-700 text-sm font-bold block">Name</span>			
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Days  </span>
+                            <span class="text-gray-700 text-sm font-bold block">Count</span>			
+                        <% end %>
+                         <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Next</span>
+                            <span class="text-gray-700 text-sm font-bold block">Call Date</span>			
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Comment</span>			
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Action</span>			
+                        <% end %>
+                    <% end %>
+                    <%= table_body do %>
+                        <%= table_row do %>
+                            <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                    <span class="text-sm font-bold text-gray-800 block">Jitendra Patel</span>
+                                </div>
+                            <% end %>
+                            <%= table_column do %>
+                               <div class="whitespace-nowrap">
+                                    Jitendra@gmail.com
+                                </div>	
+                            <% end %>
+                            <%= table_column do %>
+                               <div class="whitespace-nowrap">
+                                    981234567890
+                                </div>
+                            <% end %>
+                            <%= table_column do %>
+                            <div class="whitespace-nowrap">
+                                    Tower-2
+                                </div>
+                               			
+                            <% end %>
+                            <%= table_column do %>
+                                2BHK		
+                            <% end %>
+                            <%= table_column do %>
+                               <div class="whitespace-nowrap">
+                                <a href="/showBooking" class="bg-brand/5 hover:bg-brand hover:text-white font-bold p-1 rounded-md text-brand border border-brand flex items-center gap-1">OLY0992FE <span class="rotate-180"> <%= render 'icons/back' %></span></a>
+                                      
+                                </div>		
+                            <% end %>
+                            <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                    T2-1502
+                                </div>		
+                            <% end %>
+                            <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                    &#8377; 76,42,401
+                                </div>		
+                            <% end %>
+                             <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                    &#8377; 42,401
+                                </div>		
+                            <% end %>
+                             <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                    &#8377; 401
+                                </div>		
+                            <% end %>
+                             <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                    &#8377; 401
+                                </div>		
+                            <% end %>
+                             <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                    &#8377; 76,42,401
+                                </div>		
+                            <% end %>
+                             <%= table_column do %>
+                                <div class="">
+                                    Booking Amount
+                                </div>		
+                            <% end %>
+                             <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                   365
+                                </div>		
+                            <% end %>
+                             <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                   28 Dec 25
+                                </div>		
+                            <% end %>
+                             <%= table_column do %>
+                                <div class="">
+                                   This is Comments
+                                </div>		
+                            <% end %>
+                             <%= table_column do %>
+                                <%= render 'projects/lead/update' %>	
+                            <% end %>
+                        <% end %>
+                       
+                       
+                        
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

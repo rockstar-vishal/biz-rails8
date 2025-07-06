@@ -1,0 +1,69 @@
+
+<div>
+  <div class="mt-1 mb-4 flex justify-between items-center">
+    <h1 class="font-bold">Project Name</h1>
+    <%= render 'shared/breadcrumb' %>
+  </div>
+  <div class="flex gap-4 ">
+   
+    <div class="border border-gray-200 rounded-lg rounded-lg   bg-gradient-to-bl from-[#ffe4e6]  to-[#ccfbf1] backdrop-blur-xl  project-height-fix w-[450px] min-h-[calc(100vh-150px)] ">
+      <div class="bg-gradient-to-tr from-[#22c55e] via-[#0e7490] to-[#3b82f6] relative">
+         <div class="w-full absolute top-5 right-0 ">
+            <%= image_tag 'card-project2.png', alt: 'Company Logo', class: 'w-full  ml-auto opacity-30  ' %>
+          </div>
+        <div class="p-4  text-black text-base  flex gap-2 items-center justify-between relative z-10 font-semibold">
+           <a href="/building" class="w-full text-center text-xs bg-white rounded-full px-2 py-2 cursor-pointer transition-all">Flats</a>
+            <a href="/parking" class="w-full text-center text-xs text-white rounded-full px-2 py-2 hover:bg-white hover:text-black cursor-pointer transition-all">Parking</a>
+            <a href="/paymentsPlan"  class="w-full text-center text-xs text-white rounded-full px-2 py-2 hover:bg-white hover:text-black cursor-pointer transition-all">Payment Plan</a>
+        </div>
+        <div class="border-t border-white/50 p-4 relative z-10">
+          <div class="mb-4">
+            <%= render_label name:"project_Name", label:"Select Building", class:"mb-2 block text-white" %>
+            <div class="flex gap-2">
+<select
+      name="budilding"
+      id="select-building"
+      class="w-full rounded border-gray-300 shadow-lg p-3 text-sm"
+    >
+      <option value="">Please select</option>
+      <option value="t1">Tower 1</option>
+      <option value="t2">Tower 2</option>
+    </select>
+      <%= render_button as: :link, href: "/building", class: " bg-brand h-auto py-3  gap-2 shadow-lg hover:bg-brand/80" do %>
+                  <%= render 'icons/search' %>
+                <% end %>
+
+            </div>
+           
+
+    
+          </div>
+        </div>
+       
+      </div>
+      
+       
+      <div class="p-2  ">
+         <a href="/projectSummary" class="flex gap-2 justify-between items-center p-3 text-xs border border-gray-200 rounded-lg rounded-lg bg-white backdrop-blur-sm overflow-hidden  hover:shadow-2xl transition-all">
+                <div class="flex gap-3 items-center">
+                  <span class="text-brand "><%= render 'icons/leadManagement' %></span>
+                  <div class="flex flex-col">
+                    <span class="text-black text-sm">Dashboard</span>
+                    <span class="text-gray-500 ">Lead Management</span>
+                  </div>
+                </div>
+                <span class="text-gray-400 "><%= render 'icons/arrowRight' %></span> 
+            </a>
+          <span class="block mt-4 mb-2 text-xs text-black">Letters Download</span>
+        <%= render 'projects/flat/letter' %>
+
+            
+            
+      </div>
+    </div>
+    <div class="w-full border border-gray-200 rounded-lg rounded-lg bg-white/50 backdrop-blur-sm overflow-hidden flex flex-col items-center justify-center gap-4">
+          <%= image_tag 'nodata.png', alt: 'No data', class: 'max-w-36  opacity-50' %>
+          <p class="text-center text-lg text-black">Select Building to display Information</p>
+    </div>
+  </div>
+</div>

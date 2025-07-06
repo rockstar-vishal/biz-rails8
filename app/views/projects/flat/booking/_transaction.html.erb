@@ -1,0 +1,189 @@
+
+<%= render_sheet  direction: "right", width: "w-full sm:max-w-full lg:max-w-full  md:w-full lg:w-full xl:w-full	 ",  class:"!slide-in-from-right bg-white/50 backdrop-blur-xl p-0" do %>
+  <%= sheet_trigger do %>
+    <%= render_button "View Transactions", class:"w-full bg-lime-600 hover:bg-lime-800 h-auto p-3  text-sm" %>
+  <% end %>
+ 
+  <%= sheet_content do %>
+   <div class=" min-h-[calc(100vh-10px)] overflow-y-auto">
+    <div class="p-4 flex items-center justify-between ">
+      <h3 class="text-base font-semibold">Transaction Details</h3>
+    </div>
+     <div class="table-responsive">
+            <div class="overflow-hidden p-4">
+                <%= render_table class:"rounded-md border bg-white"  do %>
+                    <%= table_head class:"rounded-t-md  py-2 px-4 bg-gradient-to-bl from-[#ffe4e6] to-[#ccfbf1]" do %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Account No</span>	
+                        <% end %>
+                        <%= table_header do %>
+                        
+                            <span class="text-gray-700 text-sm font-bold block">Customer</span>	
+                            <span class="text-xs text-gray-700 block">Account No</span>	
+                        <% end %>
+                        <%= table_header do %>
+                            
+                            <span class="text-gray-700 text-sm font-bold block">Transaction</span>	
+                            <span class="text-xs text-gray-700 block">Type</span>	
+                        <% end %>
+                        <%= table_header do %>
+                        
+                            <span class="text-gray-700 text-sm font-bold block">Payment</span>	
+                            <span class="text-xs text-gray-700 block">Type</span>	
+                        <% end %>
+                         <%= table_header do %>
+                         
+                            <span class="text-gray-700 text-sm font-bold block">Cost</span>	
+                            <span class="text-xs text-gray-700 block">Type</span>	
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Mode</span>		
+                        <% end %>
+                        <%= table_header do %>
+                        
+                            <span class="text-gray-700 text-sm font-bold block">Instrument</span>	
+                            <span class="text-xs text-gray-700 block">Date</span>	
+                        <% end %>
+                         <%= table_header do %>
+                         
+                            <span class="text-gray-700 text-sm font-bold block">Clearing</span>	
+                            <span class="text-xs text-gray-700 block">Date</span>	
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Amount </span>		
+                        <% end %>
+                         <%= table_header do %>
+                         
+                            <span class="text-gray-700 text-sm font-bold block">Balance </span>	
+                        <% end %>
+                         <%= table_header do %>
+                         
+                            <span class="text-gray-700 text-sm font-bold block">Tax</span>	
+                            <span class="text-xs text-gray-700 block">Amount </span>	
+                        <% end %>
+                         <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Tax </span>
+                            <span class="text-gray-700 text-sm font-bold block">Balance </span>		
+                        <% end %>
+                        <%= table_header do %>
+                        
+                            <span class="text-gray-700 text-sm font-bold block">TDS </span>	
+                            <span class="text-xs text-gray-700 block">Amount </span>	
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">TDS </span>
+                            <span class="text-gray-700 text-sm font-bold block">Balance</span>		
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Reference </span>
+                            <span class="text-gray-700 text-sm font-bold block">Number</span>		
+                        <% end %>
+                         <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Cheque</span>
+                            <span class="text-gray-700 text-sm font-bold block">Status</span>		
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Bounce</span>
+                            <span class="text-gray-700 text-sm font-bold block">Charges</span>		
+                        <% end %>
+                        
+                    <% end %>
+                    <%= table_body do %>
+                        <%= table_row do %>
+                            <%= table_column do %>
+                            <div class="whitespace-nowrap">
+                                Flat Base Cost	
+                            </div>
+                                	
+                            <% end %>
+                            <%= table_column do %>
+                               <div class="whitespace-nowrap">
+                               5939939193
+                            </div>	
+                            <% end %>
+                            <%= table_column do %>
+                               <div class="whitespace-nowrap">
+                               -
+                            </div>		
+                            <% end %>
+                            <%= table_column do %>
+                              <div class="whitespace-nowrap">
+                               -
+                            </div>	
+                            <% end %>
+                            <%= table_column do %>
+                               <div class="whitespace-nowrap">
+                               -
+                            </div>		
+                            <% end %>
+                            <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                               -
+                            </div>		
+                            <% end %>
+                            <%= table_column do %>
+                               <div class="whitespace-nowrap">
+                               -
+                            </div>	
+                            <% end %>
+                            <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                               -
+                            </div>	
+                            <% end %>
+                            <%= table_column do %>
+                               <div class="whitespace-nowrap">
+                               -
+                            </div>		
+                            <% end %>
+                            <%= table_column do %>
+                               <div class="whitespace-nowrap">
+                               -
+                            </div>	
+                            <% end %>
+                            <%= table_column do %>
+                               <div class="whitespace-nowrap">
+                               -
+                            </div>		
+                            <% end %>
+                            <%= table_column do %>
+                                 <div class="whitespace-nowrap">
+                               -
+                            </div>		
+                            <% end %>
+                            <%= table_column do %>
+                                 <div class="whitespace-nowrap">
+                               -
+                            </div>		
+                            <% end %>
+                            <%= table_column do %>
+                                 <div class="whitespace-nowrap">
+                               -
+                            </div>	
+                            <% end %>
+                            <%= table_column do %>
+                            <div class="whitespace-nowrap">
+                               -
+                            </div>	
+                            <% end %>
+                            <%= table_column do %>
+                                 <div class="whitespace-nowrap">
+                               -
+                            </div>		
+                            <% end %>
+                            <%= table_column do %>
+                                 <div class="whitespace-nowrap">
+                               -
+                            </div>	
+                            <% end %>
+                        <% end %>
+                       
+                       
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+   
+  </div>
+  <% end %>
+<% end %>

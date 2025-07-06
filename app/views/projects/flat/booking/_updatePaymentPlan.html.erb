@@ -1,0 +1,115 @@
+ <div class="col-span-full flex items-center justify-between">
+     <h3 class="text-base font-semibold">Payment Plans</h3>
+ </div>
+ <div class="col-span-full">
+     <div class="">
+         <div class="table-responsive">
+             <%= render_table class:"rounded-md border bg-white overflow-hidden"  do %>
+                <%= table_head class:"rounded-t-md  py-2 px-4 bg-gradient-to-bl from-[#ffe4e6] to-[#ccfbf1]" do %>
+                    <%= table_header do %>
+                    <span class="text-gray-700 text-sm font-bold block">Name</span>
+                    <% end %>
+                    <%= table_header do %>
+                        <span class="text-gray-700 text-sm font-bold block">Cost</span>
+                        <span class="text-xs text-gray-700 block">Type</span>
+                    <% end %>
+                    <%= table_header do %>
+                        <span class="text-gray-700 text-sm font-bold block">Agreement </span>
+                        <span class="text-xs text-gray-700 block">Amount</span>
+                    <% end %>
+                    <%= table_header do %>
+                        <span class="text-gray-700 text-sm font-bold block">TDS </span>
+                        <span class="text-xs text-gray-700 block">Amount</span>
+                    <% end %>
+                    <%= table_header do %>
+                        <span class="text-gray-700 text-sm font-bold block">Due Date</span>
+                    <% end %>
+                    <%= table_header do %>
+                        <span class="text-gray-700 text-sm font-bold block">Tax</span>
+                    <% end %>
+                    <%= table_header do %>
+                        <span class="text-gray-700 text-sm font-bold block">Total</span>
+                    <% end %>
+                    <%= table_header do %>
+                        <span class="text-gray-700 text-sm font-bold block">Pending</span>
+                    <% end %>
+                    <%= table_header do %>
+                        <span class="text-gray-700 text-sm font-bold block">Tax </span>
+                        <span class="text-xs text-gray-700 block">Pending </span>
+                    <% end %>
+                    <%= table_header do %>
+                        <span class="text-gray-700 text-sm font-bold block">Tax </span>
+                        <span class="text-xs text-gray-700 block">Received </span>
+                    <% end %>
+                    <%= table_header do %>
+                        <span class="text-gray-700 text-sm font-bold block">Paid </span>
+                    <% end %>
+                    <%= table_header do %>
+                        <span class="text-gray-700 text-sm font-bold block">Delete</span>
+                    <% end %>
+             <% end %>
+            <%= table_body do %>
+                <%= table_row do %>
+                    <%= table_column do %>
+                        <div class="whitespace-nowrap">
+                            Flat Base Cost
+                        </div>
+                    <% end %>
+                    <%= table_column do %>
+                        <div class="whitespace-nowrap">
+                            Agreement 5%
+                        </div>
+                    <% end %>
+                    <%= table_column do %>
+                        <div class="whitespace-nowrap">
+                            &#8377; 0.00
+                        </div>
+                    <% end %>
+                    <%= table_column do %>
+                        <div class="whitespace-nowrap">
+                            &#8377; 0.00
+                        </div>
+                    <% end %>
+                    <%= table_column do %>
+                        <%= render_input name: "project_Name", type: "date", placeholder:"Project Name", class:"h-auto p-3 " %>
+                    <% end %>
+                    <%= table_column do %>
+                        <div class="whitespace-nowrap">
+                            &#8377; 0.00
+                        </div>
+                    <% end %>
+                    <%= table_column do %>
+                        <div class="whitespace-nowrap">
+                            &#8377; 0.00
+                        </div>
+                    <% end %>
+                    <%= table_column do %>
+                        <div class="whitespace-nowrap">
+                            &#8377; 0.00
+                        </div>
+                    <% end %>
+                    <%= table_column do %>
+                        <div class="whitespace-nowrap">
+                            &#8377; 0.00
+                        </div>
+                    <% end %>
+                    <%= table_column do %>
+                        <div class="whitespace-nowrap">
+                            &#8377; 0.00
+                        </div>
+                    <% end %>
+                    <%= table_column do %>
+                    No
+                    <% end %>
+                    <%= table_column do %>
+                        <%= render_button as: :link, href: "", class: "w-auto bg-red-500 h-auto py-2 px-3 " do %>
+                        <%= render 'icons/deleteSmall' %>
+                    <% end %>
+                <% end %>
+            <% end %>
+
+            <% end %>
+        <% end %>
+         </div>
+     </div>
+ </div>

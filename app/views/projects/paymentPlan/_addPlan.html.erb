@@ -1,0 +1,112 @@
+<%= render_sheet direction: "right", width: "w-full sm:max-w-full lg:max-w-full md:w-2/3 lg:w-2/3 xl:w-2/3", class: "!slide-in-from-right bg-white/50 backdrop-blur-xl p-0" do %>
+  <%= sheet_trigger do %>
+    <%= render_button as: :link, href: "", class: "bg-brand/5 text-brand border border-gray-200 gap-2 hover:bg-brand hover:text-white" do %>
+      <%= render 'icons/add' %>
+      <span>Add Payment Plan</span>
+    <% end %>
+  <% end %>
+
+  <%= sheet_content do %>
+    <div>
+      <div class="p-4 flex items-center justify-between">
+        <h3 class="text-base font-semibold">Add Payment Plan</h3>
+      </div>
+      <form action="">
+        <div class="modal-height p-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <div class="mb-2 col-span-2">
+              <%= render_label name: "plan", label: "Plan Name", class: "mb-2 block" %>
+              <%= render_input name: "plan", id: "plan", placeholder: "Plan Name", class: "h-auto p-3" %>
+            </div>
+           
+
+            <div class="col-span-full flex items-center justify-between">
+              <h3 class="text-base font-semibold">Plan Stages</h3>
+            </div>
+            <div class="col-span-full flex gap-2 items-stretch w-full bg-white rounded-lg border border-gray-200">
+              <div class="w-full grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4 p-4">
+                <div class="mb-2 w-full">
+                  <%= render_label name: "", label: "Title", class: "mb-2 block" %>
+                  <select name="budilding" id="select-building" class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                    <option value="">Please select</option>
+                    <option value="t1">Flat Based</option>
+                    <option value="t2">GST</option>
+                  </select>
+                </div>
+                <div class="mb-2">
+                  <%= render_label name: "", label: "Percentage", class: "mb-2 block" %>
+                  <%= render_input name: "", id: "", placeholder: "Percentage", class: "h-auto p-3" %>
+                </div>
+                <div class="mb-2 w-full">
+                  <%= render_label name: "", label: "Type", class: "mb-2 block" %>
+                  <select name="budilding" id="select-building" class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                    <option value="">Please select</option>
+                    <option value="t1">Agreement</option>
+                    <option value="t2">3BHK</option>
+                  </select>
+                </div>
+                <div class="mb-2">
+                  <%= render_label name: "", label: "Amount", class: "mb-2 block" %>
+                  <%= render_input name: "", id: "", placeholder: "Amount", class: "h-auto p-3" %>
+                </div>
+              </div>
+              <div class="w-full max-w-[200px] flex items-center gap-2 bg-green-50 p-2 rounded-e-lg justify-center">
+                <%= render_button as: :link, href: "", class: "w-auto bg-brand h-auto py-3 mt-2 gap-2" do %>
+                  <%= render 'icons/add' %>
+                  <span>Add</span>
+                <% end %>
+                <%= render_button as: :link, href: "", class: "w-auto bg-red-500 h-auto py-2 mt-2 gap-2" do %>
+                  <%= render 'icons/delete' %>
+                <% end %>
+              </div>
+            </div>
+            <div class="col-span-full flex gap-2 items-stretch w-full bg-white rounded-lg border border-gray-200">
+              <div class="w-full grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4 p-4">
+                <div class="mb-2 w-full">
+                  <%= render_label name: "", label: "Title", class: "mb-2 block" %>
+                  <select name="budilding" id="select-building" class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                    <option value="">Please select</option>
+                    <option value="t1">Flat Based</option>
+                    <option value="t2">GST</option>
+                  </select>
+                </div>
+                <div class="mb-2">
+                  <%= render_label name: "", label: "Percentage", class: "mb-2 block" %>
+                  <%= render_input name: "", id: "", placeholder: "Percentage", class: "h-auto p-3" %>
+                </div>
+                <div class="mb-2 w-full">
+                  <%= render_label name: "", label: "Type", class: "mb-2 block" %>
+                  <select name="budilding" id="select-building" class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                    <option value="">Please select</option>
+                    <option value="t1">Agreement</option>
+                    <option value="t2">3BHK</option>
+                  </select>
+                </div>
+                <div class="mb-2">
+                  <%= render_label name: "", label: "Amount", class: "mb-2 block" %>
+                  <%= render_input name: "", id: "", placeholder: "Amount", class: "h-auto p-3" %>
+                </div>
+              </div>
+              <div class="w-full max-w-[200px] flex items-center gap-2 bg-green-50 p-2 rounded-e-lg justify-center">
+                <%= render_button as: :link, href: "", class: "w-auto bg-brand h-auto py-3 mt-2 gap-2" do %>
+                  <%= render 'icons/add' %>
+                  <span>Add</span>
+                <% end %>
+                <%= render_button as: :link, href: "", class: "w-auto bg-red-500 h-auto py-2 mt-2 gap-2" do %>
+                  <%= render 'icons/delete' %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white border-t border-gray-300 p-4">
+          <div class="flex justify-between items-center">
+            <%= render_button "Save Changes", as: :link, href: "", class: "bg-brand h-auto" %>
+            <button data-ui--sheet-target="closeButton" type="button" class="bg-gray-200 text-gray-800 hover:bg-gray-300 h-auto rounded-md text-sm py-2 px-4">Close
+      </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  <% end %>
+<% end %>

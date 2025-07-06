@@ -1,0 +1,147 @@
+<div>
+    <div class="mt-1 mb-4 flex  items-center w-full">
+        <span class="w-1/3 "><a href="/building"
+                class=" inline-flex  justify-between items-center p-2 text-xs border border-gray-200 rounded-lg rounded-lg bg-white hover:shadow-md transition-all">
+                <div class="flex items-center gap-1">
+                    <span class="text-gray-800 "><%= render 'icons/back' %></span>
+                    <div class="flex flex-col">
+                        <span class="text-gray-500">Back</span>
+
+                    </div>
+                </div>
+            </a></span>
+
+        <span class="w-1/3 text-black text-base font-semibold flex justify-center">Parking Details</span>
+        <span class="w-1/3 flex justify-end">
+            <%= render 'shared/breadcrumb' %>
+        </span>
+    </div>
+  <div class="flex gap-4">
+    <div class="border border-gray-200 rounded-lg  bg-gradient-to-bl from-[#ffe4e6] to-[#ccfbf1] backdrop-blur-xl project-height-fix w-[450px] min-h-[calc(100vh-150px)]">
+      <div class="bg-gradient-to-tr from-[#22c55e] via-[#0e7490] to-[#3b82f6] relative">
+        <div class="w-full absolute top-5 right-0">
+          <%= image_tag 'card-project2.png', alt: 'Company Logo', class: 'w-full ml-auto opacity-30' %>
+        </div>
+        <div class="p-4 text-black text-base flex gap-2 items-center justify-between relative z-10 font-semibold">
+            <a href="/building" class="w-full text-center text-xs text-white rounded-full px-2 py-2 hover:bg-white hover:text-black cursor-pointer transition-all">Flats</a>
+            <a href="/parking" class="w-full text-center text-xs bg-white rounded-full px-2 py-2 cursor-pointer transition-all">Parking</a>
+            <a href="/paymentsPlan"  class="w-full text-center text-xs text-white rounded-full px-2 py-2 hover:bg-white hover:text-black cursor-pointer transition-all">Payment Plan</a>
+            
+         
+        </div>
+        <div class="border-t border-white/50 p-4 relative z-10">
+          <div class="mb-4">
+            <%= render_label name: "project_Name", label: "Select Building", class: "mb-2 block text-white" %>
+            <div class="flex gap-2">
+              <select
+                name="budilding"
+                id="select-building"
+                class="w-full rounded border-gray-300 shadow-lg p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none"
+              >
+                <option value="">Please select</option>
+                <option value="t1">Tower 1</option>
+                <option value="t2">Tower 2</option>
+              </select>
+              <%= render_button as: :link, href: "", class: "bg-brand h-auto py-3 gap-2 shadow-lg hover:bg-brand/80" do %>
+                <%= render 'icons/search' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-2">
+        <a href="/projectSummary" class="flex gap-2 justify-between items-center p-3 text-xs border border-gray-200 rounded-lg bg-white backdrop-blur-sm overflow-hidden hover:shadow-2xl transition-all">
+          <div class="flex gap-3 items-center">
+            <span class="text-brand"><%= render 'icons/leadManagement' %></span>
+            <div class="flex flex-col">
+              <span class="text-black text-sm">Dashboard</span>
+              <span class="text-gray-500">Lead Management</span>
+            </div>
+          </div>
+          <span class="text-gray-400"><%= render 'icons/arrowRight' %></span>
+        </a>
+        <span class="block mt-4 mb-2 text-xs text-black">Letters Download</span>
+        <%= render 'projects/flat/letter' %>
+        <span class="block mt-4 mb-2 text-xs text-black">Payments Update</span>
+        <%= render 'projects/flat/paymentUpdate' %>
+      </div>
+    </div>
+    <div class="w-full border border-gray-200 rounded-lg bg-white/50 ">
+      <div class="border-b border-gray-200 rounded-t-lg flex gap-4 px-4 items-center">
+        <div class="flex flex-col min-w-[100px]">
+          <span class="text-xs text-gray-500">Your Selection</span>
+          <span class="text-black text-base font-semibold flex items-center">Tower 1</span>
+        </div> 
+        <div class="flex flex-col bg-gradient-to-r from-green-600 to-lime-500 py-2 px-4 min-w-[100px]">
+          <span class="text-xs text-white">Parking Available</span>
+          <span class="text-white text-base font-semibold flex items-center">240</span>
+        </div> 
+      </div>
+      <div class=" ">
+      <%= render_tabs do %>
+          <%= tab_list do %>
+            <%= tab "All" %>
+            <%= tab "Available", active: true %>
+            <%= tab "Booked" %>
+          <% end %>
+          <%= tab_panels do %>
+            <%= tab_panel  do %>
+             <div class="project-height-fix  h-[calc(100vh-340px)] ">
+                <div class="flex gap-1 px-2 py-2 flex-wrap">
+                  <%= render 'projects/parking/available' %>
+                  
+                     <%= render 'projects/parking/booked' %>
+                    <%= render 'projects/parking/available1' %>
+                    
+                    <%= render 'projects/parking/booked1' %>
+                    <%= render 'projects/parking/available2' %>
+                    <%= render 'projects/parking/booked2' %>
+                </div>
+            
+            </div>
+            <% end %>
+            <%= tab_panel active: true do %>
+            <div class="project-height-fix  h-[calc(100vh-340px)] ">
+                <div class="flex gap-1 px-2 py-2 flex-wrap">
+                    <%= render 'projects/parking/available' %>
+                    <%= render 'projects/parking/available1' %>
+                    <%= render 'projects/parking/available2' %>
+                   <%= render 'projects/parking/available' %>
+                    <%= render 'projects/parking/available1' %>
+                    <%= render 'projects/parking/available2' %>
+                    <%= render 'projects/parking/available' %>
+                    <%= render 'projects/parking/available1' %>
+                    <%= render 'projects/parking/available2' %>
+                </div>
+            
+            </div>
+            
+            <% end %>
+              <%= tab_panel  do %>
+                <div class="project-height-fix  h-[calc(100vh-340px)]">
+                  <div class="flex gap-1 px-2 py-2 flex-wrap">
+                    <%= render 'projects/parking/booked' %>
+                    <%= render 'projects/parking/booked1' %>
+                    <%= render 'projects/parking/booked2' %>
+                     <%= render 'projects/parking/booked' %>
+                    <%= render 'projects/parking/booked1' %>
+                    <%= render 'projects/parking/booked2' %>
+                     <%= render 'projects/parking/booked' %>
+                    <%= render 'projects/parking/booked1' %>
+                    <%= render 'projects/parking/booked2' %>
+                     <%= render 'projects/parking/booked' %>
+                    <%= render 'projects/parking/booked1' %>
+                    <%= render 'projects/parking/booked2' %>
+                     <%= render 'projects/parking/booked' %>
+                    <%= render 'projects/parking/booked1' %>
+                    <%= render 'projects/parking/booked2' %>
+                </div>
+                </div>
+            <% end %>
+           
+          <% end %>
+        <% end %>
+        </div>
+    </div>
+  </div>
+</div>

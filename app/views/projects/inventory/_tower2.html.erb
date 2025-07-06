@@ -1,0 +1,143 @@
+<%= render_sheet direction: "right", width: "w-full sm:max-w-full lg:max-w-full md:w-2/3 lg:w-1/3 xl:w-1/3", class: "!slide-in-from-right bg-white/50 backdrop-blur-xl p-0" do %>
+  <%= sheet_trigger do %>
+   <div class="cursor-pointer text-black flex items-center justify-between gap-4 w-full p-2 bg-gradient-to-r from-white  to-lime-50 rounded-lg border border-gray-300">
+                    <div class="w-full p-2 ">
+                         <h2 class="font-bold text-base">Tower 2</h2>
+                    <div class="flex items-center  gap-4  pt-3 ">
+                        <div class="flex flex-col min-w-[100px]">
+                            <span class="text-xs text-gray-500">Total</span>
+                            <span class="text-sm text-gray-800 font-bold">1222</span>
+                        </div>
+                        <div class="flex flex-col min-w-[100px]">
+                            <span class="text-xs text-gray-500">Available</span>
+                            <span class="text-sm text-green-600 font-bold">22</span>
+                        </div>
+                        <div class="flex flex-col min-w-[100px]">
+                            <span class="text-xs text-gray-500">Booked</span>
+                            <span class="text-sm text-rose-600 font-bold">22</span>
+                        </div>
+                        <div class="flex flex-col min-w-[100px]">
+                            <span class="text-xs text-gray-500">Blocked</span>
+                            <span class="text-sm text-gray-800 font-bold">22</span>
+                        </div>
+                         <div class="flex flex-col min-w-[100px]">
+                            <span class="text-xs text-gray-500">Refugee</span>
+                            <span class="text-sm text-gray-500 font-bold">22</span>
+                        </div>
+                         <div class="flex flex-col min-w-[100px]">
+                            <span class="text-xs text-gray-500">Investor</span>
+                            <span class="text-sm text-sky-600 font-bold">22</span>
+                        </div>
+                        
+
+                    </div>
+                    </div>
+                   
+                    <span class="text-gray-500 cursor-pointer block mr-4"><%= render 'icons/arrowRight' %></span>
+                </div>
+  <% end %>
+
+  <%= sheet_content do %>
+    <div class="text-black">
+       <div
+      class="bg-gradient-to-tr from-[#22c55e] via-[#0e7490] to-[#3b82f6] relative overflow-hidden pointer-event-none z-10">
+      <div class="w-full absolute top-5 right-0 flex items-end h-full">
+        <%= image_tag 'card-project2.png', alt: 'Company Logo', class: ' ml-auto opacity-30' %>
+      </div>
+      <div class="border-b border-white/50 p-4 relative z-10">
+        <div class="space-y-2 ">
+          <div class="flex  gap-6 items-center">
+            <div class="flex flex-col">
+              <span class="text-xs text-white">Building</span>
+              <h3 class="text-white text-sm font-bold">Tower 2</h3>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-xs text-white">Floor</span>
+              <h3 class="text-white text-sm font-bold">22</h3>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-xs text-white">Flat</span>
+              <h3 class="text-white text-sm font-bold">96</h3>
+            </div>
+            <div class="ml-auto"> <button data-ui--sheet-target="closeButton" type="button"
+                class="text-white p-2"><%= render 'icons/close' %>
+              </button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <form action="">
+        <div class="min-h-[calc(100vh-140px)] h-[calc(100vh-140px)] p-4 overflow-y-auto ">
+          <table class="table-auto w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
+            <thead>
+              <tr class="bg-gradient-to-bl from-[#ffe4e6] to-[#ccfbf1]">
+                <th class="border-b border-gray-400 px-6 py-3 text-left text-xs font-medium text-gray-800 tracking-wider">Status</th>
+                <th class="border-b border-gray-400 px-6 py-3 text-left text-xs font-medium text-gray-800 tracking-wider">Flat No	</th>
+                <th class="border-b border-gray-400 px-6 py-3 text-left text-xs font-medium text-gray-800 tracking-wider">Configuration</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-400">
+              <tr class="flat-available">
+                <td class="px-6 py-4 whitespace-nowrap text-sm  text-black border-black"><span class="unitplan !rounded-full py-1 !px-3 text-xs">Available</span></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm  text-black border-black">T1-101	</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-black border-black">3BHK - 828 sq.ft</td>
+              </tr>
+              <tr class="flat-booked">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><span class="unitplan !rounded-full py-1 !px-3 text-xs">Booked</span></td>
+                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">T1-102	</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2BHK - 820 sq.ft</td>
+              </tr>
+              <tr class="flat-blocked">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><span class="unitplan !rounded-full py-1 !px-3 text-xs">Blocked</span></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">T1-103	</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2BHK - 820 sq.ft</td>
+              </tr>
+               <tr class="flat-refugee">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><span class="unitplan !rounded-full py-1 !px-3 text-xs">Refugee</span></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">T1-104	</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2BHK - 820 sq.ft</td>
+              </tr>
+               <tr class="flat-investor">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><span class="unitplan !rounded-full py-1 !px-3 text-xs">Investor</span></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">T1-105	</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2BHK - 820 sq.ft</td>
+              </tr>
+              <tr class="flat-available">
+                <td class="px-6 py-4 whitespace-nowrap text-sm  text-black border-black"><span class="unitplan !rounded-full py-1 !px-3 text-xs">Available</span></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm  text-black border-black">T1-101	</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-black border-black">3BHK - 828 sq.ft</td>
+              </tr>
+              <tr class="flat-booked">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><span class="unitplan !rounded-full py-1 !px-3 text-xs">Booked</span></td>
+                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">T1-102	</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2BHK - 820 sq.ft</td>
+              </tr>
+              <tr class="flat-blocked">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><span class="unitplan !rounded-full py-1 !px-3 text-xs">Blocked</span></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">T1-103	</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2BHK - 820 sq.ft</td>
+              </tr>
+               <tr class="flat-refugee">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><span class="unitplan !rounded-full py-1 !px-3 text-xs">Refugee</span></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">T1-104	</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2BHK - 820 sq.ft</td>
+              </tr>
+               <tr class="flat-investor">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><span class="unitplan !rounded-full py-1 !px-3 text-xs">Investor</span></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">T1-105	</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2BHK - 820 sq.ft</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="bg-white border-t border-gray-300 p-4">
+          <div class="flex justify-between items-center">
+            <%= render_button "Download PDF", as: :link, href: "", class: "bg-brand h-auto" %>
+            <button data-ui--sheet-target="closeButton" type="button" class="bg-gray-200 text-gray-800 hover:bg-gray-300 h-auto rounded-md text-sm py-2 px-4">Close
+      </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  <% end %>
+<% end %>

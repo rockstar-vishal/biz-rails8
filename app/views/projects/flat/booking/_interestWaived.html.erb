@@ -1,0 +1,59 @@
+
+<%= render_sheet  direction: "right", width: "w-full sm:max-w-full lg:max-w-full  md:w-2/3 lg:w-2/3 xl:w-1/2	 ",  class:"!slide-in-from-right bg-white/50 backdrop-blur-xl p-0" do %>
+  <%= sheet_trigger do %>
+     <%= render_button "Interest Waived Off Log", class:"w-full !bg-zinc-600 !hover:bg-zinc-800 h-auto p-3  text-sm" %>
+  <% end %>
+ 
+  <%= sheet_content do %>
+   <div class=" min-h-[calc(100vh-10px)] overflow-y-auto">
+    <div class="p-4 flex items-center justify-between ">
+      <h3 class="text-base font-semibold">Interest Waived Off Log</h3>
+    </div>
+     <div class="table-responsive">
+            <div class="overflow-hidden p-4">
+                <%= render_table class:"rounded-md border bg-white"  do %>
+                    <%= table_head class:"rounded-t-md  py-2 px-4 bg-gradient-to-bl from-[#ffe4e6] to-[#ccfbf1]" do %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Date</span>	
+                        <% end %>
+                        <%= table_header do %>
+                        
+                            <span class="text-gray-700 text-sm font-bold block">Amount</span>	
+                        <% end %>
+                        <%= table_header do %>
+                            
+                            <span class="text-gray-700 text-sm font-bold block">Done By</span>	
+                        <% end %>
+                       
+                        
+                    <% end %>
+                    <%= table_body do %>
+                        <%= table_row do %>
+                            <%= table_column do %>
+                            <div class="whitespace-nowrap max-w-[80px]">
+                                Flat Base Cost	
+                            </div>
+                                	
+                            <% end %>
+                            <%= table_column do %>
+                               <div class="whitespace-nowrap">
+                               5939939193
+                            </div>	
+                            <% end %>
+                            <%= table_column do %>
+                               <div class="whitespace-nowrap">
+                               -
+                            </div>		
+                            <% end %>
+                            
+                        <% end %>
+                       
+                       
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+   
+  </div>
+  <% end %>
+<% end %>

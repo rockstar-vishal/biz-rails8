@@ -1,0 +1,14 @@
+
+<%= render 'projects/flat/addFlat' %>
+        <%= render_button as: :link, href: "", class: "bg-red-50 text-red-500 border border-gray-200 gap-2 hover:bg-red-500 hover:text-white" do %>
+          <%= render 'icons/cancel' %>
+          <span>Cancel Bookings</span>
+        <% end %>
+        <%= render_button as: :link, href: "", class: "bg-gray-50 text-gray-500 border border-gray-200 gap-2 hover:bg-gray-900 hover:text-white" do %>
+          <%= render 'icons/csv' %>
+          <span>Export</span>
+        <% end %>
+        <%= render_button as: :link, href: "", class: "bg-white text-gray-500 border gap-2 hover:bg-gray-50" do %>
+          <%= render 'icons/filter' %>
+          <span>Filter</span>
+        <% end %>

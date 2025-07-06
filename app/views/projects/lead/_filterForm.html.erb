@@ -1,0 +1,121 @@
+<%= render_accordion do %>
+    <%= accordion_title do %>
+        <h3 class="text-base font-semibold col-span-full ">Client Details</h3>
+    <% end %>
+    <%= accordion_description do %>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
+            <div class="mb-2">
+                <%= render_label name: "", label: "Name", class: "mb-2 block" %>
+                <%= render_input name: "", id: "", placeholder: "", class: "h-auto p-3" %>
+            </div>
+            <div class="mb-2">
+                <%= render_label name: "", label: "Email", class: "mb-2 block" %>
+                <%= render_input name: "", id: "", placeholder: "", class: "h-auto p-3" %>
+            </div>
+            <div class="mb-2">
+                <%= render_label name: "", label: "Contact", class: "mb-2 block" %>
+                <%= render_input name: "", id: "", placeholder: "", class: "h-auto p-3" %>
+            </div>
+        </div>
+    <% end %>
+<% end %>
+
+
+<%= render_accordion do %>
+    <%= accordion_title do %>
+        <h3 class="text-base font-semibold col-span-full ">Booking Details</h3>
+    <% end %>
+    <%= accordion_description do %>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
+            <div class="mb-2">
+                <%= render_label name: "", label: "Booking Reference", class: "mb-2 block" %>
+                <%= render_input name: "", id: "", placeholder: "", class: "h-auto p-3" %>
+            </div>
+            <div class="mb-2">
+                <%= render_label name: "", label: "Buildings", class: "mb-2 block" %>
+                <select name="budilding" id="select-building"
+                    class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                    <option value="">Please select</option>
+                    <option value="t1">Jitendra</option>
+                    <option value="t2">JP</option>
+                </select>
+            </div>
+            <div class="mb-2">
+                <%= render_label name: "", label: "Unit no", class: "mb-2 block" %>
+                <select name="budilding" id="select-building"
+                    class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                    <option value="">Please select</option>
+                    <option value="t1">2BHK</option>
+                    <option value="t2">JP</option>
+                </select>
+            </div>
+            <div class="mb-2">
+                <%= render_label name: "", label: "Configuration", class: "mb-2 block" %>
+                <select name="budilding" id="select-building"
+                    class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                    <option value="">Please select</option>
+                    <option value="t1">Jitendra</option>
+                    <option value="t2">JP</option>
+                </select>
+            </div>
+        </div>
+    <% end %>
+<% end %>
+
+
+<%= render_accordion do %>
+    <%= accordion_title do %>
+        <h3 class="text-base font-semibold col-span-full ">Total Amount</h3>
+    <% end %>
+    <%= accordion_description do %>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
+            <div class="mb-2">
+                <%= render_label name: "", label: "Amount From", class: "mb-2 block" %>
+                <%= render_input name: "", id: "", placeholder: "", class: "h-auto p-3" %>
+            </div>
+            <div class="mb-2">
+                <%= render_label name: "", label: "Amount Upto", class: "mb-2 block" %>
+                <%= render_input name: "", id: "", placeholder: "", class: "h-auto p-3" %>
+            </div>
+        </div>
+    <% end %>
+<% end %>
+
+<%= render_accordion do %>
+    <%= accordion_title do %>
+        <h3 class="text-base font-semibold col-span-full ">Pending Amount</h3>
+    <% end %>
+    <%= accordion_description do %>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
+           <div class="mb-2">
+                <%= render_label name: "", label: "Amount From", class: "mb-2 block" %>
+                <%= render_input name: "", id: "", placeholder: "", class: "h-auto p-3" %>
+            </div>
+            <div class="mb-2">
+                <%= render_label name: "", label: "Amount Upto", class: "mb-2 block" %>
+                <%= render_input name: "", id: "", placeholder: "", class: "h-auto p-3" %>
+            </div>
+        </div>
+    <% end %>
+<% end %>
+
+
+<%= render_accordion do %>
+    <%= accordion_title do %>
+        <h3 class="text-base font-semibold col-span-full ">Dates</h3>
+    <% end %>
+    <%= accordion_description do %>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
+           <div class="mb-2">
+                <%= render_label name: "", label: "Next Call Date From", class: "mb-2 block" %>
+                <%= render_input name: "", type: "date", placeholder: "", class: "h-auto p-3" %>
+            </div>
+            <div class="mb-2">
+                <%= render_label name: "", label: "Next Call Date To", class: "mb-2 block" %>
+                <%= render_input name: "", type: "date", placeholder: "", class: "h-auto p-3" %>
+            </div>
+        </div>
+    <% end %>
+<% end %>
+
+

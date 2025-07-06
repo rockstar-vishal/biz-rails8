@@ -1,0 +1,92 @@
+<%= render_sheet direction: "right", width: "w-full sm:max-w-full lg:max-w-full  md:w-3/5 lg:w-3/5 xl:w-1/2 ",  class:"!slide-in-from-right bg-white/50 backdrop-blur-xl p-0" do %>
+  <%= sheet_trigger do %>
+    <%= render_button text: "Global Inspiria", variant: :outline %>
+  <% end %>
+
+  <%= sheet_content do %>
+  <div class="">
+    <div class="p-4 flex items-center justify-between">
+      <h3 class="text-base font-semibold">Account Details</h3>
+    </div>
+   
+   <div class="table-responsive  ">
+                <%= render_table class:"overflow-hidden"  do %>
+                    <%= table_head class:"rounded-t-md  py-2 px-4 bg-gradient-to-bl from-[#ffe4e6] to-[#ccfbf1]" do %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Category </span>	
+                            <span class="text-xs text-gray-700 block">Types</span>
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Account </span>	
+                            <span class="text-xs text-gray-700 block">No</span>
+                        <% end %>
+                        <%= table_header do %>
+                            
+                            <span class="text-gray-700 text-sm font-bold block">Beneficiary </span>	
+                            <span class="text-xs text-gray-700 block">Name</span>	
+                        <% end %>
+                        <%= table_header do %>
+                            
+                            <span class="text-gray-700 text-sm font-bold block">Branch</span>	
+                            <span class="text-xs text-gray-700 block">Bank</span>
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Branch</span>	
+                            <span class="text-xs text-gray-700 block">Bank</span>		
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Bank </span>
+                            <span class="text-gray-700 text-sm font-bold block">Name</span>			
+                        <% end %>
+                        <%= table_header do %>
+                             <span class="text-xs text-gray-700 block">Ifsc  </span>
+                            <span class="text-gray-700 text-sm font-bold block">Code</span>				
+                        <% end %>
+                    <% end %>
+                    <%= table_body do %>
+                        <%= table_row do %>
+                            <%= table_column do %>
+                               <div class="whitespace-nowrap">
+                                  2
+                                </div>
+                            <% end %>
+                            <%= table_column do %>
+                               <div class="whitespace-nowrap">
+                                  2
+                                </div>	
+                            <% end %>
+                            <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                  2
+                                </div>
+                            <% end %>
+                            <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                  2
+                                </div>	
+                            <% end %>
+                            <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                  2
+                                </div>	
+                            <% end %>
+                            <%= table_column do %>
+                                 <div class="whitespace-nowrap">
+                                  2
+                                </div>	
+                            <% end %>
+                             <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                  2
+                                </div>	
+                            <% end %>
+                         
+                        <% end %>
+                       
+                    <% end %>
+                <% end %>
+            </div>
+
+  </div>
+  <% end %>
+<% end %>

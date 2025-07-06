@@ -1,0 +1,74 @@
+<div>
+    <div class="mt-1 mb-4 flex  items-center w-full">
+        <span class="w-1/3 "><a href="/"
+                class=" inline-flex  justify-between items-center p-2 text-xs border border-gray-200 rounded-lg rounded-lg bg-white hover:shadow-md transition-all">
+                <div class="flex items-center gap-1">
+                    <span class="text-gray-800 "><%= render 'icons/back' %></span>
+                    <div class="flex flex-col">
+                        <span class="text-gray-500">Back</span>
+
+                    </div>
+                </div>
+            </a></span>
+
+        <span class="w-1/3 text-black text-base font-semibold flex justify-center">Inventory</span>
+        <span class="w-1/3 flex justify-end">
+            <%= render 'shared/breadcrumb' %>
+        </span>
+    </div>
+    <div class="flex gap-4">
+        <div
+            class="border border-gray-200 rounded-lg  bg-gradient-to-bl from-[#ffe4e6] to-[#ccfbf1] backdrop-blur-xl project-height-fix w-[450px] min-h-[calc(100vh-150px)]">
+            <div class="bg-gradient-to-tr from-[#22c55e] via-[#0e7490] to-[#3b82f6] relative overflow-hidden">
+                <div class="w-full absolute top-5 right-0">
+                    <%= image_tag 'card-project2.png', alt: 'Company Logo', class: 'w-full ml-auto opacity-30' %>
+                </div>
+                <div class="border-t border-white/50 p-4 relative z-10">
+                    <div class="space-y-2 ">
+                        <div class="flex flex-col border-b border-white/50 pb-2">
+                            <span class="text-xs text-white">Project Name</span>
+                            <h3 class="text-white text-sm font-bold">Global Inspira</h3>
+                        </div>
+                        <div class="flex flex-col border-b border-white/50 pb-2">
+                            <span class="text-xs text-white">Total Buildings</span>
+                            <h3 class="text-white text-sm font-bold">22</h3>
+                        </div>
+                        <div class="flex flex-col ">
+                            <span class="text-xs text-white">Total Flats</span>
+                            <h3 class="text-white text-sm font-bold">958</h3>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="p-2">
+
+                <span class="block mt-4 mb-2 text-xs text-black">Download</span>
+                <a href="/"
+                    class="flex gap-2 justify-between items-center p-3 text-xs border border-gray-200 rounded-lg rounded-lg bg-white backdrop-blur-sm overflow-hidden mb-2 hover:shadow-2xl transition-all">
+                    <div class="flex gap-3 items-center">
+                        <span class="text-red-500 "><%= render 'icons/pdf' %></span>
+                        <div class="flex flex-col">
+                            <span class="text-black text-sm">Download</span>
+                            <span class="text-gray-500 ">Whole Inventory</span>
+                        </div>
+                    </div>
+                    <span class="text-gray-400 "><%= render 'icons/download' %></span>
+                </a>
+            </div>
+        </div>
+        <div class="w-full border border-gray-200 rounded-lg bg-white/50 ">
+            <div class="border-b border-gray-200 rounded-t-lg flex gap-4 px-4 items-center">
+                <div class="flex flex-col py-2">
+                    <span class="text-xs text-gray-500">Project Name</span>
+                    <span class="text-black text-base font-semibold flex items-center">Global Inspiria</span>
+                </div>
+            </div>
+            <div class="p-4 space-y-4">
+                <%= render 'projects/inventory/tower1' %>
+                <%= render 'projects/inventory/tower2' %>
+
+            </div>
+        </div>
+    </div>
+</div>

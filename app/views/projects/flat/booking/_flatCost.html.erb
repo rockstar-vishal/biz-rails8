@@ -1,0 +1,63 @@
+   <div class="w-full border border-gray-200 rounded-lg bg-white/50 ">
+       <div class="border-b border-gray-200 rounded-t-lg flex gap-4 py-2 px-4 items-center">
+           <div class="flex flex-col">
+               <span class="text-black text-base font-semibold">Flat Costs</span>
+           </div>
+       </div>
+       <div class="table-responsive">
+            <div class="overflow-hidden ">
+                <%= render_table class:"rounded-t-md "  do %>
+                    <%= table_head class:"rounded-t-md  py-2 px-4 bg-gradient-to-bl from-[#ffe4e6] to-[#ccfbf1]" do %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Name</span>	
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Cost</span>
+                            <span class="text-gray-700 text-sm font-bold block">Type</span>		
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Total Amount</span>			
+                        <% end %>
+                        
+                    <% end %>
+                    <%= table_body do %>
+                        <%= table_row do %>
+                            <%= table_column do %>
+                                Flat Base Cost		
+                            <% end %>
+                            <%= table_column do %>
+                                Agreement 5%		
+                            <% end %>
+                            <%= table_column do %>
+                                &#8377; 0.00	
+                            <% end %>
+                        <% end %>
+                        <%= table_row do %>
+                            <%= table_column do %>
+                                Registration		
+                            <% end %>
+                            <%= table_column do %>
+                                NTND		
+                            <% end %>
+                            <%= table_column do %>
+                                &#8377; 30,000.00	
+                            <% end %>
+                        <% end %>
+                        <%= table_row do %>
+                            <%= table_column do %>
+                                Legal Charges			
+                            <% end %>
+                            <%= table_column do %>
+                                NTND		
+                            <% end %>
+                            <%= table_column do %>
+                                &#8377; 15,000.00	
+                            <% end %>
+                        <% end %>
+               
+                       
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+   </div>

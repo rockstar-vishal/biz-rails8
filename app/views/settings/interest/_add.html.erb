@@ -1,0 +1,35 @@
+ <%= render_dialog do %>
+    <%= dialog_trigger do %>
+        <%= render_button as: :link, href: "", class: "bg-brand/5 text-brand border border-gray-200 gap-2 hover:bg-brand hover:text-white" do %>
+            <%= render 'icons/add' %>
+            <span>Add Interest Percentage</span>
+        <% end %>	
+    <% end %>
+    <%= dialog_content do %>
+        <span class=" mb-4 block  text-xs">
+            Add Interest
+        </span>
+        <div class="rounded-lg  p-4 shadow-xl bg-white">
+            <div class=" pt-0 grid gap-1 grid-cols-1">
+                <div class="mb-4 ">
+                    <%= render_label name:"", label:"Title", class:"mb-2 block" %>
+                    <%= render_input name: "", placeholder:"Title", class:"h-auto p-3 " %>
+                </div>
+                <div class="mb-4 ">
+                    <%= render_label name:"", label:"Percentage", class:"mb-2 block" %>
+                    <%= render_input name: "", placeholder:"Percentage", class:"h-auto p-3 " %>
+                </div>
+                <div class="mb-4 ">
+                    <%= render_label name:"", label:"Days", class:"mb-2 block" %>
+                    <%= render_input name: "", placeholder:"Days", class:"h-auto p-3 " %>
+                </div>
+                 <div class="mb-4 ">
+                    <%= render_checkbox name: "terms", label: "Active?" %>
+                </div>
+            </div>
+            <div class=" border-t border-gray-200 pt-4">
+                <%= render_button "Save Changes", as: :link, class:"w-full bg-brand hover:bg-brand/80" %>
+            </div>
+        </div>
+    <% end %>
+ <% end %>

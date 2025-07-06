@@ -1,0 +1,116 @@
+<div>
+  <div class="mt-1 mb-4 flex justify-between items-center">
+    <h1 class="font-bold ">Client List</h1>
+    <%= render 'shared/breadcrumb' %>
+  </div>
+  <div class="flex gap-4">
+   
+    <div class="w-full border border-gray-200 rounded-lg bg-white/50 project-height-fix min-h-[calc(100vh-150px)]">
+        <div class="">
+            <div class="flex justify-between p-2  items-center">
+               <div class="flex gap-2">
+            <%= render_input name: "search", id: "search", placeholder: "Search by name, email or phone...", class: "h-auto p-2.5 min-w-[400px]" %>
+            <%= render_button as: :link, href: "", class: "bg-brand h-auto py-2 px-4 gap-2  hover:bg-brand/80" do %>
+                <%= render 'icons/searchsm' %>
+              <% end %>
+        </div> 
+        <div class="ml-auto flex gap-2">
+          <%= render 'settings/clients/add' %>
+                <%= render 'settings/clients/filter' %>
+        </div>
+            </div>
+            <div class="table-responsive">
+                <%= render_table class:"overflow-hidden"  do %>
+                    <%= table_head class:"rounded-t-md  py-2 px-4 bg-gradient-to-bl from-[#ffe4e6] to-[#ccfbf1]" do %>
+                        <%= table_header  do %>
+                            <span class="text-gray-700 text-sm font-bold block">Name</span>	
+                        <% end %>
+                        <%= table_header  do %>
+                            <span class="text-gray-700 text-sm font-bold block">Mobile</span>	
+                        <% end %>
+                         <%= table_header  do %>
+                            <span class="text-gray-700 text-sm font-bold block">Email</span>	
+                        <% end %>
+                        <%= table_header  do %>
+                            <span class="text-gray-700 text-sm font-bold block">Project</span>	
+                        <% end %>
+                         <%= table_header  do %>
+                            <span class="text-gray-700 text-sm font-bold block">Aadhar No</span>	
+                        <% end %>
+                        <%= table_header  do %>
+                            <span class="text-gray-700 text-sm font-bold block">Pan Card No	</span>	
+                        <% end %>
+                        
+                        <%= table_header  do %>
+                            <span class="text-gray-700 text-sm font-bold block">Date Of Birth	</span>	
+                        <% end %>
+                        <%= table_header  do %>
+                            <span class="text-gray-700 text-sm font-bold block">Address</span>	
+                        <% end %>
+                        <%= table_header  do %>
+                            <span class="text-gray-700 text-sm font-bold block">Action</span>		
+                        <% end %>
+                    <% end %>
+                    <%= table_body do %>
+                        <%= table_row do %>
+                            <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                  <%= render 'settings/clients/show' %>
+                                </div>
+                            <% end %>
+                             <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                    981293949560			
+                                </div>
+                            <% end %>
+                             <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                    test@gmail.com			
+                                </div>
+                            <% end %>
+                             <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                    9834-5678-2948			
+                                </div>
+                            <% end %>
+                            <%= table_column do %>
+                                <div class="whitespace-nowrap uppercase">
+                                    oskks2441412			
+                                </div>
+                            <% end %>
+                            <%= table_column do %>
+                                <div class="whitespace-nowrap uppercase">
+                                    code			
+                                </div>
+                            <% end %>
+                            <%= table_column do %>
+                             <div class="whitespace-nowrap">
+                                12th jun 2000 		
+                             </div>
+                             
+                               	
+                            <% end %>
+                            <%= table_column do %>
+                             <div class="whitespace-nowrap">
+                                -		
+                             </div>
+                             
+                               	
+                            <% end %>
+                             <%= table_column do %>
+                             <div class="whitespace-nowrap flex">
+                                <%= render 'settings/clients/update' %>
+                                <%= render 'settings/clients/delete' %>
+                              
+                             </div>
+                                   	
+                            <% end %>
+                        <% end %>
+                     
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

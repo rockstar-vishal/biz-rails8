@@ -1,0 +1,75 @@
+
+<%= render_sheet id: "edit_project", direction: "right", width: "w-full sm:max-w-full lg:max-w-full  md:w-3/5 lg:w-3/5 xl:w-1/2 ",  class:"!slide-in-from-right bg-white/50 backdrop-blur-xl p-0" do %>
+  <%= sheet_content do %>
+   <div class="">
+    <div class="p-4 flex items-center justify-between">
+      <h3 class="text-base font-semibold">Edit Project</h3>
+    </div>
+    <form action="">
+      <div class="modal-height p-4">
+        <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="mb-4">
+            <%= render_label name:"project_Name", label:"Project Name", class:"mb-2 block" %>
+            <%= render_input name: "project_Name", id: "project_Name", placeholder:"Project Name", class:"h-auto p-3 " %>
+          </div>
+          <div class="mb-4 col-span-full">
+            <%= render_label name:"project_Desc", label:"Project Description", class:"mb-2 block" %>
+            <%= render_textarea name: "project_Desc", placeholder:"Project location, address..." %>
+
+          </div>
+          <div class="col-span-full flex items-center justify-between">
+            <h3 class="text-base font-semibold">Add Building/Towers</h3>
+          </div>
+         
+          <div class="col-span-full flex gap-4 items-center w-full">
+            <div class="mb-4 w-full">
+              <%= render_label name:"building_Name", label:"Building Name", class:"mb-2 block" %>
+              <%= render_input name: "building_Name", id: "building_Name", placeholder:"Building Name", class:"h-auto p-3 " %>
+            </div>
+            <div class="mb-4 w-full">
+              <%= render_label name:"building-desc", label:"Building Description", class:"mb-2 block" %>
+              <%= render_input name: "building-desc", id: "building-desc", placeholder:"Building Description", class:"h-auto p-3 " %>
+            </div>
+            <div class="w-full max-w-[200px] flex gap-2">
+               <%= render_button as: :link, href: "", class: "w-full  bg-brand h-auto py-3 mt-1 gap-2" do %>
+                  <%= render 'icons/add' %>
+                  <span>Add More</span>
+                <% end %>
+                 <%= render_button as: :link, href: "", class: "w-auto  bg-red-500 h-auto py-3 mt-1 gap-2" do %>
+                  <%= render 'icons/delete' %>
+                <% end %>
+            </div>
+          </div>
+           <div class="col-span-full flex gap-4 items-center w-full">
+             <div class="mb-4 w-full">
+            <%= render_label name:"building_Name", label:"Building Name", class:"mb-2 block" %>
+            <%= render_input name: "building_Name", id: "building_Name", placeholder:"Building Name", class:"h-auto p-3 " %>
+          </div>
+           <div class="mb-4 w-full">
+            <%= render_label name:"building-desc", label:"Building Description", class:"mb-2 block" %>
+            <%= render_input name: "building-desc", id: "building-desc", placeholder:"Building Description", class:"h-auto p-3 " %>
+          </div>
+          <div class="w-full max-w-[200px]">
+            <%= render_button as: :link, href: "", class: "w-full  bg-brand h-auto py-3 mt-1 gap-2" do %>
+                  <%= render 'icons/add' %>
+                  <span>Add More</span>
+                <% end %>
+          </div>
+          
+          </div>
+          
+          
+        </div>
+      
+           
+      </div>
+      <div class="bg-white border-t border-gray-300 p-4">
+        <div class="flex justify-between items-center">
+          <%= render_button "Save", as: :link, href: "", class: "bg-brand h-auto " %>
+          <%= render_button "Close", class: "bg-gray-200 text-gray-800 hover:bg-gray-300 h-auto", data: { ui_sheet_target: "closeButton" }  %>
+        </div>
+      </div>
+    </form>
+  </div>
+  <% end %>
+<% end %>

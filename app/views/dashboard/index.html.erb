@@ -1,0 +1,79 @@
+<div>
+  <div class="mt-1 mb-4 flex justify-between items-center">
+    <h1 class="font-bold">Total Projects - 36</h1>
+    <%= render 'dashboard/addProject' %>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4">
+    <div class="project-height-fix pe-2">
+      <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4">
+        <%= render 'dashboard/projectCard' %>
+        <%= render 'dashboard/projectCard' %>
+        <%= render 'dashboard/projectCard' %>
+        <%= render 'dashboard/projectCard' %>
+        <%= render 'dashboard/projectCard' %>
+        <%= render 'dashboard/projectCard' %>
+      
+        <!-- Edit Modal -->
+        <%= render 'dashboard/editProject' %>
+         <!-- Edit Modal ends -->
+
+      </div>
+    </div>
+    <div class="border border-gray-200 rounded-lg rounded-lg  shadow-2xl bg-white/50 backdrop-blur-sm  project-height-fix ">
+      <div class="p-4 bg-white text-black text-base font-bold flex justify-between items-center">
+        <span>Summary - Project Name</span>
+        <span class="text-gray-400 cursor-pointer hover:text-gray-800"><%= render 'icons/close' %></span>
+        
+      </div>
+      <div class="p-4 ">
+        <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="col-span-full ">
+             <div class="bg-white/70 backdrop-blur-sm rounded-lg p-2 shadow-sm ">
+              
+                <div id="chart_div" class="h-[350px]"></div>
+                <h3 class="text-sm font-semibold my-2 text-gray-800 text-center">Project Inventory</h3>
+            </div>
+          </div>
+          <div class="border border-gray-200 rounded-lg rounded-lg bg-white/50 backdrop-blur-sm overflow-hidden divide-y">
+            <div class="flex gap-2 justify-start items-center p-4 text-sm font-semibold  ">
+              <span class="text-brand"><%= render 'icons/transaction' %></span>
+              <span>Transactions</span>
+            </div>
+            <div class="flex gap-4 justify-between items-center p-4 text-sm font-semibold">
+                <span>Total Aggregate Amount</span>
+                <span>&#8377; 2.84Cr</span>
+            </div>
+            <div class="flex gap-4 justify-between items-center p-4 text-sm font-semibold">
+                <span >Total Collected Amount</span>
+                <span class="flex items-center gap-2 whitespace-nowrap"><span class=" text-xs flex items-center gap-2 text-brand"><%= render 'icons/trend' %> 2%</span> &#8377; 2.84Cr  </span>
+            </div>
+            <div class="flex gap-4 justify-between items-center p-4 text-sm font-semibold">
+                <span >Total Pending Amount</span>
+                 <span class="flex items-center gap-2 whitespace-nowrap"><span class=" text-xs flex items-center gap-2 text-red-500"><%= render 'icons/trendDown' %> 98%</span> &#8377; 2.84Cr  </span>
+            </div>
+          </div>
+
+          <div class="border border-gray-200 rounded-lg rounded-lg bg-white/50 backdrop-blur-sm overflow-hidden divide-y">
+            <div class="flex gap-2 justify-between items-center p-4 text-sm font-semibold ">
+              
+                <span class="flex gap-2 items-center"><span class="text-brand "><%= render 'icons/room' %></span> Total Flats</span>
+                <span>352</span>
+            </div>
+            <div class="flex gap-4 justify-between items-center p-4 text-sm font-semibold">
+                <span >Flat Sold</span>
+                <span><span class="bg-red-500 text-white p-1 px-2 rounded-sm text-xs">5</span></span>
+            </div>
+            <div class="flex gap-4 justify-between items-center p-4 text-sm font-semibold">
+                <span >Available Flats</span>
+                <span><span class="bg-green-500 text-white p-1 px-2 rounded-sm text-xs">5</span></span>
+            </div>
+             <div class="flex gap-4 justify-between items-center p-4 text-sm font-semibold">
+                <span>Blocked Flats</span>
+                <span><span class="bg-black text-white p-1 px-2 rounded-sm text-xs">5</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

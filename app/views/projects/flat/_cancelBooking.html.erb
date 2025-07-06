@@ -1,0 +1,59 @@
+<%= render_dialog do %>
+  <%= dialog_trigger do %>
+    <span class="block py-1 w-full flex  items-center justify-center text-white text-xs cursor-pointer  border-r bg-action">Cancel Booking</span>
+  <% end %>
+  <%= dialog_content do %>
+    <div>
+           <div
+      class="bg-gradient-to-tr from-[#22c55e] via-[#0e7490] to-[#3b82f6] relative overflow-hidden pointer-event-none z-10 rounded-lg mt-2">
+      <div class="w-full absolute top-5 right-0 flex items-end h-full">
+        <%= image_tag 'card-project2.png', alt: 'Company Logo', class: ' ml-auto opacity-30' %>
+      </div>
+      <div class="border-b border-white/50 p-4 relative z-10">
+        <div class="space-y-2 ">
+          <div class="flex  gap-6 items-center">
+            <div class="flex flex-col">
+              <span class="text-xs text-white">Flat No</span>
+              <h3 class="text-white text-sm font-bold">T1-101</h3>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-xs text-white">Floor</span>
+              <h3 class="text-white text-sm font-bold">22</h3>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-xs text-white">Building</span>
+              <h3 class="text-white text-sm font-bold">Tower 1</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="px-4 py-2">
+        <h3 class="text-white text-sm font-bold">Cancel Booking</h3>
+      </div>
+   
+    </div>
+        <form action="">
+            <div class="my-4">
+                <%= render_label name: "", label: "Reason", class: "mb-2 block" %>
+                <select name="budilding" id="select-building"
+                    class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                    <option value="">Please select</option>
+                    <option value="t1">Financial crisis</option>
+                    <option value="t2">JP</option>
+                </select>
+            </div>
+            <div class="mb-4 ">
+                <%= render_label name:"", label:"Comments", class:"mb-2 block" %>
+                <%= render_textarea name: "", placeholder:"Comments..." %>
+            </div>
+            <div class="mb-4">
+                <%= render_label name: "", label: "Cancellation Charge", class: "mb-2 block" %>
+                <%= render_input name: "", id: "", placeholder: "", class: "h-auto p-3" %>
+            </div>
+            <div class=" border-t border-gray-200 pt-4">
+                <%= render_button "Cancel", as: :link, href: "", class:"w-full bg-red-500 hover:bg-red-600" %>
+            </div>
+       </form>
+    </div>
+  <% end %>
+<% end %>

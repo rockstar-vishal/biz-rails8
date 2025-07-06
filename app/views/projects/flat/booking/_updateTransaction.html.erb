@@ -1,0 +1,65 @@
+<%= render_sheet id:"recordtransaction", direction: "right", width: "w-full sm:max-w-full lg:max-w-full  md:w-full lg:w-2/3 xl:w-2/3	 ",  class:"!slide-in-from-right bg-white/50 backdrop-blur-xl p-0" do %>
+<%= sheet_trigger do %>
+      <a href="/" class="flex gap-2 justify-between items-center p-3 text-xs border border-gray-200 rounded-lg bg-white backdrop-blur-sm overflow-hidden hover:shadow-2xl transition-all">
+          <div class="flex gap-3 items-center">
+            <span class="text-cyan-600"><%= render 'icons/update' %></span>
+            <div class="flex flex-col">
+              <span class="text-black text-sm">Record Transaction</span>
+            </div>
+          </div>
+          <span class="text-gray-400"><%= render 'icons/arrowRight' %></span>
+        </a>
+<% end %>
+<%= sheet_content do %>
+<div class="">
+  <div>
+    <div
+      class="bg-gradient-to-tr from-[#22c55e] via-[#0e7490] to-[#3b82f6] relative overflow-hidden pointer-event-none z-10">
+      <div class="w-full absolute top-5 right-0 flex items-end h-full">
+        <%= image_tag 'card-project2.png', alt: 'Company Logo', class: ' ml-auto opacity-30' %>
+      </div>
+      <div class="border-b border-white/50 p-4 relative z-10">
+        <div class="space-y-2 ">
+          <div class="flex  gap-6 items-center">
+            <div class="flex flex-col">
+              <span class="text-xs text-white">Flat No</span>
+              <h3 class="text-white text-sm font-bold">T1-101</h3>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-xs text-white">Floor</span>
+              <h3 class="text-white text-sm font-bold">22</h3>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-xs text-white">Building</span>
+              <h3 class="text-white text-sm font-bold">Tower 1</h3>
+            </div>
+            <div class="ml-auto"> <button data-ui--sheet-target="closeButton" type="button"
+                class="text-white p-2"><%= render 'icons/close' %>
+              </button></div>
+          </div>
+        </div>
+      </div>
+      <div class="px-4 py-2">
+        <h3 class="text-white text-sm font-bold">Record Transaction</h3>
+      </div>
+    </div>
+    <form action="">
+      <div class="min-h-[calc(100vh-170px)] h-[calc(100vh-170px)] p-4 overflow-y-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
+          <%= render 'projects/flat/booking/transactionFrom' %>
+        </div>
+      </div>
+      <div class="bg-white border-t border-gray-300 p-4">
+        <div class="flex justify-between items-center">
+          <%= render_button "Update Transactions", as: :link, href: "", class: "bg-brand h-auto" %>
+          <button data-ui--sheet-target="closeButton" type="button"
+            class="bg-gray-200 text-gray-800 hover:bg-gray-300 h-auto rounded-md text-sm py-2 px-4">Close
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
+<% end %>
+<% end %>

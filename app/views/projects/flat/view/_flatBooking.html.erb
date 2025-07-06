@@ -1,0 +1,110 @@
+   <div class="w-full border border-gray-200 rounded-lg bg-white/50 ">
+       <div class="border-b border-gray-200 rounded-t-lg flex gap-4 py-2 px-4 items-center">
+           <div class="flex flex-col">
+               <span class="text-black text-base font-semibold">Booking Details</span>
+           </div>
+       </div>
+       <div class="p-4  grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 ">
+           <div class="mb-2 w-full">
+                <%= render_label name: "", label: "Search by Name", class: "mb-2 block" %>
+                <select name="budilding" id="select-building" class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                <option value="">Please select</option>
+                <option value="t1">Jitendra</option>
+                <option value="t2">JP</option>
+                </select>
+            </div>
+            <div class="col-span-full">
+                
+                <%= render_label name: "", label: "Executive Contributions", class: "block" %>
+            </div>
+            <div class="col-span-full flex gap-2 items-stretch w-full bg-white rounded-lg border border-gray-200 mb-2">
+              <div class="w-full grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 p-4">
+                <div class="mb-2 w-full">
+                  <%= render_label name: "", label: "Sales Executive", class: "mb-2 block" %>
+                  <select name="budilding" id="select-building" class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                    <option value="">Please select</option>
+                    <option value="t1">Jiten</option>
+                    <option value="t2">Patel</option>
+                  </select>
+                </div>
+                <div class="mb-2">
+                  <%= render_label name: "", label: "Contribution", class: "mb-2 block" %>
+                  <%= render_input name: "", id: "", placeholder: "Percentage", class: "h-auto p-3" %>
+                </div>
+              </div>
+              <div class="w-full max-w-[200px] flex items-center gap-2 bg-green-50 p-2 rounded-e-lg justify-center">
+                <%= render_button as: :link, href: "", class: "w-auto bg-brand h-auto py-3 mt-2 gap-2" do %>
+                  <%= render 'icons/add' %>
+                  <span>Add</span>
+                <% end %>
+                <%= render_button as: :link, href: "", class: "w-auto bg-red-500 h-auto py-2 mt-2 gap-2" do %>
+                  <%= render 'icons/delete' %>
+                <% end %>
+              </div>
+            </div>
+             <div class="mb-2 w-full">
+                <%= render_label name: "", label: "Select Broker", class: "mb-2 block" %>
+                <select name="budilding" id="select-building" class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                <option value="">Please select</option>
+                <option value="t1">Jitendra</option>
+                <option value="t2">JP</option>
+                </select>
+            </div>
+            <div class="mb-2 w-full">
+                <%= render_label name: "", label: "Brokerage %", class: "mb-2 block" %>
+                <select name="budilding" id="select-building" class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                <option value="">Please select</option>
+                <option value="t1">Jitendra</option>
+                <option value="t2">JP</option>
+                </select>
+            </div>
+            <div class="mb-2 w-full">
+                <%= render_label name: "", label: "Special Scheme", class: "mb-2 block" %>
+                <select name="budilding" id="select-building" class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                <option value="">Please select</option>
+                <option value="t1">Jitendra</option>
+                <option value="t2">JP</option>
+                </select>
+            </div>
+            <div class="mb-2 w-full">
+                <%= render_label name: "", label: "Payment Scheme", class: "mb-2 block" %>
+                <select name="budilding" id="select-building" class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                <option value="">Please select</option>
+                <option value="t1">Jitendra</option>
+                <option value="t2">JP</option>
+                </select>
+            </div>
+            <div class="mb-2">
+                  <%= render_label name: "", label: "Booking Date", class: "mb-2 block" %>
+                  <%= render_input name: "", id: "", type: "date", class: "h-auto p-3" %>
+                </div>
+            <div class="mb-2 w-full">
+                <%= render_label name: "", label: "Fund Source", class: "mb-2 block" %>
+                <select name="budilding" id="select-building" class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                <option value="">Please select</option>
+                <option value="t1">Jitendra</option>
+                <option value="t2">JP</option>
+                </select>
+            </div>
+            <div class="mb-2 w-full">
+                <%= render_label name: "", label: "Search Parking", class: "mb-2 block" %>
+                <select name="budilding" id="select-building" class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                <option value="">Please select</option>
+                <option value="t1">Jitendra</option>
+                <option value="t2">JP</option>
+                </select>
+            </div>
+             <div class="mb-2">
+                  <%= render_label name: "", label: "Registration Date", class: "mb-2 block" %>
+                  <%= render_input name: "", id: "", type: "date", class: "h-auto p-3" %>
+                </div>
+                 <div class="mb-2">
+                  <%= render_label name: "", label: "Registration no", class: "mb-2 block" %>
+                  <%= render_input name: "", id: "", placeholder: "Registration no", class: "h-auto p-3" %>
+                </div>
+                   <div class="mb-4 col-span-full">
+            <%= render_label name:"project_Desc", label:"Remarks", class:"mb-2 block" %>
+            <%= render_textarea name: "project_Desc", placeholder:"Remarks..." %>
+
+          </div>
+   </div></div>

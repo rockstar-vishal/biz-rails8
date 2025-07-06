@@ -1,0 +1,64 @@
+
+    <div class="">
+        <%= render_dialog do %>
+            <%= dialog_trigger do %>
+            <div class="parking-available cursor-pointer  flex flex-col items-center justify-center w-[180px] border-2 border-gray-500  relative bg-white">
+                <span class="absolute h-2 w-[100px] bg-white -top-[2px] z-10"></span>
+                <div class="py-2">
+                    <%= render 'icons/car' %>
+                </div>
+              
+            
+            <div class="flex justify-between details w-full px-2 py-1 items-center">
+                <div class="flex flex-col items-start ">
+                    <span class="text-[10px] ">Covered Parking</span>
+                    <span class="text-xs font-semibold ">Ground</span>
+                </div>
+                <span class="text-gray-500 cursor-pointer"><%= render 'icons/arrowRight' %></span>
+            </div>
+
+                </div>
+            <% end %>
+            <%= dialog_content do %>
+            <span class="parking-available mb-4 block !rounded-full max-w-[100px]">
+                <span class="btn-status  p-2 !rounded-full block text-center max-w-[100px] text-xs">Available</span>
+            </span>
+                <div class="rounded-lg  p-4 shadow-xl bg-white">
+                    <div class="flex flex-col space-y-1.5  pb-4 border-b border-gray-200 mb-4">
+                        
+                        <h3 class="font-semibold leading-none tracking-tight">Parking : Ground T1-1107</h3>
+                    </div>
+                    <div class=" pt-0 grid gap-1 grid-cols-2">
+                        <div class="flex items-center space-x-4 rounded-md p-2 transition-all ">
+                            <div class="text-gray-800 opacity-70"><%= render 'icons/parking' %></div>
+                            <div class="space-y-1">
+                                <p class="text-sm font-medium leading-none">Covered </p>
+                                <p class="text-sm text-muted-foreground">Parking Type</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 rounded-md p-2 transition-all">
+                            <div class="text-gray-800 opacity-70"><%= render 'icons/rupee' %></div>
+                            <div class="space-y-1">
+                                <p class="text-sm font-medium leading-none uppercase">&#8377; 0</p>
+                                <p class="text-sm text-muted-foreground">Cost</p>
+                            </div>
+                        </div>
+                        <div class="my-4 col-span-full">
+                            <%= render_label name: "", label: "Choose Flat No", class: "mb-2 block" %>
+                            <select name="budilding" id="select-building"
+                                class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                                <option value="">Please select</option>
+                                <option value="t1">T1-101</option>
+                                <option value="t2">T1-102</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class=" border-t border-gray-200 pt-4">
+                            <%= render_button "Book Now", as: :link, href: "/flatBooking", class:"w-full bg-brand hover:bg-brand/80" %>
+
+                        </div>
+                </div>
+                
+            <% end %>
+        <% end %>
+    </div>

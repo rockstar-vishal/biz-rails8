@@ -1,0 +1,62 @@
+<h3 class="text-base font-semibold col-span-full ">Basic Details</h3>
+<div class="mb-2">
+    <%= render_label name: "", label: "Select Broker", class: "mb-2 block" %>
+    <select name="budilding" id="select-building"
+        class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+        <option value="">Please select</option>
+        <option value="t1">Jitendra</option>
+        <option value="t2">JP</option>
+    </select>
+</div>
+<div class="mb-2">
+    <%= render_label name: "flat_no", label: "Brokerage %", class: "mb-2 block" %>
+    <%= render_input name: "flat_no", id: "flat_no", placeholder: "", class: "h-auto p-3" %>
+</div>
+<div class="mb-2">
+    <%= render_label name: "", label: "Special Scheme", class: "mb-2 block" %>
+    <select name="budilding" id="select-building"
+        class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+        <option value="">Please select</option>
+        <option value="t1">Jitendra</option>
+        <option value="t2">JP</option>
+    </select>
+</div>
+<div class="mb-2">
+    <%= render_label name: "", label: "Payment Scheme", class: "mb-2 block" %>
+    <select name="budilding" id="select-building"
+        class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+        <option value="">Please select</option>
+        <option value="t1">test</option>
+        <option value="t2">3BHK</option>
+    </select>
+</div>
+<div class="mb-2">
+    <%= render_label name: "", label: "Fund Source", class: "mb-2 block" %>
+    <select name="budilding" id="select-building"
+        class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+        <option value="">Please select</option>
+        <option value="t1">test</option>
+        <option value="t2">3BHK</option>
+    </select>
+</div>
+<div class="mb-2">
+    <%= render_label name: "", label: "Registration no", class: "mb-2 block" %>
+    <%= render_input name: "", placeholder: "", class: "h-auto p-3" %>
+</div>
+<div class="mb-2">
+    <%= render_label name: "", label: "Registration Date", class: "mb-2 block" %>
+    <%= render_input name: "", type: "date", placeholder: "", class: "h-auto p-3" %>
+</div>
+<div class="mb-2">
+    <%= render_label name: "", label: "Booking Date", class: "mb-2 block" %>
+    <%= render_input name: "", type: "date", placeholder: "", class: "h-auto p-3" %>
+</div>
+<div class="mb-2">
+    <%= render_label name: "", label: "Possession Date", class: "mb-2 block" %>
+    <%= render_input name: "", type: "date", placeholder: "", class: "h-auto p-3" %>
+</div>
+<div class="mb-4 col-span-full">
+    <%= render_label name:"remarks", label:"Remarks", class:"mb-2 block" %>
+    <%= render_textarea name: "remarks", placeholder:"remarks..." %>
+
+</div>

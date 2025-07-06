@@ -1,0 +1,162 @@
+<div>
+ <div class="mt-1 mb-4 flex  items-center w-full">
+        <span class="w-1/3 "><a href="/building"
+                class=" inline-flex  justify-between items-center p-2 text-xs border border-gray-200 rounded-lg rounded-lg bg-white hover:shadow-md transition-all">
+                <div class="flex items-center gap-1">
+                    <span class="text-gray-800 "><%= render 'icons/back' %></span>
+                    <div class="flex flex-col">
+                        <span class="text-gray-500">Back</span>
+
+                    </div>
+                </div>
+            </a></span>
+
+        <span class="w-1/3 text-black text-base font-semibold flex justify-center">Download Demand Letter</span>
+        <span class="w-1/3 flex justify-end">
+            <%= render 'shared/breadcrumb' %>
+        </span>
+    </div>
+  <div class="flex gap-4">
+    <div class="w-full border border-gray-200 rounded-lg bg-white/50 project-height-fix min-h-[calc(100vh-150px)]">
+        <div class="flex gap-4 py-4 px-4 justify-center bg-gradient-to-t from-[#ffe4e6] to-[#ccfbf1] border-b border-black/40">
+            <div class="flex gap-4 ">
+                <div class="flex items-center gap-2 ">
+                    <%= render_label name: "", label: "Start Date", class: "w-full" %>
+                    <%= render_input name: "", type: "date", placeholder: "", class: "h-auto p-3" %>
+                </div>
+                <div class="flex items-center gap-2">
+                    <%= render_label name: "", label: "End Date", class: "w-full" %>
+                    <%= render_input name: "", type: "date", placeholder: "", class: "h-auto p-3" %>
+                </div>
+                <%= render_button as: :link, href: "", class: "bg-brand h-auto px-4 gap-2  hover:bg-brand/80" do %>
+                    <%= render 'icons/searchsm' %> Search
+                <% end %>
+            </div>
+        </div>
+          
+             
+            <div class="table-responsive  ">
+                <%= render_table class:"overflow-hidden"  do %>
+                    <%= table_head class:"rounded-t-md  py-2 px-4 bg-gradient-to-b from-[#ffe4e6] to-[#ccfbf1]" do %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Project</span>	
+                        <% end %>
+                        <%= table_header do %>
+                        <span class="text-xs text-gray-700 block">Building</span>
+                            <span class="text-gray-700 text-sm font-bold block">Name</span>	
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Floor</span>
+                            <span class="text-gray-700 text-sm font-bold block">Level</span>		
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Unit</span>  
+                            <span class="text-gray-700 text-sm font-bold block">Type</span>	
+                        <% end %>
+                        <%= table_header do %>
+                        <span class="text-xs text-gray-700 block">Client</span>
+                            <span class="text-gray-700 text-sm font-bold block">Name</span>			
+                        <% end %>
+                        <%= table_header do %>
+                        <span class="text-xs text-gray-700 block">Client</span>
+                            <span class="text-gray-700 text-sm font-bold block">Email</span>			
+                        <% end %>
+                        <%= table_header do %>
+                        <span class="text-xs text-gray-700 block">Client</span>
+                            <span class="text-gray-700 text-sm font-bold block"> Contact No</span>			
+                        <% end %>
+                        <%= table_header do %>
+                        <span class="text-xs text-gray-700 block">Amount</span>
+                            <span class="text-gray-700 text-sm font-bold block"> Payable	</span>
+						
+                        <% end %>
+                        <%= table_header do %>
+                        <span class="text-xs text-gray-700 block">Tax</span>
+                            <span class="text-gray-700 text-sm font-bold block"> Payable	</span>
+						
+                        <% end %>
+                         <%= table_header do %>
+                            <span class="text-xs text-gray-700 block">Penalty</span>
+                            <span class="text-gray-700 text-sm font-bold block"> Payable</span>
+						
+                        <% end %>
+                         <%= table_header do %>
+                             <span class="text-xs text-gray-700 block">Demand</span>
+                            <span class="text-gray-700 text-sm font-bold block"> Value	</span>
+						
+                        <% end %>
+                        <%= table_header do %>
+                        <span class="text-xs text-gray-700 block">Download </span>
+                            <span class="text-gray-700 text-sm font-bold block">Letter</span>
+						
+                        <% end %>
+                    <% end %>
+                    <%= table_body do %>
+                        <%= table_row do %>
+                            <%= table_column do %>
+                            <div class="whitespace-nowrap">
+                                Global Inspira	
+                            </div>
+                            <% end %>
+                            <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                Tower-1	
+                            </div>
+                            <% end %>
+                            <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                22	
+                            </div>	
+                            <% end %>
+                            <%= table_column do %>
+                                 <div class="whitespace-nowrap">
+                                2BHK
+                            </div>	
+                            <% end %>
+                            <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                JItendra Patel	
+                            </div>		
+                            <% end %>
+                            <%= table_column do %>
+                                 <div class="whitespace-nowrap">
+                                jiten@gmail.com	
+                            </div>
+                            <% end %>
+                             <%= table_column do %>
+                               <div class="whitespace-nowrap">
+                               98129239392
+                            </div>
+                            <% end %>
+                               <%= table_column do %>
+                               <div class="whitespace-nowrap">
+                               &#8377; 0.00	
+                            </div>
+                            <% end %>
+                              <%= table_column do %>
+                               <div class="whitespace-nowrap">
+                               &#8377; 0.00	
+                            </div>
+                            <% end %>
+                              <%= table_column do %>
+                               <div class="whitespace-nowrap">
+                               &#8377; 0.00	
+                            </div>
+                            <% end %>
+                              <%= table_column do %>
+                               <div class="whitespace-nowrap">
+                               &#8377; 0.00	
+                            </div>
+                            <% end %>
+                            
+                             <%= table_column do %>
+                                <span class="inline-flex items-center  bg-blue-500 hover:bg-blue-800 text-white text-xs py-1 px-2.5 rounded-md cursor-pointer"><%= render 'icons/download' %> Download</span> 		
+                             <% end %>
+                        <% end %>
+                       
+                    <% end %>
+                <% end %>
+            </div>
+    
+  </div>
+</div>

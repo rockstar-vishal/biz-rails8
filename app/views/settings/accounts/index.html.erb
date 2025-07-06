@@ -1,0 +1,57 @@
+<div>
+  <div class="mt-1 mb-4 flex justify-between items-center">
+    <h1 class="font-bold ">Manage Accounts</h1>
+    <%= render 'shared/breadcrumb' %>
+  </div>
+  <div class="flex gap-4">
+   
+    <div class="w-full border border-gray-200 rounded-lg bg-white/50 project-height-fix min-h-[calc(100vh-150px)]">
+        <div class="">
+            <div class="flex justify-between p-2  items-center">
+               <div class="flex gap-2">
+            <%= render_input name: "search", id: "search", placeholder: "Search by name, email or phone...", class: "h-auto p-2.5 min-w-[400px]" %>
+            <%= render_button as: :link, href: "", class: "bg-brand h-auto py-2 px-4 gap-2  hover:bg-brand/80" do %>
+                <%= render 'icons/searchsm' %>
+              <% end %>
+        </div>
+            </div>
+            <div class="table-responsive">
+                <%= render_table class:"overflow-hidden"  do %>
+                    <%= table_head class:"rounded-t-md  py-2 px-4 bg-gradient-to-bl from-[#ffe4e6] to-[#ccfbf1]" do %>
+                        <%= table_header  do %>
+                            <span class="text-gray-700 text-sm font-bold block">Projects</span>	
+                        <% end %>
+                        <%= table_header  do %>
+                            <span class="text-gray-700 text-sm font-bold block">Add A/C No.</span>	
+                        <% end %>
+                        <%= table_header  do %>
+                            <span class="text-gray-700 text-sm font-bold block">Action</span>		
+                        <% end %>
+                    <% end %>
+                    <%= table_body do %>
+                        <%= table_row do %>
+                            <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                  <%= render 'settings/accounts/projects' %>
+                                </div>
+                            <% end %>
+                            <%= table_column do %>
+                                 <%= render 'settings/accounts/add' %>
+                            <% end %>
+                             <%= table_column do %>
+                             <div class="whitespace-nowrap flex">
+                                <%= render 'settings/accounts/update' %>
+                                <%= render 'settings/accounts/delete' %>
+                              
+                             </div>
+                                   	
+                            <% end %>
+                        <% end %>
+                     
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

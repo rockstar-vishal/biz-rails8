@@ -1,0 +1,55 @@
+<%= render_dialog do %>
+  <%= dialog_trigger do %>
+    <a href="/" class="flex gap-2 justify-between items-center p-3 mb-2  text-xs border border-gray-200 rounded-lg bg-white backdrop-blur-sm overflow-hidden hover:shadow-2xl transition-all">
+          <div class="flex gap-3 items-center">
+            <span class="text-cyan-600"><%= render 'icons/update' %></span>
+            <div class="flex flex-col">
+              <span class="text-black text-sm">Interest Waiver</span>
+            </div>
+          </div>
+          <span class="text-gray-400"><%= render 'icons/arrowRight' %></span>
+        </a>
+  <% end %>
+  <%= dialog_content do %>
+    <div>
+           <div
+      class="bg-gradient-to-tr from-[#22c55e] via-[#0e7490] to-[#3b82f6] relative overflow-hidden pointer-event-none z-10 rounded-lg mt-2">
+      <div class="w-full absolute top-5 right-0 flex items-end h-full">
+        <%= image_tag 'card-project2.png', alt: 'Company Logo', class: ' ml-auto opacity-30' %>
+      </div>
+      <div class="border-b border-white/50 p-4 relative z-10">
+        <div class="space-y-2 ">
+          <div class="flex  gap-6 items-center">
+            <div class="flex flex-col">
+              <span class="text-xs text-white">Flat No</span>
+              <h3 class="text-white text-sm font-bold">T1-101</h3>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-xs text-white">Floor</span>
+              <h3 class="text-white text-sm font-bold">22</h3>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-xs text-white">Building</span>
+              <h3 class="text-white text-sm font-bold">Tower 1</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="px-4 py-2">
+        <h3 class="text-white text-sm font-bold">Update Interest Waiver</h3>
+      </div>
+   
+    </div>
+        <form action="">
+            <div class="my-4">
+                <%= render_label name: "interest", label: "Enter Amount", class: "mb-2 block" %>
+                <%= render_input name: "interest", id: "interest", placeholder: "", class: "h-auto p-3" %>
+            </div>
+             <div class=" border-t border-gray-200 pt-4">
+                            <%= render_button "Save Update", as: :link, href: "", class:"w-full bg-brand hover:bg-brand/80" %>
+
+                        </div>
+       </form>
+    </div>
+  <% end %>
+<% end %>
