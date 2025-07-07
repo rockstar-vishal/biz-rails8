@@ -1,0 +1,2 @@
+module Reports::MisReportHelper
+end

@@ -1,0 +1,258 @@
+<div>
+ <div class="mt-1 mb-4 flex  items-center w-full">
+        <span class="w-1/3 "><a href="/dashboard"
+                class=" inline-flex  justify-between items-center p-2 text-xs border border-gray-200 rounded-lg rounded-lg bg-white hover:shadow-md transition-all">
+                <div class="flex items-center gap-1">
+                    <span class="text-gray-800 "><%= render 'icons/back' %></span>
+                    <div class="flex flex-col">
+                        <span class="text-gray-500">Back</span>
+
+                    </div>
+                </div>
+            </a></span>
+
+        <span class="w-1/3 text-black text-base font-semibold flex justify-center">Collection Report Slab</span>
+        <span class="w-1/3 flex justify-end">
+            <%= render 'shared/breadcrumb' %>
+        </span>
+    </div>
+  <div class="flex gap-4">
+    <div class="w-full border border-gray-200 rounded-lg bg-white/50 project-height-fix min-h-[calc(100vh-150px)]">
+        <div class="flex gap-4 py-4 px-4 justify-center bg-gradient-to-t from-[#ccfbf1] to-[#ffe4e6] border-b border-black/20">
+            <div class="flex gap-4 ">
+                  <div class="flex items-center gap-2 ">
+                    <%= render_label name: "", label: "Project Name", class: "w-full" %>
+                    <select name="budilding" id="select-building"
+                      class="min-w-[180px] w-full rounded-md border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                      <option value="">Select Project</option>
+                      <option value="t1">Global Inspiria</option>
+                      <option value="t2">Project2</option>
+                    </select>
+                  </div>
+                   <div class="flex items-center gap-2 ">
+                    <%= render_label name: "", label: "Building Name", class: "w-full" %>
+                    <select name="budilding" id="select-building"
+                      class="min-w-[180px] w-full rounded-md border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                      <option value="">Select Building</option>
+                      <option value="t1">Global Inspiria</option>
+                      <option value="t2">Project2</option>
+                    </select>
+                  </div>
+                     <div class="flex items-center gap-2 ">
+                    <%= render_label name: "", label: "Payment Plan", class: "w-full" %>
+                    <select name="budilding" id="select-building"
+                      class="min-w-[180px] w-full rounded-md border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                      <option value="">Select Payment Plan</option>
+                      <option value="t1">Global Inspiria</option>
+                      <option value="t2">Project2</option>
+                    </select>
+                  </div>
+               
+                <%= render_button as: :link, href: "", class: "bg-brand h-auto px-4 gap-2  hover:bg-brand/80" do %>
+                    <%= render 'icons/searchsm' %> Search
+                <% end %>
+            </div>
+        </div>
+           <div class="flex justify-between p-3 gap-4 items-center bg-gradient-to-b from-[#ccfbf1] to-[#ffe4e6] border-b border-black/20">
+            <div class="flex flex-col">
+                <span class="text-xs text-gray-500">Your Selection</span>
+                <span class="text-black text-base font-semibold">Project Name</span>
+            </div>
+            <div class="flex flex-col">
+                <span class="text-xs text-gray-500">Flat Status</span>
+                <span class="text-black text-base font-semibold">Sold</span>
+            </div>  
+          <div class="ml-auto flex gap-2">
+            <%= render_button as: :link, href: "", class: "bg-gray-50 text-gray-500 border border-gray-200 gap-2 hover:bg-gray-900 hover:text-white" do %>
+                <%= render 'icons/csv' %>
+                <span>Export</span>
+            <% end %>
+          </div>
+        </div>
+             
+            <div class="table-responsive  ">
+                <%= render_table class:"overflow-hidden"  do %>
+                    <%= table_head class:"rounded-t-md  py-2 px-4 bg-gradient-to-b from-[#ffe4e6] to-[#ccfbf1] " do %>
+                      <%= table_header colspan:"4", class:"border-r border-black/20" do %>
+                            <span class="text-gray-700 text-sm font-bold block text-center ">Particulars</span>	
+                        <% end %>
+                         <%= table_header  colspan:"5", class:"border-r border-black/20" do %>
+                            <span class="text-gray-700 text-sm font-bold block text-center">Agreement Value	</span>	
+                        <% end %>
+                          <%= table_header colspan:"5", class:"border-r border-black/20" do %>
+                            <span class="text-gray-700 text-sm font-bold block text-center">TDS	</span>	
+                        <% end %>
+                         <%= table_header colspan:"5" do %>
+                            <span class="text-gray-700 text-sm font-bold block text-center">Booking Amount</span>	
+                        <% end %>
+                    <% end %>
+                    
+                    <%= table_head class:"rounded-t-md  py-2 px-4 bg-gradient-to-b from-[#ccfbf1] to-[#ffe4e6] border-t border-black/20 " do %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Sr. No</span>	
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Name</span>	
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">M/p	</span>		
+                        <% end %>
+                        <%= table_header class:"border-r border-black/20" do %>
+                            <span class="text-gray-700 text-sm font-bold block">Flat No</span>	
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Total</span>			
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Received</span>			
+                        <% end %>
+                         <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Percentage</span>			
+                        <% end %>
+                          <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Pending</span>			
+                        <% end %>
+                        <%= table_header class:"border-r border-black/20" do %>
+                            <span class="text-gray-700 text-sm font-bold block">Percentage</span>			
+                        <% end %>
+                         <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Total</span>			
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Received</span>			
+                        <% end %>
+                         <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Percentage</span>			
+                        <% end %>
+                          <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Pending</span>			
+                        <% end %>
+                        <%= table_header class:"border-r border-black/20" do %>
+                            <span class="text-gray-700 text-sm font-bold block">Percentage</span>			
+                        <% end %>
+                         <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Total</span>			
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Received</span>			
+                        <% end %>
+                         <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Percentage</span>			
+                        <% end %>
+                          <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Pending</span>			
+                        <% end %>
+                        <%= table_header do %>
+                            <span class="text-gray-700 text-sm font-bold block">Percentage</span>			
+                        <% end %>
+                        
+                        
+                       
+                    <% end %>
+                    <%= table_body do %>
+                        <%= table_row do %>
+                            <%= table_column do %>
+                            <div class="whitespace-nowrap">
+                                1
+                            </div>
+                            <% end %>
+                            <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                                Available Flats		
+                            </div>
+                            <% end %>
+                            <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                              347
+                            </div>	
+                            <% end %>
+                            <%= table_column class:"border-r border-black/20" do %>
+                                 <div class="whitespace-nowrap">
+                                0
+                            </div>	
+                            <% end %>
+                            <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                               0
+                            </div>		
+                            <% end %>
+                            <%= table_column do %>
+                              <div class="whitespace-nowrap">
+                               0
+                               </div>
+                            <% end %>
+                             <%= table_column do %>
+                              <div class="whitespace-nowrap">
+                               0
+                               </div>
+                            <% end %>
+                                <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                               0
+                            </div>		
+                            <% end %>
+                            <%= table_column class:"border-r border-black/20" do %>
+                              <div class="whitespace-nowrap">
+                               0
+                               </div>
+                            <% end %>
+                             <%= table_column do %>
+                              <div class="whitespace-nowrap">
+                               0
+                               </div>
+                            <% end %>
+                             <%= table_column do %>
+                                 <div class="whitespace-nowrap">
+                                0
+                            </div>	
+                            <% end %>
+                            <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                               0
+                            </div>		
+                            <% end %>
+                            <%= table_column do %>
+                              <div class="whitespace-nowrap">
+                               0
+                               </div>
+                            <% end %>
+                             <%= table_column class:"border-r border-black/20" do %>
+                              <div class="whitespace-nowrap">
+                               0
+                               </div>
+                            <% end %>
+                                <%= table_column do %>
+                                <div class="whitespace-nowrap">
+                               0
+                            </div>		
+                            <% end %>
+                            <%= table_column do %>
+                              <div class="whitespace-nowrap">
+                               0
+                               </div>
+                            <% end %>
+                             <%= table_column do %>
+                              <div class="whitespace-nowrap">
+                               0
+                               </div>
+                            <% end %>
+                               <%= table_column do %>
+                              <div class="whitespace-nowrap">
+                               0
+                               </div>
+                            <% end %>
+                             <%= table_column do %>
+                              <div class="whitespace-nowrap">
+                               0
+                               </div>
+                            <% end %>
+                        
+                           
+                        <% end %>
+                       
+                    <% end %>
+                <% end %>
+            </div>
+    
+  </div>
+</div>

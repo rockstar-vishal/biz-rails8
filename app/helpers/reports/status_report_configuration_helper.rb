@@ -1,0 +1,2 @@
+module Reports::StatusReportConfigurationHelper
+end

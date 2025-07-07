@@ -1,0 +1,194 @@
+<%= render_sheet direction: "right", width: "w-full sm:max-w-full lg:max-w-full md:w-2/3 lg:w-2/3 xl:w-1/2", class: "!slide-in-from-right bg-white/50 backdrop-blur-xl p-0" do %>
+  <%= sheet_trigger do %>
+      
+        <a href="/" class="flex gap-2 justify-between items-center p-3 text-xs border border-gray-200 rounded-lg bg-white backdrop-blur-sm overflow-hidden hover:shadow-2xl transition-all mb-2">
+          <div class="flex gap-3 items-center">
+            <span class="text-brand"><%= render 'icons/payment' %></span>
+            <div class="flex flex-col">
+              <span class="text-black text-sm">Bulk Update</span>
+              <span class="text-gray-500">Payment Plan</span>
+            </div>
+          </div>
+          <span class="text-gray-400"><%= render 'icons/arrowRight' %></span>
+        </a>
+  <% end %>
+
+  <%= sheet_content do %>
+    <div class="text-black">
+       <div
+      class="bg-gradient-to-tr from-[#22c55e] via-[#0e7490] to-[#3b82f6] relative overflow-hidden pointer-event-none z-10">
+      <div class="w-full absolute top-5 right-0 flex items-end h-full">
+        <%= image_tag 'card-project2.png', alt: 'Company Logo', class: ' ml-auto opacity-30' %>
+      </div>
+      <div class="border-b border-white/50 p-4 relative z-10">
+        <div class="space-y-2 ">
+          <div class="flex  gap-6 items-center">
+            <div class="flex flex-col">
+              <span class="text-xs text-white">Project Name</span>
+              <h3 class="text-white text-sm font-bold">Global Inspiria</h3>
+            </div>
+             <div class="flex flex-col">
+              <span class="text-xs text-white">Building Name</span>
+              <h3 class="text-white text-sm font-bold">Tower</h3>
+            </div>
+            <div class="ml-auto"> <button data-ui--sheet-target="closeButton" type="button"
+                class="text-white p-2"><%= render 'icons/close' %>
+              </button></div>
+          </div>
+        </div>
+      </div>
+      <div class="px-4 py-2">
+        <h3 class="text-white text-sm font-bold">Payment Plan Bulk Update</h3>
+      </div>
+    </div>
+      <form action="">
+        <div class="min-h-[calc(100vh-170px)] h-[calc(100vh-170px)] p-4 overflow-y-auto">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+             <div class=" flex items-center border border-gray-300 py-2.5 px-4 rounded-lg">
+                <div class="w-full">
+                    
+                    <h3 class="text-base font-semibold ">Booking Amount	</h3>
+                </div>
+              
+              <div class="min-w-[160px]">
+                <%= render_label name: "", label: "Due Date", class: "block text-xs text-black/50" %>
+              <%= render_input name: "", id: "", placeholder: "Due Date", class: "w-auto h-auto p-3", type:"date" %>
+              </div>
+            </div>
+              <div class=" flex items-center  border border-gray-300 py-2.5 px-4 rounded-lg">
+                <div class="w-full">
+                    
+                    <h3 class="text-base font-semibold ">On Completion of 1st Slab	</h3>
+                </div>
+              
+              <div class="min-w-[160px]">
+                <%= render_label name: "", label: "Due Date", class: "block text-xs text-black/50" %>
+              <%= render_input name: "", id: "", placeholder: "Due Date", class: "w-auto h-auto p-3", type:"date" %>
+              </div>
+            </div>
+                <div class=" flex items-center  border border-gray-300 py-2.5 px-4 rounded-lg">
+                <div class="w-full">
+                    
+                    <h3 class="text-base font-semibold ">Booking Amount	</h3>
+                </div>
+              
+              <div class="min-w-[160px]">
+                <%= render_label name: "", label: "Due Date", class: "block text-xs text-black/50" %>
+              <%= render_input name: "", id: "", placeholder: "Due Date", class: "w-auto h-auto p-3", type:"date" %>
+              </div>
+            </div>
+              <div class=" flex items-center  border border-gray-300 py-2.5 px-4 rounded-lg">
+                <div class="w-full">
+                    
+                    <h3 class="text-base font-semibold ">On Completion of 1st Slab	</h3>
+                </div>
+              
+              <div class="min-w-[160px]">
+                <%= render_label name: "", label: "Due Date", class: "block text-xs text-black/50" %>
+              <%= render_input name: "", id: "", placeholder: "Due Date", class: "w-auto h-auto p-3", type:"date" %>
+              </div>
+            </div>
+                <div class=" flex items-center  border border-gray-300 py-2.5 px-4 rounded-lg">
+                <div class="w-full">
+                    
+                    <h3 class="text-base font-semibold ">Booking Amount	</h3>
+                </div>
+              
+              <div class="min-w-[160px]">
+                <%= render_label name: "", label: "Due Date", class: "block text-xs text-black/50" %>
+              <%= render_input name: "", id: "", placeholder: "Due Date", class: "w-auto h-auto p-3", type:"date" %>
+              </div>
+            </div>
+              <div class=" flex items-center  border border-gray-300 py-2.5 px-4 rounded-lg">
+                <div class="w-full">
+                    
+                    <h3 class="text-base font-semibold ">On Completion of 1st Slab	</h3>
+                </div>
+              
+              <div class="min-w-[160px]">
+                <%= render_label name: "", label: "Due Date", class: "block text-xs text-black/50" %>
+              <%= render_input name: "", id: "", placeholder: "Due Date", class: "w-auto h-auto p-3", type:"date" %>
+              </div>
+            </div>
+                <div class=" flex items-center  border border-gray-300 py-2.5 px-4 rounded-lg">
+                <div class="w-full">
+                    
+                    <h3 class="text-base font-semibold ">Booking Amount	</h3>
+                </div>
+              
+              <div class="min-w-[160px]">
+                <%= render_label name: "", label: "Due Date", class: "block text-xs text-black/50" %>
+              <%= render_input name: "", id: "", placeholder: "Due Date", class: "w-auto h-auto p-3", type:"date" %>
+              </div>
+            </div>
+              <div class=" flex items-center  border border-gray-300 py-2.5 px-4 rounded-lg">
+                <div class="w-full">
+                    
+                    <h3 class="text-base font-semibold ">On Completion of 1st Slab	</h3>
+                </div>
+              
+              <div class="min-w-[160px]">
+                <%= render_label name: "", label: "Due Date", class: "block text-xs text-black/50" %>
+              <%= render_input name: "", id: "", placeholder: "Due Date", class: "w-auto h-auto p-3", type:"date" %>
+              </div>
+            </div>
+                <div class=" flex items-center  border border-gray-300 py-2.5 px-4 rounded-lg">
+                <div class="w-full">
+                    
+                    <h3 class="text-base font-semibold ">Booking Amount	</h3>
+                </div>
+              
+              <div class="min-w-[160px]">
+                <%= render_label name: "", label: "Due Date", class: "block text-xs text-black/50" %>
+              <%= render_input name: "", id: "", placeholder: "Due Date", class: "w-auto h-auto p-3", type:"date" %>
+              </div>
+            </div>
+              <div class=" flex items-center  border border-gray-300 py-2.5 px-4 rounded-lg">
+                <div class="w-full">
+                    
+                    <h3 class="text-base font-semibold ">On Completion of 1st Slab	</h3>
+                </div>
+              
+              <div class="min-w-[160px]">
+                <%= render_label name: "", label: "Due Date", class: "block text-xs text-black/50" %>
+              <%= render_input name: "", id: "", placeholder: "Due Date", class: "w-auto h-auto p-3", type:"date" %>
+              </div>
+            </div>
+                <div class=" flex items-center  border border-gray-300 py-2.5 px-4 rounded-lg">
+                <div class="w-full">
+                    
+                    <h3 class="text-base font-semibold ">Booking Amount	</h3>
+                </div>
+              
+              <div class="min-w-[160px]">
+                <%= render_label name: "", label: "Due Date", class: "block text-xs text-black/50" %>
+              <%= render_input name: "", id: "", placeholder: "Due Date", class: "w-auto h-auto p-3", type:"date" %>
+              </div>
+            </div>
+              <div class=" flex items-center  border border-gray-300 py-2.5 px-4 rounded-lg">
+                <div class="w-full">
+                    
+                    <h3 class="text-base font-semibold ">On Completion of 1st Slab	</h3>
+                </div>
+              
+              <div class="min-w-[160px]">
+                <%= render_label name: "", label: "Due Date", class: "block text-xs text-black/50" %>
+              <%= render_input name: "", id: "", placeholder: "Due Date", class: "w-auto h-auto p-3", type:"date" %>
+              </div>
+            </div>
+         
+        
+          </div>
+        </div>
+        <div class="bg-white border-t border-gray-300 p-4">
+          <div class="flex justify-between items-center">
+            <%= render_button "Update", as: :link, href: "", class: "bg-brand h-auto" %>
+            <button data-ui--sheet-target="closeButton" type="button" class="bg-gray-200 text-gray-800 hover:bg-gray-300 h-auto rounded-md text-sm py-2 px-4">Close
+      </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  <% end %>
+<% end %>

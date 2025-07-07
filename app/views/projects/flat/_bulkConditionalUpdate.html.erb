@@ -1,0 +1,69 @@
+<%= render_dialog do %>
+  <%= dialog_trigger do %>
+     <a href="/" class="flex gap-2 justify-between items-center p-3 text-xs border border-gray-200 rounded-lg bg-white backdrop-blur-sm overflow-hidden hover:shadow-2xl transition-all">
+          <div class="flex gap-3 items-center">
+            <span class="text-brand"><%= render 'icons/payment' %></span>
+            <div class="flex flex-col">
+              <span class="text-black text-sm">Conditional Update</span>
+              <span class="text-gray-500">Payment Plan</span>
+            </div>
+          </div>
+          <span class="text-gray-400"><%= render 'icons/arrowRight' %></span>
+        </a>
+  <% end %>
+  <%= dialog_content do %>
+    <div>
+           <div
+      class="bg-gradient-to-tr from-[#22c55e] via-[#0e7490] to-[#3b82f6] relative overflow-hidden pointer-event-none z-10 rounded-lg mt-2">
+      <div class="w-full absolute top-5 right-0 flex items-end h-full">
+        <%= image_tag 'card-project2.png', alt: 'Company Logo', class: ' ml-auto opacity-30' %>
+      </div>
+      <div class="border-b border-white/50 p-4 relative z-10">
+        <div class="space-y-2 ">
+          <div class="flex  gap-6 items-center">
+           <div class="flex flex-col">
+              <span class="text-xs text-white">Project Name</span>
+              <h3 class="text-white text-sm font-bold">Global Inspiria</h3>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-xs text-white">Building</span>
+              <h3 class="text-white text-sm font-bold">Tower 1</h3>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="px-4 py-2">
+        <h3 class="text-white text-sm font-bold">Payment Plan - Bulk Conditional Update</h3>
+      </div>
+   
+    </div>
+        <form action="">
+              <div class="my-4">
+                <%= render_label name: "", label: "Date", class: "mb-2 block" %>
+                <%= render_input name: "", type: "date", placeholder: "", class: "w-auto h-auto p-3" %>
+            </div>
+            <div class="mb-4">
+                <%= render_label name: "", label: "Slab Name", class: "mb-2 block" %>
+                <select name="budilding" id="select-building"
+                    class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                    <option value="">Please select</option>
+                    <option value="t2">JP</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <%= render_label name: "", label: "Floor level", class: "mb-2 block" %>
+                <select name="budilding" id="select-building"
+                    class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                    <option value="">Please select</option>
+                    <option value="t2">JP</option>
+                </select>
+            </div>
+          
+            <div class=" border-t border-gray-200 pt-4">
+                <%= render_button "Update", as: :link, href: "", class:"w-full bg-green-500 hover:bg-green-600" %>
+            </div>
+       </form>
+    </div>
+  <% end %>
+<% end %>

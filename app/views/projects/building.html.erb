@@ -4,7 +4,7 @@
     <%= render 'shared/breadcrumb' %>
   </div>
   <div class="flex gap-4">
-    <div class="border border-gray-200 rounded-lg  bg-gradient-to-bl from-[#ffe4e6] to-[#ccfbf1] backdrop-blur-xl project-height-fix w-[450px] min-h-[calc(100vh-150px)]">
+    <div class="border border-gray-200 rounded-lg  bg-gradient-to-bl from-[#ffe4e6] to-[#ccfbf1] project-height-fix w-[450px] min-h-[calc(100vh-150px)]">
       <div class="bg-gradient-to-tr from-[#22c55e] via-[#0e7490] to-[#3b82f6] relative">
         <div class="w-full absolute top-5 right-0">
           <%= image_tag 'card-project2.png', alt: 'Company Logo', class: 'w-full ml-auto opacity-30' %>
@@ -48,7 +48,10 @@
         <span class="block mt-4 mb-2 text-xs text-black">Letters Download</span>
         <%= render 'projects/flat/letter' %>
         <span class="block mt-4 mb-2 text-xs text-black">Payments Update</span>
-        <%= render 'projects/flat/paymentUpdate' %>
+        
+         <%= render 'projects/flat/bulkUpdate' %>
+         <%= render 'projects/flat/bulkConditionalUpdate' %>
+
       </div>
     </div>
     <div class="w-full border border-gray-200 rounded-lg bg-white/50 ">

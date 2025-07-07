@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  namespace :settings do
-    get "tds/index"
-    get "taxes/index"
-    get "cost_types/index"
-    get "transactions/index"
-    get "fund_sources/index"
-    get "bank/index"
+  namespace :reports do
+    get "collection_repor_project/index"
+    get "collection_report_slab/index"
+    get "collection_report_building/index"
+    get "status_report_areawise/index"
+    get "status_report_configuration/index"
+    get "status_report_building/index"
+    get "status_report_project/index"
   end
   
   get '/', to: 'login#index', as: :login
@@ -40,6 +41,17 @@ Rails.application.routes.draw do
   get 'cost_types', to: "settings/cost_types#index",  as: 'cost_types'
   get 'taxes', to: "settings/taxes#index",  as: 'taxes'
   get 'tds', to: "settings/tds#index",  as: 'tds'
+  get 'employee_wise_booking', to: "reports/employee_wise_booking#index",  as: 'employee_wise_booking'
+  get 'booking_report', to: "reports/booking_report#index",  as: 'booking_report'
+  get 'mis_report', to: "reports/mis_report#index",  as: 'mis_report'
+  get 'broker_report', to: "reports/broker_report#index",  as: 'broker_report'
+  get 'status_report_project', to: "reports/status_report_project#index",  as: 'status_report_project'
+  get 'status_report_building', to: "reports/status_report_building#index",  as: 'status_report_building'
+  get 'status_report_configuration', to: "reports/status_report_configuration#index",  as: 'status_report_configuration'
+  get 'status_report_areawise', to: "reports/status_report_areawise#index",  as: 'status_report_areawise'
+  get 'collection_repor_project', to: "reports/collection_repor_project#index",  as: 'collection_repor_project'
+  get 'collection_report_building', to: "reports/collection_report_building#index",  as: 'collection_report_building'
+  get 'collection_report_slab', to: "reports/collection_report_slab#index",  as: 'collection_report_slab'
 
   get "up" => "rails/health#show", as: :rails_health_check
 
