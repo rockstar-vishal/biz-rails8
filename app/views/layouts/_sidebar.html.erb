@@ -2,7 +2,7 @@
   <nav id="sideBarScroll">
     <ul class="menu rounded-box space-y-0">
       <li class="flex cursor-pointer items-center justify-between">
-        <%= link_to dashboard_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand #{'active' if current_page?(dashboard_path)}" do %>
+        <%= link_to dashboard_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand #{'active' if current_page?(dashboard_path) || current_page?(project_path) || current_page?(building_path) || current_page?(parking_path) || current_page?(paymentsPlan_path) || current_page?(inventory_path) || current_page?(cancelledBookings_path) || current_page?(exportBookingList_path) || current_page?(flatBooking_path) || current_page?(showBooking_path) || current_page?(projectSummary_path) || current_page?(todaysCall_path) || current_page?(backlog_path) || current_page?(demandLetter_path) || current_page?(reminderLetter_path)  }" do %>
         <div class="menu-div flex flex-col gap-2 items-center">
           <%= render 'icons/project' %>
           <span class="menu-text">Projects</span>

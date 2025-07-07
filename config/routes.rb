@@ -1,16 +1,9 @@
 Rails.application.routes.draw do
-  namespace :reports do
-    get "collection_repor_project/index"
-    get "collection_report_slab/index"
-    get "collection_report_building/index"
-    get "status_report_areawise/index"
-    get "status_report_configuration/index"
-    get "status_report_building/index"
-    get "status_report_project/index"
-  end
+  
   
   get '/', to: 'login#index', as: :login
   get '/reset', to: 'login#reset'
+  get 'profile', to: 'profile#index'
   get 'dashboard', to: 'dashboard#index'
   get 'project', to: "projects#index"
   get 'building', to: "projects#building"
