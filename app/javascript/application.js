@@ -4,11 +4,12 @@ import "controllers"
 
 document.addEventListener('turbo:load', () => {
     //sidebar
-  
-      const expandMenuButton = document.getElementById('expandMenu');
-      const sideBar = document.getElementById('sideBar');
-      const mainWrapper = document.getElementById('main-wrapper');
+    const expandMenuButton = document.getElementById('expandMenu');
+    const sideBar = document.getElementById('sideBar');
+    const mainWrapper = document.getElementById('main-wrapper');
     
+    // Only run sidebar code if elements exist (dashboard page)
+    if (expandMenuButton && sideBar && mainWrapper) {
       const updateMarginLeft = () => {
         if (window.innerWidth > 767) {
           if (sideBar.classList.contains('expanded')) {
@@ -36,16 +37,22 @@ document.addEventListener('turbo:load', () => {
     
       // Initial call to set the correct margin on page load
       updateMarginLeft();
-      
-    });
+    }
+});
     document.addEventListener('turbo:load', function() {
-      function toggleIcon() {
-          document.getElementById('icon1').classList.toggle('hidden');
-          document.getElementById('icon2').classList.toggle('hidden');
+      const toggleButton = document.getElementById('toggleButton');
+      const icon1 = document.getElementById('icon1');
+      const icon2 = document.getElementById('icon2');
+      
+      // Only run if elements exist
+      if (toggleButton && icon1 && icon2) {
+        function toggleIcon() {
+            icon1.classList.toggle('hidden');
+            icon2.classList.toggle('hidden');
+        }
+    
+        toggleButton.addEventListener('click', toggleIcon);
       }
-  
-      // Assuming you have a button or some element to trigger the toggleIcon function
-      document.getElementById('toggleButton').addEventListener('click', toggleIcon);
   });
   
   
@@ -53,90 +60,96 @@ document.addEventListener('turbo:load', () => {
     const toggleButton = document.getElementById('toggleButton');
     const toggleDiv = document.getElementById('toggleDiv');
   
-    toggleButton.addEventListener('click', function() {
-      toggleDiv.classList.toggle('hidden');
-    });
-  
-    
+    // Only run if elements exist
+    if (toggleButton && toggleDiv) {
+      toggleButton.addEventListener('click', function() {
+        toggleDiv.classList.toggle('hidden');
+      });
+    }
   });
 document.addEventListener('turbo:load', function() {
-  google.charts.load('current', {packages: ['corechart', 'bar']});
-  google.charts.setOnLoadCallback(drawBasic);
+  // Only run Google Charts code if we're on a page with charts and Google Charts is loaded
+  const chartDiv = document.getElementById('chart_div');
+  
+  if (chartDiv && typeof google !== 'undefined' && google.charts) {
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    google.charts.setOnLoadCallback(drawBasic);
 
-  function drawBasic() {
-    var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Flats');
-    data.addColumn('number', 'Count');
-    data.addColumn({type: 'string', role: 'style'});
+    function drawBasic() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Flats');
+      data.addColumn('number', 'Count');
+      data.addColumn({type: 'string', role: 'style'});
 
-    data.addRows([
-      ['Total', 352, '#3B82F6'],
-      ['Available', 200, '#22C55E'],
-      ['Sold', 150, '#EF4444'],
-      ['Blocked', 20, '#000000']
-    ]);
+      data.addRows([
+        ['Total', 352, '#3B82F6'],
+        ['Available', 200, '#22C55E'],
+        ['Sold', 150, '#EF4444'],
+        ['Blocked', 20, '#000000']
+      ]);
 
-   var options = {
-      backgroundColor: 'transparent',
-      chartArea: {
-        left: 80,
-        top: 30,
-        width: '80%',
-        height: '70%'
-      },
-      hAxis: {
-        textStyle: { 
-          color: '#6B7280', 
-          fontSize: 12,
-          fontName: 'Arial'
+     var options = {
+        backgroundColor: 'transparent',
+        chartArea: {
+          left: 80,
+          top: 30,
+          width: '80%',
+          height: '70%'
         },
-        gridlines: { 
-          color: '#E5E7EB',
-          count: 5,
-          minSpacing: 50
+        hAxis: {
+          textStyle: { 
+            color: '#6B7280', 
+            fontSize: 12,
+            fontName: 'Arial'
+          },
+          gridlines: { 
+            color: '#E5E7EB',
+            count: 5,
+            minSpacing: 50
+          },
+          minorGridlines: {
+            color: '#F3F4F6',
+            count: 2
+          },
+          baselineColor: '#9CA3AF'
         },
-        minorGridlines: {
-          color: '#F3F4F6',
-          count: 2
+        vAxis: {
+          textStyle: { 
+            color: '#6B7280', 
+            fontSize: 12,
+            fontName: 'Arial'
+          },
+          gridlines: { 
+            color: '#E5E7EB',
+            count: 5
+          },
+          minorGridlines: {
+            color: '#F9FAFB',
+            count: 1
+          },
+          baselineColor: '#9CA3AF',
+          format: '0'
         },
-        baselineColor: '#9CA3AF'
-      },
-      vAxis: {
-        textStyle: { 
-          color: '#6B7280', 
-          fontSize: 12,
-          fontName: 'Arial'
+        legend: { position: 'none' },
+        animation: {
+          startup: true,
+          duration: 1200,
+          easing: 'out'
         },
-        gridlines: { 
-          color: '#E5E7EB',
-          count: 5
+        bar: { 
+          groupWidth: '60%' 
         },
-        minorGridlines: {
-          color: '#F9FAFB',
-          count: 1
-        },
-        baselineColor: '#9CA3AF',
-        format: '0'
-      },
-      legend: { position: 'none' },
-      animation: {
-        startup: true,
-        duration: 1200,
-        easing: 'out'
-      },
-      bar: { 
-        groupWidth: '60%' 
-      },
-      tooltip: {
-        textStyle: {
-          color: '#374151',
-          fontSize: 13
-        },
-        showColorCode: true
-      }
-    };
+        tooltip: {
+          textStyle: {
+            color: '#374151',
+            fontSize: 13
+          },
+          showColorCode: true
+        }
+      };
 
-    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-    chart.draw(data, options);
+      var chart = new google.visualization.BarChart(chartDiv);
+      chart.draw(data, options);
+    }
   }
 });

@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company: one
+  building: one
+  name: MyString
+  config: one
+  facing: 1
+  carpet_area: 1
+  status: one
+  floor: one
+  code: MyString
+
+two:
+  company: two
+  building: two
+  name: MyString
+  config: two
+  facing: 1
+  carpet_area: 1
+  status: two
+  floor: two
+  code: MyString

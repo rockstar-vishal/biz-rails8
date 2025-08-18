@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company: one
+  ac_no: MyString
+  bank: one
+  benf_name: MyString
+  branch: MyString
+  ifsc: MyString
+
+two:
+  company: two
+  ac_no: MyString
+  bank: two
+  benf_name: MyString
+  branch: MyString
+  ifsc: MyString

@@ -11,11 +11,11 @@
                     <form action="/dashboard">
                     <div class="mb-4">
                         <%= render_label name:"sample_input Address", label:"Email Address" %>
-                        <%= render_input name: "sample_input", id: "sample_input", placeholder:"Email", class:"h-auto p-3 " %>
+                        <%= render_input name: "sample_input", id: "sample_input_email", placeholder:"Email", class:"h-auto p-3 " %>
                     </div>
                     <div class="mb-4">
                         <%= render_label name:"sample_input Address", label:"Password" %>
-                        <%= render_input name: "sample_input", id: "sample_input", placeholder: "Password", class: "h-auto p-3", type: "password" %>
+                        <%= render_input name: "sample_input", id: "sample_input_pass", placeholder: "Password", class: "h-auto p-3", type: "password" %>
                     </div>
                     <div class="my-6 flex justify-between items-center gap-2">
                         <%= render_checkbox name: "terms", label: "Remember me" %>

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  
-  
-  get '/', to: 'login#index', as: :login
+  devise_for :users
+  root to: "dashboard#index"
+  get 'login', to: 'login#index', as: :login
   get '/reset', to: 'login#reset'
   get 'profile', to: 'profile#index'
   get 'dashboard', to: 'dashboard#index'

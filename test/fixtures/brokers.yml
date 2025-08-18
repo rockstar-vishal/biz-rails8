@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company: one
+  name: MyString
+  firm_name: MyString
+  code: MyString
+  leadquest_code: MyString
+  pan: MyString
+  aadhar: MyString
+  rera: MyString
+  gst: MyString
+  mobile: MyString
+  email: MyString
+  address: MyText
+
+two:
+  company: two
+  name: MyString
+  firm_name: MyString
+  code: MyString
+  leadquest_code: MyString
+  pan: MyString
+  aadhar: MyString
+  rera: MyString
+  gst: MyString
+  mobile: MyString
+  email: MyString
+  address: MyText
