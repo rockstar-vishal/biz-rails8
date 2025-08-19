@@ -1,7 +1,7 @@
 class Booking < ApplicationRecord
   include Codeable
   CODEABLE = {
-    prefix: 'BO',
+    prefix: "BO",
     length: 4
   }
   belongs_to :company

@@ -1,7 +1,7 @@
 class Blocking < ApplicationRecord
   include Codeable
   CODEABLE = {
-    prefix: 'BL',
+    prefix: "BL",
     length: 3
   }
   belongs_to :company
