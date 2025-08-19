@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  booking: one
+  stage: one
+  title: MyString
+  percent: 1.5
+  amount: 1
+  due_date: 2025-08-19
+  cost_type: one
+  gst: 1
+  interest: 1
+
+two:
+  booking: two
+  stage: two
+  title: MyString
+  percent: 1.5
+  amount: 1
+  due_date: 2025-08-19
+  cost_type: two
+  gst: 1
+  interest: 1
