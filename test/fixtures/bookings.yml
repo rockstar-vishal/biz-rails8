@@ -1,0 +1,47 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company: one
+  flat: one
+  project: one
+  date: 2025-08-19
+  code: MyString
+  registered: false
+  registration_date: 2025-08-19
+  registration_no: MyString
+  application_no: MyString
+  application_date: 2025-08-19
+  posession_date: 2025-08-19
+  ncd: 2025-08-19 14:28:04
+  comment: MyText
+  payment_plan: one
+  remark: MyText
+  booked_by: one
+  loan_amount: 1.5
+  loan_bank: one
+  sdr_percent: 1.5
+  registration_charges: 1.5
+  legal_charges: 1.5
+
+two:
+  company: two
+  flat: two
+  project: two
+  date: 2025-08-19
+  code: MyString
+  registered: false
+  registration_date: 2025-08-19
+  registration_no: MyString
+  application_no: MyString
+  application_date: 2025-08-19
+  posession_date: 2025-08-19
+  ncd: 2025-08-19 14:28:04
+  comment: MyText
+  payment_plan: two
+  remark: MyText
+  booked_by: two
+  loan_amount: 1.5
+  loan_bank: two
+  sdr_percent: 1.5
+  registration_charges: 1.5
+  legal_charges: 1.5

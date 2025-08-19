@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company: one
+  flat: one
+  project: one
+  date: 2025-08-19
+  comment: MyText
+  blocked_by: one
+  code: MyString
+  blocked_upto: 2025-08-19
+
+two:
+  company: two
+  flat: two
+  project: two
+  date: 2025-08-19
+  comment: MyText
+  blocked_by: two
+  code: MyString
+  blocked_upto: 2025-08-19

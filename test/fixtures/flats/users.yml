@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  flat: one
+  clientable_type: MyString
+  clientable_id: 1
+  user: one
+  contribution: 1.5
+  team: 1
+
+two:
+  flat: two
+  clientable_type: MyString
+  clientable_id: 1
+  user: two
+  contribution: 1.5
+  team: 1
