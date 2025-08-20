@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'profile', to: 'profile#index'
   get 'dashboard', to: 'dashboard#index'
   get 'project', to: "projects#index"
+  get 'companies', to: "companies#index"
+  get 'companies/letters', to: "companies#letters"
   get 'building', to: "projects#building"
   get 'parking', to: "projects#parking"
   get 'paymentsPlan', to: "projects#paymentsPlan"
