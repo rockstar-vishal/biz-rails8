@@ -1,0 +1,62 @@
+<%= render_sheet direction: "right", width: "w-full sm:max-w-full lg:max-w-full  md:w-3/5 lg:w-3/5 xl:w-1/2 ",  class:"!slide-in-from-right bg-white/50 backdrop-blur-xl p-0" do %>
+  <%= sheet_trigger do %>
+  <%= render_button as: :link, href: "", class: "bg-sky-500 text-white border border-gray-200 gap-2 hover:bg-sky-600 hover:text-white px-3" do %>
+        <%= render 'icons/update' %>
+        <span class="text-xs">Edit Company</span>
+    <% end %>	
+  <% end %>
+
+  <%= sheet_content do %>
+  <div class="">
+    <div class="p-4 flex items-center justify-between">
+      <h3 class="text-base font-semibold">Edit Company</h3>
+    </div>
+    <form action="">
+      <div class="modal-height p-4">
+        <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="col-span-full flex items-center justify-between">
+            <h3 class="text-base font-semibold">Dream India Group</h3>
+          </div>
+          <div class="mb-4">
+            <%= render_label name:"", label:"Name", class:"mb-2 block" %>
+            <%= render_input name: "", id: "", placeholder:"Name", class:"h-auto p-3 " %>
+          </div>
+               <div class="mb-4">
+            <%= render_label name:"", label:"Domain", class:"mb-2 block" %>
+            <%= render_input name: "", id: "", placeholder:"Domain", class:"h-auto p-3 " %>
+          </div>
+ 
+         
+          
+       <div class="col-span-full flex items-center justify-between">
+              <h3 class="text-base font-semibold">Attach Logo</h3>
+            </div>
+          <div class="mb-4">
+            <%= render_label name:"", label:"Main Logo (max file size 500kb)", class:"mb-2 block" %>
+            <%= render_input name: "", type: "file", placeholder:"", class:"h-auto pt-3 pb-2.5 " %>
+          </div>
+          
+             <div class="mb-4">
+            <%= render_label name:"", label:"Favicon (size 32x32)", class:"mb-2 block" %>
+            <%= render_input name: "", type: "file", placeholder:"", class:"h-auto pt-3 pb-2.5 " %>
+          </div>
+  
+          
+          
+          
+        </div>
+      
+           
+      </div>
+      <div class="bg-white border-t border-gray-300 p-4">
+        <div class="flex justify-between items-center">
+          <%= render_button "Save", as: :link, href: "", class: "bg-brand h-auto " %>
+          <button data-ui--sheet-target="closeButton" type="button"
+            class="bg-gray-200 text-gray-800 hover:bg-gray-300 h-auto rounded-md text-sm py-2 px-4">Close
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <% end %>
+<% end %>

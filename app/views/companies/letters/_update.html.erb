@@ -1,0 +1,57 @@
+<%= render_sheet direction: "right", width: "w-full sm:max-w-full lg:max-w-full  md:w-3/5 lg:w-3/5 xl:w-1/2 ",  class:"!slide-in-from-right bg-white/50 backdrop-blur-xl p-0" do %>
+  <%= sheet_trigger do %>
+    <span class="inline-flex items-center  bg-blue-500 hover:bg-blue-800 text-white text-xs py-1 px-2 rounded-md cursor-pointer mr-2"><%= render 'icons/update' %> </span>
+  <% end %>
+
+  <%= sheet_content do %>
+  <div class="">
+    <div class="p-4 flex items-center justify-between">
+      <h3 class="text-base font-semibold">Edit Dream India Group Letter </h3>
+    </div>
+    <form action="">
+      <div class="modal-height p-4">
+        <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="col-span-full flex items-center justify-between">
+            <h3 class="text-base font-semibold">demand-letter</h3>
+          </div>
+          <div class="mb-4">
+            <%= render_label name:"", label:"Title", class:"mb-2 block" %>
+            <%= render_input name: "", id: "", placeholder:"Title", class:"h-auto p-3 " %>
+          </div>
+               <div class="mb-4">
+            <%= render_label name:"", label:"Letter type", class:"mb-2 block" %>
+            <%= render_input name: "", id: "", placeholder:"Letter type", class:"h-auto p-3 " %>
+          </div>
+          <div class="mb-4">
+            <%= render_label name:"", label:"Letter Attachment", class:"mb-2 block" %>
+            <%= render_input name: "", type: "file", placeholder:"Letter Attachment", class:"h-auto p-3 " %>
+          </div>
+          <div class="col-span-full">
+           <%= render_button as: :link, href: "", class: "bg-blue-50 text-blue-500 border border-blue-200 gap-2 hover:bg-blue-500 hover:text-white px-3" do %>
+                                    <%= render 'icons/docx' %>
+                                    <span class="text-xs">Download Letter</span>
+                                <% end %>
+          </div>
+          
+         
+    
+  
+          
+          
+          
+        </div>
+      
+           
+      </div>
+      <div class="bg-white border-t border-gray-300 p-4">
+        <div class="flex justify-between items-center">
+          <%= render_button "Save", as: :link, href: "", class: "bg-brand h-auto " %>
+          <button data-ui--sheet-target="closeButton" type="button"
+            class="bg-gray-200 text-gray-800 hover:bg-gray-300 h-auto rounded-md text-sm py-2 px-4">Close
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <% end %>
+<% end %>

@@ -211,6 +211,14 @@
           </ul>
         </details>
       </li>
+        <li class="flex cursor-pointer items-center justify-between">
+        <%= link_to companies_path, class: "w-full  p-3 text-gray-900 hover:bg-gray-50 hover:text-brand #{'active' if current_page?(companies_path)}" do %>
+        <div class="menu-div flex gap-2 items-center">
+          <%= render 'icons/companies' %>
+          <span class="menu-text">Manage <span style="display: block; font-size: 10px">Company</span></span>
+        </div>
+        <% end %>
+      </li>
 
     </ul>
   </nav>
