@@ -9,4 +9,11 @@ class User < ApplicationRecord
   validates_uniqueness_of :phone, scope: :company
   validates_uniqueness_of :employee_no, scope: :company, allow_nil: true
 
+  def system_admin?
+    role.system_admin?
+  end
+  
+  def super_admin?
+    role.super_admin?
+  end
 end

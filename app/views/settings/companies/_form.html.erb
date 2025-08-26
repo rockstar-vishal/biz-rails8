@@ -1,0 +1,412 @@
+<div data-controller="company-form" class="max-w-4xl mx-auto">
+   <%= form_with(model: [:settings, company], data: { turbo: false }, local: true, class: "space-y-8") do |form| %>
+    <% if company.errors.any? %>
+      <div class="rounded-md bg-red-50 p-4 border border-red-200">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="ml-3">
+            <h3 class="text-sm font-medium text-red-800">Please fix the following errors:</h3>
+            <div class="mt-2 text-sm text-red-700">
+              <ul class="list-disc list-inside space-y-1">
+                <% company.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="bg-white shadow-sm rounded-xl border border-gray-200 overflow-hidden">
+      <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+        <h3 class="text-lg font-semibold text-gray-900 flex items-center">
+          <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          Basic Information
+        </h3>
+        <p class="mt-1 text-sm text-gray-500">Essential company details and identification</p>
+      </div>
+      
+      <div class="p-6 space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <%= form.label :name, class: "block text-sm font-medium text-gray-700 mb-2" do %>
+              Company Name <span class="text-red-500">*</span>
+            <% end %>
+            <%= form.text_field :name, 
+                class: "block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200",
+                placeholder: "Enter company name",
+                required: true %>
+          </div>
+          
+          <div>
+            <%= form.label :code, class: "block text-sm font-medium text-gray-700 mb-2" do %>
+              Company Code <span class="text-red-500">*</span>
+            <% end %>
+            <%= form.text_field :code, 
+                class: "block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200",
+                placeholder: "e.g., ABC123",
+                required: true %>
+          </div>
+        </div>
+        
+        <div>
+          <%= form.label :domain, class: "block text-sm font-medium text-gray-700 mb-2" do %>
+            Company Domain
+          <% end %>
+          <%= form.url_field :domain, 
+              class: "block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200",
+              placeholder: "https://example.com" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white shadow-sm rounded-xl border border-gray-200 overflow-hidden">
+      <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+        <h3 class="text-lg font-semibold text-gray-900 flex items-center">
+          <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          Project & Unit Limits
+        </h3>
+        <p class="mt-1 text-sm text-gray-500">Set operational limits and restrictions</p>
+      </div>
+      
+      <div class="p-6 space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <%= form.label :project_limit, class: "block text-sm font-medium text-gray-700 mb-2" %>
+            <%= form.number_field :project_limit, 
+                class: "block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200",
+                placeholder: "0",
+                min: 0 %>
+          </div>
+          
+          <div>
+            <%= form.label :unit_limit, class: "block text-sm font-medium text-gray-700 mb-2" %>
+            <%= form.number_field :unit_limit, 
+                class: "block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200",
+                placeholder: "0",
+                min: 0 %>
+          </div>
+        </div>
+        
+        <div class="flex items-center">
+          <%= form.check_box :user_project_restricted, 
+              class: "h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" %>
+          <%= form.label :user_project_restricted, 
+              "User project restricted", 
+              class: "ml-2 block text-sm text-gray-900" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white shadow-sm rounded-xl border border-gray-200 overflow-hidden">
+      <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+        <h3 class="text-lg font-semibold text-gray-900 flex items-center">
+          <svg class="w-5 h-5 mr-2 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+          </svg>
+          Financial Settings
+        </h3>
+        <p class="mt-1 text-sm text-gray-500">Default charges and percentage configurations</p>
+      </div>
+      
+      <div class="p-6 space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <%= form.label :max_registration_charges, class: "block text-sm font-medium text-gray-700 mb-2" %>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <span class="text-gray-500 sm:text-sm">₹</span>
+              </div>
+              <%= form.number_field :max_registration_charges, 
+                  class: "block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200",
+                  placeholder: "0",
+                  min: 0 %>
+            </div>
+          </div>
+          
+          <div>
+            <%= form.label :default_legal_charges, class: "block text-sm font-medium text-gray-700 mb-2" %>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <span class="text-gray-500 sm:text-sm">₹</span>
+              </div>
+              <%= form.number_field :default_legal_charges, 
+                  class: "block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200",
+                  placeholder: "0",
+                  min: 0 %>
+            </div>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <%= form.label :default_sdr_percent, class: "block text-sm font-medium text-gray-700 mb-2" %>
+            <div class="relative">
+              <%= form.number_field :default_sdr_percent, 
+                  class: "block w-full pr-8 pl-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200",
+                  placeholder: "0",
+                  min: 0,
+                  max: 100,
+                  step: 0.01 %>
+              <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                <span class="text-gray-500 sm:text-sm">%</span>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <%= form.label :default_registration_percent, class: "block text-sm font-medium text-gray-700 mb-2" %>
+            <div class="relative">
+              <%= form.number_field :default_registration_percent, 
+                  class: "block w-full pr-8 pl-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200",
+                  placeholder: "0",
+                  min: 0,
+                  max: 100,
+                  step: 0.01 %>
+              <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                <span class="text-gray-500 sm:text-sm">%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white shadow-sm rounded-xl border border-gray-200 overflow-hidden">
+      <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+        <h3 class="text-lg font-semibold text-gray-900 flex items-center">
+          <svg class="w-5 h-5 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          System Configurations
+        </h3>
+        <p class="mt-1 text-sm text-gray-500">Configure allowed options and mandatory fields</p>
+      </div>
+      
+      <div class="p-6 space-y-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div data-company-form-target="mandatoryFieldsContainer">
+            <h4 class="text-sm font-semibold text-gray-900 mb-3">Broker Mandatory Fields</h4>
+            <div class="space-y-3" data-company-form-target="brokerMandatoryFields">
+              <% if company.broker_mandatory_fields.present? %>
+                <% company.broker_mandatory_fields.each_with_index do |field, index| %>
+                  <div class="flex items-center space-x-2" data-company-form-target="fieldRow">
+                    <%= text_field_tag "company[broker_mandatory_fields][]", field,
+                        class: "flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
+                        placeholder: "Enter field name" %>
+                    <button type="button" 
+                            class="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors duration-150"
+                            data-action="click->company-form#removeField"
+                            title="Remove field">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                      </svg>
+                    </button>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+            <button type="button" 
+                    class="mt-3 inline-flex items-center px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-150"
+                    data-action="click->company-form#addBrokerField">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+              </svg>
+              Add Broker Field
+            </button>
+          </div>
+          
+          <div>
+            <h4 class="text-sm font-semibold text-gray-900 mb-3">Client Mandatory Fields</h4>
+            <div class="space-y-3" data-company-form-target="clientMandatoryFields">
+              <% if company.client_mandatory_fields.present? %>
+                <% company.client_mandatory_fields.each_with_index do |field, index| %>
+                  <div class="flex items-center space-x-2" data-company-form-target="fieldRow">
+                    <%= text_field_tag "company[client_mandatory_fields][]", field,
+                        class: "flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
+                        placeholder: "Enter field name" %>
+                    <button type="button" 
+                            class="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors duration-150"
+                            data-action="click->company-form#removeField"
+                            title="Remove field">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                      </svg>
+                    </button>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+            <button type="button" 
+                    class="mt-3 inline-flex items-center px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-150"
+                    data-action="click->company-form#addClientField">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+              </svg>
+              Add Client Field
+            </button>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-200 pt-8">
+          <h4 class="text-sm font-semibold text-gray-900 mb-6">Allowed Configurations</h4>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-3">Allowed Configs</label>
+              <div class="space-y-3" data-company-form-target="allowedConfigs">
+                <% if company.allowed_configs.present? %>
+                  <% company.allowed_configs.each do |config| %>
+                    <div class="flex items-center space-x-2" data-company-form-target="fieldRow">
+                      <%= text_field_tag "company[allowed_configs][]", config,
+                          class: "flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
+                          placeholder: "Enter config name" %>
+                      <button type="button" 
+                              class="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors duration-150"
+                              data-action="click->company-form#removeField"
+                              title="Remove config">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                        </svg>
+                      </button>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+              <button type="button" 
+                      class="mt-3 inline-flex items-center px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-150"
+                      data-action="click->company-form#addAllowedConfig">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                </svg>
+                Add Config
+              </button>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-3">Allowed Banks</label>
+              <div class="space-y-3" data-company-form-target="allowedBanks">
+                <% if company.allowed_banks.present? %>
+                  <% company.allowed_banks.each do |bank| %>
+                    <div class="flex items-center space-x-2" data-company-form-target="fieldRow">
+                      <%= text_field_tag "company[allowed_banks][]", bank,
+                          class: "flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
+                          placeholder: "Enter bank name" %>
+                      <button type="button" 
+                              class="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors duration-150"
+                              data-action="click->company-form#removeField"
+                              title="Remove bank">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                        </svg>
+                      </button>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+              <button type="button" 
+                      class="mt-3 inline-flex items-center px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-150"
+                      data-action="click->company-form#addAllowedBank">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                </svg>
+                Add Bank
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-200 pt-8">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-3">Allowed Cost Maps</label>
+              <div class="space-y-3" data-company-form-target="allowedCostMaps">
+                <% if company.allowed_cost_maps.present? %>
+                  <% company.allowed_cost_maps.each do |cost_map| %>
+                    <div class="flex items-center space-x-2" data-company-form-target="fieldRow">
+                      <%= text_field_tag "company[allowed_cost_maps][]", cost_map,
+                          class: "flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
+                          placeholder: "Enter cost map name" %>
+                      <button type="button" 
+                              class="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors duration-150"
+                              data-action="click->company-form#removeField"
+                              title="Remove cost map">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                        </svg>
+                      </button>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+              <button type="button" 
+                      class="mt-3 inline-flex items-center px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-150"
+                      data-action="click->company-form#addAllowedCostMap">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                </svg>
+                Add Cost Map
+              </button>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-3">Allowed Statuses</label>
+              <div class="space-y-3" data-company-form-target="allowedStatuses">
+                <% if company.allowed_statuses.present? %>
+                  <% company.allowed_statuses.each do |status| %>
+                    <div class="flex items-center space-x-2" data-company-form-target="fieldRow">
+                      <%= text_field_tag "company[allowed_statuses][]", status,
+                          class: "flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
+                          placeholder: "Enter status name" %>
+                      <button type="button" 
+                              class="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors duration-150"
+                              data-action="click->company-form#removeField"
+                              title="Remove status">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                        </svg>
+                      </button>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+              <button type="button" 
+                      class="mt-3 inline-flex items-center px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-150"
+                      data-action="click->company-form#addAllowedStatus">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                </svg>
+                Add Status
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between pt-6">
+      <%= link_to settings_companies_path, 
+          class: "inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200" do %>
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        Cancel
+      <% end %>
+      
+      <div class="flex items-center space-x-3">
+        <%= form.submit "Save Company", 
+            class: "inline-flex items-center px-6 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200",
+            data: { disable_with: "Saving..." } %>
+      </div>
+    </div>
+  <% end %>
+</div>
