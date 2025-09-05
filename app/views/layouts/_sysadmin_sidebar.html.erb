@@ -1,0 +1,104 @@
+<aside class="text-gray-800 min-h-screen mini border-r fixed top-[65px] z-50 pb-2" id="sideBar">
+  <nav id="sideBarScroll">
+    <ul class="menu rounded-box space-y-0">
+      <!-- Companies -->
+      <% if policy(:sidebar).manage_companies? %>
+        <li class="flex cursor-pointer items-center justify-between">
+          <%= link_to settings_companies_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_companies_path)}" do %>
+            <div class="menu-div flex flex-col gap-2 items-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-6 0H9m-2 0H5m2 0h4M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+              </svg>
+              <span class="menu-text">Manage Companies</span>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+
+      <!-- Banks -->
+      <% if policy(:sidebar).manage_banks? %>
+        <li class="flex cursor-pointer items-center justify-between">
+          <%= link_to settings_banks_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_banks_path)}" do %>
+            <div class="menu-div flex flex-col gap-2 items-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-6 0H9m-2 0H5m2 0h4M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+              </svg>
+              <span class="menu-text">Manage Banks</span>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+
+      <!-- Statuses -->
+      <% if policy(:sidebar).manage_statuses? %>
+        <li class="flex cursor-pointer items-center justify-between">
+          <%= link_to settings_statuses_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_statuses_path)}" do %>
+            <div class="menu-div flex flex-col gap-2 items-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span class="menu-text">Manage Statuses</span>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+
+      <!-- Configurations -->
+      <% if policy(:sidebar).manage_configurations? %>
+        <li class="flex cursor-pointer items-center justify-between">
+          <%= link_to settings_configurations_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_configurations_path)}" do %>
+            <div class="menu-div flex flex-col gap-2 items-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+              <span class="menu-text">Manage Configurations</span>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+
+      <!-- Cost Maps -->
+      <% if policy(:sidebar).manage_cost_maps? %>
+        <li class="flex cursor-pointer items-center justify-between">
+          <%= link_to settings_cost_maps_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_cost_maps_path)}" do %>
+            <div class="menu-div flex flex-col gap-2 items-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
+              <span class="menu-text">Manage Cost Maps</span>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+
+      <!-- Floors -->
+      <% if policy(:sidebar).manage_floors? %>
+        <li class="flex cursor-pointer items-center justify-between">
+          <%= link_to settings_floors_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_floors_path)}" do %>
+            <div class="menu-div flex flex-col gap-2 items-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+              </svg>
+              <span class="menu-text">Manage Floors</span>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+
+      <!-- Users -->
+      <% if policy(:sidebar).manage_system_users? %>
+        <li class="flex cursor-pointer items-center justify-between">
+          <%= link_to settings_users_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_users_path)}" do %>
+            <div class="menu-div flex flex-col gap-2 items-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+              </svg>
+              <span class="menu-text">Manage Users</span>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+</aside>

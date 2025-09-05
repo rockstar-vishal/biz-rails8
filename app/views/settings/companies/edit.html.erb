@@ -83,45 +83,6 @@
     </nav>
   </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
-    <div class="bg-white rounded-lg shadow-sm p-6">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center space-x-8">
-          <div class="text-center">
-            <div class="text-2xl font-bold text-gray-900"><%= @company.project_limit || 0 %></div>
-            <div class="text-xs text-gray-500">Project Limit</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold text-gray-900"><%= @company.unit_limit || 0 %></div>
-            <div class="text-xs text-gray-500">Unit Limit</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold text-gray-900"><%= @company.allowed_banks.count %></div>
-            <div class="text-xs text-gray-500">Allowed Banks</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold text-gray-900"><%= @company.allowed_configs.count %></div>
-            <div class="text-xs text-gray-500">Configurations</div>
-          </div>
-        </div>
-        <div class="flex items-center space-x-2">
-          <% if @company.user_project_restricted %>
-            <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">
-              Restricted
-            </span>
-          <% else %>
-            <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-              Active
-            </span>
-          <% end %>
-          <span class="text-xs text-gray-500">
-            Created <%= @company.created_at.strftime("%b %d, %Y") %>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
     <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
       <div class="text-center mb-8">
