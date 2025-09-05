@@ -34,7 +34,11 @@
     
     <div class="flex">
       <% unless params[:controller].include?('devise') %>
-        <%= render 'layouts/sidebar' %>
+        <% if current_user.system_admin? %>
+          <%= render 'layouts/sysadmin_sidebar' %>
+        <% else %>
+          <%= render 'layouts/sidebar' %>
+        <% end %>
       <% end %>
       <main class="w-full px-4 md:px-6 py-2 mt-[70px] overflow-x-hidden min-h-screen bg-gradient-to-t from-green-100 to-green-50" id="main-wrapper">
        <%= render 'layouts/header' %>

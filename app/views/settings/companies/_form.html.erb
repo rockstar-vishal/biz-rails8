@@ -1,5 +1,12 @@
-<div data-controller="company-form" class="max-w-4xl mx-auto">
-   <%= form_with(model: [:settings, company], data: { turbo: false }, local: true, class: "space-y-8") do |form| %>
+<div data-controller="company-form" 
+     data-company-form-broker-fields-value="<%= Broker.allowed_columns.to_json %>"
+     data-company-form-client-fields-value="<%= Client.allowed_columns.to_json %>"
+     data-company-form-config-options-value="<%= Configuration.all.pluck(:name).to_json %>"
+     data-company-form-bank-options-value="<%= Bank.all.pluck(:name).to_json %>"
+     data-company-form-cost-map-options-value="<%= CostMap.all.pluck(:title).to_json %>"
+     data-company-form-status-options-value="<%= Status.all.map { |s| { id: s.id, name: s.name } }.to_json %>"
+     class="max-w-4xl mx-auto">
+  <%= form_with(model: [:settings, company], data: { turbo: false }, local: true, class: "space-y-8") do |form| %>
     <% if company.errors.any? %>
       <div class="rounded-md bg-red-50 p-4 border border-red-200">
         <div class="flex">
@@ -46,23 +53,13 @@
           </div>
           
           <div>
-            <%= form.label :code, class: "block text-sm font-medium text-gray-700 mb-2" do %>
-              Company Code <span class="text-red-500">*</span>
-            <% end %>
-            <%= form.text_field :code, 
-                class: "block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200",
-                placeholder: "e.g., ABC123",
-                required: true %>
-          </div>
-        </div>
-        
-        <div>
-          <%= form.label :domain, class: "block text-sm font-medium text-gray-700 mb-2" do %>
+            <%= form.label :domain, class: "block text-sm font-medium text-gray-700 mb-2" do %>
             Company Domain
           <% end %>
           <%= form.url_field :domain, 
               class: "block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200",
               placeholder: "https://example.com" %>
+          </div>
         </div>
       </div>
     </div>
@@ -195,15 +192,17 @@
       
       <div class="p-6 space-y-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- Broker Mandatory Fields Dropdown -->
           <div data-company-form-target="mandatoryFieldsContainer">
             <h4 class="text-sm font-semibold text-gray-900 mb-3">Broker Mandatory Fields</h4>
             <div class="space-y-3" data-company-form-target="brokerMandatoryFields">
               <% if company.broker_mandatory_fields.present? %>
                 <% company.broker_mandatory_fields.each_with_index do |field, index| %>
                   <div class="flex items-center space-x-2" data-company-form-target="fieldRow">
-                    <%= text_field_tag "company[broker_mandatory_fields][]", field,
-                        class: "flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
-                        placeholder: "Enter field name" %>
+                    <%= select_tag "company[broker_mandatory_fields][]", 
+                          options_for_select(Broker.allowed_columns, field),
+                          include_blank: "Select broker field",
+                          class: "flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
                     <button type="button" 
                             class="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors duration-150"
                             data-action="click->company-form#removeField"
@@ -232,9 +231,10 @@
               <% if company.client_mandatory_fields.present? %>
                 <% company.client_mandatory_fields.each_with_index do |field, index| %>
                   <div class="flex items-center space-x-2" data-company-form-target="fieldRow">
-                    <%= text_field_tag "company[client_mandatory_fields][]", field,
-                        class: "flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
-                        placeholder: "Enter field name" %>
+                    <%= select_tag "company[client_mandatory_fields][]", 
+                          options_for_select(Client.allowed_columns, field),
+                          include_blank: "Select client field",
+                          class: "flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
                     <button type="button" 
                             class="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors duration-150"
                             data-action="click->company-form#removeField"
@@ -261,15 +261,17 @@
         <div class="border-t border-gray-200 pt-8">
           <h4 class="text-sm font-semibold text-gray-900 mb-6">Allowed Configurations</h4>
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Allowed Configs Dropdown -->
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-3">Allowed Configs</label>
               <div class="space-y-3" data-company-form-target="allowedConfigs">
                 <% if company.allowed_configs.present? %>
                   <% company.allowed_configs.each do |config| %>
                     <div class="flex items-center space-x-2" data-company-form-target="fieldRow">
-                      <%= text_field_tag "company[allowed_configs][]", config,
-                          class: "flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
-                          placeholder: "Enter config name" %>
+                      <%= select_tag "company[allowed_configs][]", 
+                            options_for_select(Configuration.pluck(:name), config),
+                            include_blank: "Select config",
+                            class: "flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
                       <button type="button" 
                               class="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors duration-150"
                               data-action="click->company-form#removeField"
@@ -298,9 +300,10 @@
                 <% if company.allowed_banks.present? %>
                   <% company.allowed_banks.each do |bank| %>
                     <div class="flex items-center space-x-2" data-company-form-target="fieldRow">
-                      <%= text_field_tag "company[allowed_banks][]", bank,
-                          class: "flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
-                          placeholder: "Enter bank name" %>
+                      <%= select_tag "company[allowed_banks][]", 
+                            options_for_select(Bank.all.pluck(:name), bank),
+                            include_blank: "Select bank",
+                            class: "flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
                       <button type="button" 
                               class="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors duration-150"
                               data-action="click->company-form#removeField"
@@ -333,9 +336,10 @@
                 <% if company.allowed_cost_maps.present? %>
                   <% company.allowed_cost_maps.each do |cost_map| %>
                     <div class="flex items-center space-x-2" data-company-form-target="fieldRow">
-                      <%= text_field_tag "company[allowed_cost_maps][]", cost_map,
-                          class: "flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
-                          placeholder: "Enter cost map name" %>
+                      <%= select_tag "company[allowed_cost_maps][]", 
+                            options_for_select(CostMap.all.pluck(:title), cost_map),
+                            include_blank: "Select cost map",
+                            class: "flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
                       <button type="button" 
                               class="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors duration-150"
                               data-action="click->company-form#removeField"
@@ -364,15 +368,17 @@
                 <% if company.allowed_statuses.present? %>
                   <% company.allowed_statuses.each do |status| %>
                     <div class="flex items-center space-x-2" data-company-form-target="fieldRow">
-                      <%= text_field_tag "company[allowed_statuses][]", status,
-                          class: "flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
-                          placeholder: "Enter status name" %>
+                      <%= select_tag "company[allowed_statuses][]",
+                            options_from_collection_for_select(Status.all, "id", "name", status),
+                            include_blank: "Select status",
+                            class: "flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
                       <button type="button" 
                               class="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors duration-150"
                               data-action="click->company-form#removeField"
                               title="Remove status">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                         </svg>
                       </button>
                     </div>
@@ -392,7 +398,6 @@
         </div>
       </div>
     </div>
-
     <div class="flex items-center justify-between pt-6">
       <%= link_to settings_companies_path, 
           class: "inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200" do %>

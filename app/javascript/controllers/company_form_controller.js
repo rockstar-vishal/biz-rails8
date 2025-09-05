@@ -11,45 +11,54 @@ export default class extends Controller {
     "fieldRow"
   ]
 
-  connect() {
-    console.log("Company form controller connected")
+  static values = {
+    brokerFields: Array,
+    clientFields: Array,
+    configOptions: Array,
+    bankOptions: Array,
+    costMapOptions: Array,
+    statusOptions: Array
   }
 
   addBrokerField() {
-    this.addField(this.brokerMandatoryFieldsTarget, "company[broker_mandatory_fields][]")
+    this.addDropdownField(this.brokerMandatoryFieldsTarget, "company[broker_mandatory_fields][]", "Select broker field", this.generateOptions(this.brokerFieldsValue))
   }
 
   addClientField() {
-    this.addField(this.clientMandatoryFieldsTarget, "company[client_mandatory_fields][]")
+    this.addDropdownField(this.clientMandatoryFieldsTarget, "company[client_mandatory_fields][]", "Select client field", this.generateOptions(this.clientFieldsValue))
   }
 
   addAllowedConfig() {
-    this.addField(this.allowedConfigsTarget, "company[allowed_configs][]")
+    this.addDropdownField(this.allowedConfigsTarget, "company[allowed_configs][]", "Select config", this.generateOptions(this.configOptionsValue))
   }
 
   addAllowedBank() {
-    this.addField(this.allowedBanksTarget, "company[allowed_banks][]")
+    this.addDropdownField(this.allowedBanksTarget, "company[allowed_banks][]", "Select bank", this.generateOptions(this.bankOptionsValue))
   }
 
   addAllowedCostMap() {
-    this.addField(this.allowedCostMapsTarget, "company[allowed_cost_maps][]")
+    this.addDropdownField(this.allowedCostMapsTarget, "company[allowed_cost_maps][]", "Select cost map", this.generateOptions(this.costMapOptionsValue))
   }
 
   addAllowedStatus() {
-    this.addField(this.allowedStatusesTarget, "company[allowed_statuses][]")
+    const statusOptions = this.statusOptionsValue.map(status => ({
+      value: status.id,
+      text: status.name
+    }));
+    this.addDropdownField(this.allowedStatusesTarget, "company[allowed_statuses][]", "Select status", this.generateOptions(statusOptions))
   }
 
-  addField(container, fieldName) {
+  addDropdownField(container, fieldName, placeholder, optionsHtml) {
     const fieldRow = document.createElement('div')
     fieldRow.className = 'flex items-center space-x-2'
     fieldRow.setAttribute('data-company-form-target', 'fieldRow')
     
     fieldRow.innerHTML = `
-      <input type="text" 
-             name="${fieldName}" 
-             value=""
-             class="flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-             placeholder="${this.getPlaceholderText(fieldName)}">
+      <select name="${fieldName}" 
+              class="flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+        <option value="">${placeholder}</option>
+        ${optionsHtml}
+      </select>
       <button type="button" 
               class="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors duration-150"
               data-action="click->company-form#removeField"
@@ -61,9 +70,25 @@ export default class extends Controller {
     `
     
     container.appendChild(fieldRow)
+  }
+
+  generateOptions(options) {
+    if (!options || options.length === 0) return '';
     
-    const input = fieldRow.querySelector('input')
-    input.focus()
+    return options.map(option => {
+      if (typeof option === 'object') {
+        return `<option value="${option.value}">${option.text}</option>`;
+      } else {
+        const displayName = this.formatFieldName(option);
+        return `<option value="${option}">${displayName}</option>`;
+      }
+    }).join('');
+  }
+
+  formatFieldName(field) {
+    return field.split('_')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
   }
 
   removeField(event) {
@@ -71,18 +96,5 @@ export default class extends Controller {
     if (fieldRow) {
       fieldRow.remove()
     }
-  }
-
-  getPlaceholderText(fieldName) {
-    const placeholders = {
-      'company[broker_mandatory_fields][]': 'Enter field name',
-      'company[client_mandatory_fields][]': 'Enter field name',
-      'company[allowed_configs][]': 'Enter config name',
-      'company[allowed_banks][]': 'Enter bank name',
-      'company[allowed_cost_maps][]': 'Enter cost map name',
-      'company[allowed_statuses][]': 'Enter status name'
-    }
-    
-    return placeholders[fieldName] || 'Enter value'
   }
 }
