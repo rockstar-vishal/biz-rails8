@@ -67,3 +67,5 @@ end
 gem "shadcn-ui", "~> 0.0.15"
 gem "tailwindcss-rails", " 3.3.1"
 gem "devise", "~> 4.9"
+gem "pagy"
+gem 'pundit'

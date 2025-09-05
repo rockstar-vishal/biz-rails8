@@ -1,11 +1,31 @@
 Rails.application.routes.draw do
   devise_for :users, skip: [:registrations]
   root to: "dashboard#index"
-  get 'login', to: 'login#index', as: :login
-  get '/reset', to: 'login#reset'
+
+  namespace :settings do
+    # SysAdmin Settings
+    resources :companies
+    resources :banks
+    resources :statuses
+    resources :configurations
+    resources :cost_maps
+    resources :floors
+    resources :users
+
+    # SuperAdmin Settings
+    resources :projects
+    resources :payment_plans
+    resources :clients
+    resources :brokers
+    resources :bookings
+    resources :blockings
+    resources :transactions
+    resources :reports
+  end
+
   get 'profile', to: 'profile#index'
   get 'dashboard', to: 'dashboard#index'
-  get 'project', to: "projects#index"
+  # get 'project', to: "projects#index"
   get 'building', to: "projects#building"
   get 'parking', to: "projects#parking"
   get 'paymentsPlan', to: "projects#paymentsPlan"
@@ -21,19 +41,16 @@ Rails.application.routes.draw do
   get 'reminderLetter', to: "projects#reminderLetter"
   get 'search', to: "projects#search"
   get 'flatFacing', to: "settings/flat_facing#flatFacing",  as: 'flat_facing'
-  get 'flatConfiguration', to: "settings/flat_configuration#index",  as: 'flat_configuration'
-  get 'brokers', to: "settings/brokers#index",  as: 'brokers'
-  get 'clients', to: "settings/clients#index",  as: 'clients'
-  get 'offers', to: "settings/offers#index",  as: 'offers'
-  get 'users', to: "settings/users#index",  as: 'users'
-  get 'accounts', to: "settings/accounts#index",  as: 'accounts'
-  get 'interest', to: "settings/interest#index",  as: 'interest'
-  get 'bank', to: "settings/bank#index",  as: 'bank'
-  get 'fund_sources', to: "settings/fund_sources#index",  as: 'fund_sources'
-  get 'transactions', to: "settings/transactions#index",  as: 'transactions'
-  get 'cost_types', to: "settings/cost_types#index",  as: 'cost_types'
-  get 'taxes', to: "settings/taxes#index",  as: 'taxes'
-  get 'tds', to: "settings/tds#index",  as: 'tds'
+  # get 'flatConfiguration', to: "settings/flat_configuration#index",  as: 'flat_configuration'
+  # get 'offers', to: "settings/offers#index",  as: 'offers'
+  # get 'users', to: "settings/users#index",  as: 'users'
+  # get 'accounts', to: "settings/accounts#index",  as: 'accounts'
+  # get 'interest', to: "settings/interest#index",  as: 'interest'
+  # get 'bank', to: "settings/bank#index",  as: 'bank'
+  # get 'fund_sources', to: "settings/fund_sources#index",  as: 'fund_sources'
+  # get 'cost_types', to: "settings/cost_types#index",  as: 'cost_types'
+  # get 'taxes', to: "settings/taxes#index",  as: 'taxes'
+  # get 'tds', to: "settings/tds#index",  as: 'tds'
   get 'employee_wise_booking', to: "reports/employee_wise_booking#index",  as: 'employee_wise_booking'
   get 'booking_report', to: "reports/booking_report#index",  as: 'booking_report'
   get 'mis_report', to: "reports/mis_report#index",  as: 'mis_report'
@@ -46,7 +63,5 @@ Rails.application.routes.draw do
   get 'collection_report_building', to: "reports/collection_report_building#index",  as: 'collection_report_building'
   get 'collection_report_slab', to: "reports/collection_report_slab#index",  as: 'collection_report_slab'
 
-  get "up" => "rails/health#show", as: :rails_health_check
-
-  
+  get "up" => "rails/health#show", as: :rails_health_check  
 end

@@ -1,0 +1,113 @@
+<div>
+  <div class="mt-1 mb-4 flex items-center w-full">
+    <span class="w-1/3">
+      <%= link_to dashboard_path, class: "inline-flex justify-between items-center p-2 text-xs border border-gray-200 rounded-lg bg-white hover:shadow-md transition-all" do %>
+        <div class="flex items-center gap-1">
+          <span class="text-gray-800"><%= render 'icons/back' %></span>
+          <div class="flex flex-col">
+            <span class="text-gray-500">Back</span>
+          </div>
+        </div>
+      <% end %>
+    </span>
+
+    <span class="w-1/3 text-black text-base font-semibold flex justify-center">Banks</span>
+    <span class="w-1/3 flex justify-end">
+      <%= render 'shared/breadcrumb', record_class: 'Banks' %>
+    </span>
+  </div>
+  
+  <div class="flex gap-4">
+    <div class="w-full border border-gray-200 rounded-lg bg-white/50 project-height-fix min-h-[calc(100vh-150px)]">
+      <div class="">
+        <div class="flex justify-between p-2 items-center">
+          <%= form_with url: settings_banks_path, method: :get, class: "flex gap-2" do |form| %>
+            <%= form.text_field :search, 
+                  value: params[:search],
+                  placeholder: "Search by bank name...", 
+                  class: "h-auto p-2.5 min-w-[400px] rounded border-gray-300" %>
+            <%= form.button type: :submit, class: "bg-brand h-auto py-2 px-4 gap-2 hover:bg-brand/80 rounded text-white" do %>
+              <%= render 'icons/searchsm' %>
+            <% end %>
+            <%= link_to settings_banks_path, class: "h-auto py-2 px-4 gap-2 rounded text-white flex items-center transition-colors #{params[:search].present? ? 'bg-gray-500 hover:bg-gray-600' : 'bg-gray-300 cursor-not-allowed'}" do %>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+              </svg>
+              <span class="ml-1">Reset</span>
+            <% end %>
+          <% end %>
+          <div class="ml-auto flex gap-2">
+            <%= render 'form', bank: Bank.new %>
+          </div>
+        </div>
+        
+        <div class="table-responsive">
+          <%= render_table class: "overflow-hidden" do %>
+            <%= table_head class: "rounded-t-md py-2 px-4 bg-gradient-to-bl from-[#ffe4e6] to-[#ccfbf1]" do %>
+              <%= table_header do %>
+                <span class="text-gray-700 text-sm font-bold block">Name</span>
+              <% end %>
+              <%= table_header do %>
+                <span class="text-gray-700 text-sm font-bold block">Created At</span>
+              <% end %>
+              <%= table_header do %>
+                <span class="text-gray-700 text-sm font-bold block">Updated At</span>
+              <% end %>
+              <%= table_header do %>
+                <span class="text-gray-700 text-sm font-bold block">Action</span>
+              <% end %>
+            <% end %>
+            
+            <%= table_body do %>
+              <% if @banks.any? %>
+                <% @banks.each do |bank| %>
+                  <%= table_row do %>
+                    <%= table_column do %>
+                      <div class="whitespace-nowrap">
+                        <%= bank.name %>
+                      </div>
+                    <% end %>
+                    <%= table_column do %>
+                      <div class="whitespace-nowrap">
+                        <%= bank.created_at.strftime("%d %b %Y") %>
+                      </div>
+                    <% end %>
+                    <%= table_column do %>
+                      <div class="whitespace-nowrap">
+                        <%= bank.updated_at.strftime("%d %b %Y") %>
+                      </div>
+                    <% end %>
+                    <%= table_column do %>
+                      <div class="whitespace-nowrap flex">
+                        <%= render 'layouts/action_buttons', 
+                          record: bank, 
+                          module_name: 'bank',
+                          show_path: 'settings_bank',
+                          edit_path: 'edit_settings_bank',
+                          delete_path: 'settings_bank',
+                          dialog: true
+                        %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <%= table_row do %>
+                  <%= table_column colspan: 4, class: "text-center py-8 text-gray-500" do %>
+                    No banks found.
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        
+        <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+          <% if @pagy.pages > 1 %>
+            <%= render 'layouts/pagination', pagy: @pagy %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

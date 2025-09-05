@@ -1,22 +1,26 @@
-<aside class="text-gray-800 min-h-screen mini border-r fixed top-[65px]  z-50 pb-2 " id="sideBar">
+<aside class="text-gray-800 min-h-screen mini border-r fixed top-[65px] z-50 pb-2" id="sideBar">
   <nav id="sideBarScroll">
     <ul class="menu rounded-box space-y-0">
       <li class="flex cursor-pointer items-center justify-between">
-        <%= link_to dashboard_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand #{'active' if current_page?(dashboard_path) || current_page?(project_path) || current_page?(building_path) || current_page?(parking_path) || current_page?(paymentsPlan_path) || current_page?(inventory_path) || current_page?(cancelledBookings_path) || current_page?(exportBookingList_path) || current_page?(flatBooking_path) || current_page?(showBooking_path) || current_page?(projectSummary_path) || current_page?(todaysCall_path) || current_page?(backlog_path) || current_page?(demandLetter_path) || current_page?(reminderLetter_path)  }" do %>
+        <!-- <#%= link_to dashboard_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand #{'active' if current_page?(dashboard_path) || current_page?(project_path) || current_page?(building_path) || current_page?(parking_path) || current_page?(paymentsPlan_path) || current_page?(inventory_path) || current_page?(cancelledBookings_path) || current_page?(exportBookingList_path) || current_page?(flatBooking_path) || current_page?(showBooking_path) || current_page?(projectSummary_path) || current_page?(todaysCall_path) || current_page?(backlog_path) || current_page?(demandLetter_path) || current_page?(reminderLetter_path)  }" do %> -->
+
+        <%= link_to dashboard_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand #{'active' if current_page?(dashboard_path) || current_page?(settings_projects_path)}" do %>
         <div class="menu-div flex flex-col gap-2 items-center">
           <%= render 'icons/project' %>
           <span class="menu-text">Projects</span>
         </div>
         <% end %>
       </li>
+
       <li class="flex cursor-pointer items-center justify-between">
-        <%= link_to search_path, class: "w-full  p-3 text-gray-900 hover:bg-gray-50 hover:text-brand #{'active' if current_page?(search_path)}" do %>
-        <div class="menu-div flex gap-2 items-center">
-          <%= render 'icons/search' %>
-          <span class="menu-text">search</span>
-        </div>
+        <%= link_to search_path, class: "w-full  p-3 text-gray-900 hover:bg-gray-50 hover:text-brand #{'active' if current_page?(search_path)}" do %> 
+          <div class="menu-div flex gap-2 items-center">
+            <%= render 'icons/search' %>
+            <span class="menu-text">Search</span>
+          </div>
         <% end %>
       </li>
+
       <li class="flex cursor-pointer items-center justify-between">
         <details class="w-full group [&_summary::-webkit-details-marker]:hidden"
           <%= current_page?(employee_wise_booking_path) || current_page?(booking_report_path) || current_page?(mis_report_path) || current_page?(broker_report_path) || current_page?(status_report_project_path) || current_page?(status_report_building_path) || current_page?(status_report_configuration_path) || current_page?(status_report_areawise_path) || current_page?(collection_repor_project_path) || current_page?(collection_report_building_path) || current_page?(collection_report_slab_path)  ? 'open' : '' %>>
@@ -24,7 +28,7 @@
             class="w-full flex cursor-pointer items-center justify-between  p-3 text-gray-900 hover:bg-gray-50 hover:text-brand <%= current_page?(employee_wise_booking_path) || current_page?(booking_report_path) || current_page?(mis_report_path) || current_page?(broker_report_path) || current_page?(status_report_project_path) || current_page?(status_report_building_path) || current_page?(status_report_configuration_path) || current_page?(status_report_areawise_path) || current_page?(collection_repor_project_path) || current_page?(collection_report_building_path) || current_page?(collection_report_slab_path)  ? 'active' : '' %>">
             <div class="menu-div flex gap-2 items-center">
               <%= render 'icons/charts' %>
-              <span class="menu-text">reports</span>
+              <span class="menu-text">Reports</span>
             </div>
           </summary>
           <ul class="my-2 mx-4 border  divide-y bg-base-100 rounded-lg shadow-xl  sub-menu overflow-hidden">
@@ -124,94 +128,169 @@
         </details>
       </li>
 
-      <li class="flex cursor-pointer items-center justify-between">
-        <details class="w-full group [&_summary::-webkit-details-marker]:hidden"
-          <%= current_page?(flat_facing_path) || current_page?(flat_configuration_path) || current_page?(brokers_path) || current_page?(clients_path) || current_page?(offers_path) || current_page?(users_path) || current_page?(accounts_path) || current_page?(interest_path) || current_page?(bank_path) || current_page?(fund_sources_path) || current_page?(transactions_path) || current_page?(cost_types_path) || current_page?(taxes_path) || current_page?(tds_path)  ? 'open' : '' %>>
-          <summary
-            class="w-full flex cursor-pointer items-center justify-between  p-3 text-gray-900 hover:bg-gray-50 hover:text-brand <%= current_page?(flat_facing_path) || current_page?(flat_configuration_path) || current_page?(brokers_path) || current_page?(clients_path) || current_page?(offers_path) || current_page?(users_path) || current_page?(accounts_path) || current_page?(interest_path) || current_page?(bank_path) || current_page?(fund_sources_path) || current_page?(transactions_path) || current_page?(cost_types_path) || current_page?(taxes_path) || current_page?(tds_path)  ? 'active' : '' %>">
-            <div class="menu-div flex gap-2 items-center">
-              <%= render 'icons/settings' %>
-              <span class="menu-text">Settings</span>
-            </div>
+      <!-- System Admin Settings Dropdown -->
+      <% if system_admin_access? %>
+        <li class="flex cursor-pointer items-center justify-between">
+          <details class="w-full group [&_summary::-webkit-details-marker]:hidden"
+            <%= current_page?(settings_banks_path) || current_page?(settings_statuses_path) || current_page?(settings_configurations_path) || 
+                current_page?(settings_cost_maps_path) || current_page?(settings_floors_path) || current_page?(settings_users_path) ? 'open' : '' %>>
+            <summary
+              class="w-full flex cursor-pointer items-center justify-between p-3 text-gray-900 hover:bg-gray-50 hover:text-brand <%= current_page?(settings_banks_path) || current_page?(settings_statuses_path) || current_page?(settings_configurations_path) || 
+                current_page?(settings_cost_maps_path) || current_page?(settings_floors_path) || current_page?(settings_users_path) ? 'active' : '' %>">
+              <div class="menu-div flex gap-2 items-center">
+                <%= render 'icons/settings' %>
+                <span class="menu-text">Settings</span>
+              </div>
+            </summary>
+            
+            <ul class="my-2 mx-4 border divide-y bg-base-100 rounded-lg shadow-xl sub-menu overflow-hidden">
+              <!-- System Admin Settings -->
 
-          </summary>
+              <% if policy(:sidebar).manage_companies? %>
+                <li>
+                  <%= link_to settings_companies_path, class: "menu-div flex gap-1 p-2 text-sm text-gray-600 font-semibold hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_companies_path)}" do %>
+                    <span class="menu-text">Manage Companies</span>
+                  <% end %>
+                </li>
+              <% end %>
 
-          <ul class="my-2 mx-4 border  divide-y bg-base-100 rounded-lg shadow-xl  sub-menu overflow-hidden">
-            <li>
-              <%= link_to flat_facing_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(flat_facing_path)}" do %>
-              <span class="menu-text"> Flat Facing</span>
+              <% if policy(:sidebar).manage_banks? %>
+                <li>
+                  <%= link_to settings_banks_path, class: "menu-div flex gap-1 p-2 text-sm text-gray-600 font-semibold hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_banks_path)}" do %>
+                    <span class="menu-text">Manage Banks</span>
+                  <% end %>
+                </li>
               <% end %>
-            </li>
-            <li>
-              <%= link_to flat_configuration_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(flat_configuration_path)}" do %>
-              <span class="menu-text"> Flat Configuration</span>
+              
+              <% if policy(:sidebar).manage_statuses? %>
+                <li>
+                  <%= link_to settings_statuses_path, class: "menu-div flex gap-1 p-2 text-sm text-gray-600 font-semibold hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_statuses_path)}" do %>
+                    <span class="menu-text">Manage Statuses</span>
+                  <% end %>
+                </li>
               <% end %>
-            </li>
-            <li>
-              <%= link_to brokers_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(brokers_path)}" do %>
-              <span class="menu-text"> Brokers</span>
+              
+              <% if policy(:sidebar).manage_configurations? %>
+                <li>
+                  <%= link_to settings_configurations_path, class: "menu-div flex gap-1 p-2 text-sm text-gray-600 font-semibold hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_configurations_path)}" do %>
+                    <span class="menu-text">Manage Configurations</span>
+                  <% end %>
+                </li>
               <% end %>
-            </li>
-            <li>
-              <%= link_to clients_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(clients_path)}" do %>
-              <span class="menu-text"> Clients</span>
+              
+              <% if policy(:sidebar).manage_cost_maps? %>
+                <li>
+                  <%= link_to settings_cost_maps_path, class: "menu-div flex gap-1 p-2 text-sm text-gray-600 font-semibold hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_cost_maps_path)}" do %>
+                    <span class="menu-text">Manage Cost Maps</span>
+                  <% end %>
+                </li>
               <% end %>
-            </li>
-            <li>
-              <%= link_to offers_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(offers_path)}" do %>
-              <span class="menu-text"> Offers</span>
+              
+              <% if policy(:sidebar).manage_floors? %>
+                <li>
+                  <%= link_to settings_floors_path, class: "menu-div flex gap-1 p-2 text-sm text-gray-600 font-semibold hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_floors_path)}" do %>
+                    <span class="menu-text">Manage Floors</span>
+                  <% end %>
+                </li>
               <% end %>
-            </li>
-            <li>
-              <%= link_to users_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(users_path)}" do %>
-              <span class="menu-text"> Users</span>
+              
+              <% if policy(:sidebar).manage_system_users? %>
+                <li>
+                  <%= link_to settings_users_path, class: "menu-div flex gap-1 p-2 text-sm text-gray-600 font-semibold hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_users_path)}" do %>
+                    <span class="menu-text">Manage Users</span>
+                  <% end %>
+                </li>
               <% end %>
-            </li>
-            <li>
-              <%= link_to accounts_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(accounts_path)}" do %>
-              <span class="menu-text"> Account No</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to interest_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(interest_path)}" do %>
-              <span class="menu-text"> Interest Percentage</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to bank_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(bank_path)}" do %>
-              <span class="menu-text"> Banks</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to fund_sources_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(fund_sources_path)}" do %>
-              <span class="menu-text"> Fund Sources</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to transactions_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(transactions_path)}" do %>
-              <span class="menu-text"> Transactions</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to cost_types_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(cost_types_path)}" do %>
-              <span class="menu-text"> Cost Types</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to taxes_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(taxes_path)}" do %>
-              <span class="menu-text"> Taxes</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to tds_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(tds_path)}" do %>
-              <span class="menu-text"> TDS</span>
-              <% end %>
-            </li>
+            </ul>
+          </details>
+        </li>
+        <!-- Super Admin Settings Dropdown -->
+        <% elsif super_admin_access? %>
+          <li class="flex cursor-pointer items-center justify-between">
+            <details class="w-full group [&_summary::-webkit-details-marker]:hidden"
+              <%= current_page?(settings_projects_path) || current_page?(settings_payment_plans_path) || current_page?(settings_clients_path) || 
+                  current_page?(settings_brokers_path) || current_page?(settings_bookings_path) || current_page?(settings_blockings_path) || 
+                  current_page?(settings_transactions_path) || current_page?(settings_reports_path) ? 'open' : '' %>>
+              <summary
+                class="w-full flex cursor-pointer items-center justify-between p-3 text-gray-900 hover:bg-gray-50 hover:text-brand <%= current_page?(settings_projects_path) || current_page?(settings_payment_plans_path) || current_page?(settings_clients_path) || 
+                  current_page?(settings_brokers_path) || current_page?(settings_bookings_path) || current_page?(settings_blockings_path) || 
+                  current_page?(settings_transactions_path) || current_page?(settings_reports_path) ? 'active' : '' %>">
+                <div class="menu-div flex gap-2 items-center">
+                  <%= render 'icons/settings' %>
+                  <span class="menu-text">Settings</span>
+                </div>
+              </summary>
+              
+              <ul class="my-2 mx-4 border divide-y bg-base-100 rounded-lg shadow-xl sub-menu overflow-hidden">
+                <!-- Super Admin Settings -->
 
-          </ul>
-        </details>
-      </li>
+                <% if policy(:sidebar).manage_projects? %>
+                  <li>
+                    <%= link_to settings_projects_path, class: "menu-div flex gap-1 p-2 text-sm text-gray-600 font-semibold hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_projects_path)}" do %>
+                      <span class="menu-text">Manage Projects</span>
+                    <% end %>
+                  </li>
+                <% end %>
 
+                <% if policy(:sidebar).manage_payment_plans? %>
+                  <li>
+                    <%= link_to settings_payment_plans_path, class: "menu-div flex gap-1 p-2 text-sm text-gray-600 font-semibold hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_payment_plans_path)}" do %>
+                      <span class="menu-text">Manage Payment Plans</span>
+                    <% end %>
+                  </li>
+                <% end %>
+                
+                <% if policy(:sidebar).manage_clients? %>
+                  <li>
+                    <%= link_to settings_clients_path, class: "menu-div flex gap-1 p-2 text-sm text-gray-600 font-semibold hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_clients_path)}" do %>
+                      <span class="menu-text">Manage Clients</span>
+                    <% end %>
+                  </li>
+                <% end %>
+                
+                <% if policy(:sidebar).manage_brokers? %>
+                  <li>
+                    <%= link_to settings_brokers_path, class: "menu-div flex gap-1 p-2 text-sm text-gray-600 font-semibold hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_brokers_path)}" do %>
+                      <span class="menu-text">Manage Brokers</span>
+                    <% end %>
+                  </li>
+                <% end %>
+                
+                <% if policy(:sidebar).manage_bookings? %>
+                  <li>
+                    <%= link_to settings_bookings_path, class: "menu-div flex gap-1 p-2 text-sm text-gray-600 font-semibold hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_bookings_path)}" do %>
+                      <span class="menu-text">Manage Bookings</span>
+                    <% end %>
+                  </li>
+                <% end %>
+                
+                <% if policy(:sidebar).manage_blockings? %>
+                  <li>
+                    <%= link_to settings_blockings_path, class: "menu-div flex gap-1 p-2 text-sm text-gray-600 font-semibold hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_blockings_path)}" do %>
+                      <span class="menu-text">Manage Blockings</span>
+                    <% end %>
+                  </li>
+                <% end %>
+                
+                <% if policy(:sidebar).manage_transactions? %>
+                  <li>
+                    <%= link_to settings_transactions_path, class: "menu-div flex gap-1 p-2 text-sm text-gray-600 font-semibold hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_transactions_path)}" do %>
+                      <span class="menu-text">Manage Transactions</span>
+                    <% end %>
+                  </li>
+                <% end %>
+                
+                <% if policy(:sidebar).manage_reports? %>
+                  <li>
+                    <%= link_to settings_reports_path, class: "menu-div flex gap-1 p-2 text-sm text-gray-600 font-semibold hover:bg-gray-50 hover:text-brand #{'active' if current_page?(settings_reports_path)}" do %>
+                      <span class="menu-text">Manage Reports</span>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            </details>
+          </li>
+      <% end %>
     </ul>
   </nav>
 </aside>
