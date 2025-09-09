@@ -1,0 +1,165 @@
+<% content_for :title, @floor.name %>
+
+<div class="container mx-auto px-4 py-6" data-controller="floor-show">
+  <div class="mb-8">
+    <div class="flex items-center justify-between mb-4">
+      <div>
+        <%= link_to settings_floors_path, 
+            class: "inline-flex items-center text-blue-600 hover:text-blue-800 transition duration-200 mb-2" do %>
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          Back to Floors
+        <% end %>
+        <h1 class="text-4xl font-bold text-gray-900 mb-2" data-floor-show-target="title">
+          <%= @floor.name %>
+        </h1>
+        <p class="text-gray-600">Floor Details & Information</p>
+      </div>
+      
+      <div class="flex space-x-3">
+        <%= render 'layouts/action_buttons', 
+            record: @floor, 
+            module_name: 'floor',
+            edit_path: 'edit_settings_floor',
+            dialog: true
+          %>
+        
+        <button data-action="click->floor-show#toggleDeleteModal" 
+                class="inline-flex items-center px-4 py-2 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transform hover:scale-105 transition duration-200 shadow-lg hover:shadow-xl">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+          </svg>
+          Delete Floor
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="lg:col-span-2">
+      <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-[1.02] transition duration-300" 
+           data-floor-show-target="detailsCard">
+        <div class="flex items-center mb-6">
+          <div class="p-3 bg-blue-100 rounded-full mr-4">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+            </svg>
+          </div>
+          <h2 class="text-2xl font-semibold text-gray-900">Floor Information</h2>
+        </div>
+        
+        <div class="space-y-6">
+          <div class="border-b border-gray-200 pb-4" data-action="click->floor-show#highlightField" data-field="name">
+            <label class="block text-sm font-medium text-gray-500 mb-2">Floor Name</label>
+            <p class="text-xl font-semibold text-gray-900 transition duration-200 hover:text-blue-600 cursor-pointer">
+              <%= @floor.name %>
+            </p>
+          </div>
+          
+          <div class="border-b border-gray-200 pb-4" data-action="click->floor-show#highlightField" data-field="sequence">
+            <label class="block text-sm font-medium text-gray-500 mb-2">Sequence</label>
+            <p class="text-xl font-semibold text-gray-900 transition duration-200 hover:text-blue-600 cursor-pointer">
+              <%= @floor.sequence %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-6">
+      <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-xl p-6 shadow-lg transform hover:scale-105 transition duration-300"
+           data-floor-show-target="timestampsCard">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          Timeline
+        </h3>
+        <div class="space-y-4">
+          <div class="flex items-start space-x-3">
+            <div class="flex-shrink-0 w-2 h-2 bg-green-400 rounded-full mt-2"></div>
+            <div>
+              <p class="text-sm font-medium text-gray-900">Created</p>
+              <p class="text-sm text-gray-600">
+                <%= @floor.created_at.strftime("%B %d, %Y") %>
+              </p>
+              <p class="text-xs text-gray-500">
+                <%= time_ago_in_words(@floor.created_at) %> ago
+              </p>
+            </div>
+          </div>
+          
+          <% if @floor.updated_at != @floor.created_at %>
+            <div class="flex items-start space-x-3">
+              <div class="flex-shrink-0 w-2 h-2 bg-blue-400 rounded-full mt-2"></div>
+              <div>
+                <p class="text-sm font-medium text-gray-900">Last Updated</p>
+                <p class="text-sm text-gray-600">
+                  <%= @floor.updated_at.strftime("%B %d, %Y") %>
+                </p>
+                <p class="text-xs text-gray-500">
+                  <%= time_ago_in_words(@floor.updated_at) %> ago
+                </p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-blue-500">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+        <div class="space-y-3">
+          <button data-action="click->floor-show#copyFloorInfo" 
+                  class="block w-full text-center px-4 py-3 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition duration-200 font-medium">
+            <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+            </svg>
+            Copy Floor Info
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div data-floor-show-target="deleteModal" 
+       class="fixed inset-0 z-50 overflow-y-auto hidden" 
+       style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="flex items-center justify-center min-h-screen px-4">
+      <div class="bg-white rounded-xl p-6 max-w-md w-full transform scale-95 opacity-0 transition-all duration-300"
+           data-floor-show-target="deleteModalContent">
+        <div class="flex items-center mb-4">
+          <div class="p-3 bg-red-100 rounded-full mr-4">
+            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900">Delete Floor</h3>
+        </div>
+        
+        <p class="text-gray-600 mb-6">
+          Are you sure you want to delete <strong><%= @floor.name %></strong>? This action cannot be undone.
+        </p>
+        
+        <div class="flex space-x-3">
+          <button data-action="click->floor-show#toggleDeleteModal" 
+                  class="flex-1 px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition duration-200">
+            Cancel
+          </button>
+          <%= link_to settings_floor_path(@floor), 
+              method: :delete,
+              data: { turbo_method: :delete },
+              class: "flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-center transition duration-200" do %>
+            Delete Floor
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div data-floor-show-target="toast"
+         class="hidden fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg transition-opacity duration-500">
+      ✅ Copied Successfully!
+    </div>
+  </div>
+</div>

@@ -1,4 +1,6 @@
 class Status < ApplicationRecord
+	has_many :flats
+	has_many :parkings
 	enum :tag, {
 	    'available': 1,
 	    'booked': 2,

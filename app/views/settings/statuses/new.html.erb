@@ -1,0 +1,92 @@
+<%= turbo_frame_tag "status_modal" do %>
+  <div class="fixed inset-0 z-50 flex items-center justify-center p-4"
+       data-controller="modal"
+       data-modal-target="backdrop"
+       data-action="click->modal#closeOnBackdrop"
+       style="overflow-y: auto;">
+    
+    <div class="fixed inset-0 transition-opacity bg-black bg-opacity-50 backdrop-blur-sm"
+         data-modal-target="overlay"
+         style="animation: fadeIn 0.3s ease-out; z-index: -1;"></div>
+    
+    <div class="relative w-full max-w-2xl my-auto overflow-hidden text-left align-middle transition-all transform bg-white shadow-2xl rounded-3xl"
+         data-modal-target="modal"
+         tabindex="-1"
+         style="animation: slideInDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); max-height: 90vh; overflow-y: auto;">
+      
+      <%= render 'form', status: @status %>
+    </div>
+  </div>
+<% end %>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+  
+  @keyframes slideInDown {
+    from { 
+      opacity: 0;
+      transform: translate3d(0, -100px, 0) scale(0.9);
+    }
+    to { 
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+  
+  @keyframes slideOutUp {
+    from { 
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    to { 
+      opacity: 0;
+      transform: translate3d(0, -100px, 0) scale(0.9);
+    }
+  }
+  
+  @keyframes slideInRight {
+    from { 
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(300px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  
+  @keyframes slideOutRight {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(300px); }
+  }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  
+  [data-controller*="modal"] {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 50 !important;
+  }
+</style>
