@@ -1,0 +1,324 @@
+<div class="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden" 
+     data-controller="status-form"
+     data-action="turbo:submit-end->status-form#handleSubmitEnd"
+     data-status-form-errors-value="<%= status.errors.any? ? status.errors.full_messages.to_json : '[]' %>">
+  
+  <div class="relative px-8 py-6 bg-gradient-to-r from-blue-50 to-purple-50 border-b border-gray-100">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-4">
+        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <% if status.persisted? %>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            <% else %>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            <% end %>
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold text-gray-900">
+            <%= status.persisted? ? 'Edit Status' : 'Create New Status' %>
+          </h2>
+          <p class="text-gray-600 mt-1">
+            <%= status.persisted? ? 'Update status information' : 'Add a new status to your CRM system' %>
+          </p>
+        </div>
+      </div>
+      
+      <button class="p-2 text-gray-400 hover:text-gray-600 hover:bg-white hover:bg-opacity-50 rounded-xl transition-all duration-200"
+              data-action="click->status-form#closeModal">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="mt-6">
+      <div class="w-full bg-gray-200 rounded-full h-2">
+        <div class="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-500 ease-out"
+             data-status-form-target="progressBar"
+             style="width: 0%"></div>
+      </div>
+      <div class="flex justify-between text-sm text-gray-500 mt-2">
+        <span class="cursor-pointer hover:text-blue-600" data-action="click->status-form#goToStep" data-step="1">Basic Info</span>
+        <span class="cursor-pointer hover:text-blue-600" data-action="click->status-form#goToStep" data-step="2">Tag Selection</span>
+        <span class="cursor-pointer hover:text-blue-600" data-action="click->status-form#goToStep" data-step="3">Complete</span>
+      </div>
+    </div>
+  </div>
+
+  <%= form_with(model: [:settings, status], 
+    local: false, 
+    html: { 
+      class: "space-y-6",
+      data: { 
+        action: "submit->status-form#handleSubmit",
+        turbo_frame: "status_modal"
+      }
+    }) do |form| %>
+    
+     <% if status.errors.any? %>
+      <div class="px-8 pt-6" data-status-form-target="errorContainer">
+        <div class="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
+          <div class="flex items-start">
+            <svg class="w-5 h-5 text-red-400 mt-0.5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+            </svg>
+            <div>
+              <h3 class="text-sm font-medium text-red-800 mb-2">Please fix the following errors:</h3>
+              <ul class="text-sm text-red-700 space-y-1" data-status-form-target="errorList">
+                <% status.errors.full_messages.each do |error| %>
+                  <li><%= error %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="px-8 py-6 space-y-6" data-status-form-target="step" data-step="1">
+      <div class="space-y-6">
+        <!-- Name Field -->
+        <div class="group">
+          <%= form.label :name, class: "block text-sm font-semibold text-gray-700 mb-2" do %>
+            <span class="flex items-center">
+              <svg class="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+              </svg>
+              Status Name
+              <span class="text-red-500 ml-1">*</span>
+            </span>
+          <% end %>
+          <div class="relative">
+            <%= form.text_field :name, 
+                class: "w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white group-hover:border-blue-300",
+                placeholder: "Enter status name (e.g., Available, Sold, Under Review)",
+                data: { 
+                  action: "input->status-form#validateField focus->status-form#focusField blur->status-form#blurField",
+                  status_form_target: "nameField"
+                } %>
+            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+              <svg class="hidden w-5 h-5 text-green-500" data-status-form-target="nameValidIcon" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+          </div>
+          <p class="mt-2 text-sm text-gray-500">Choose a descriptive name for this status</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hidden px-8 py-6 space-y-6" data-status-form-target="step" data-step="2">
+      <div class="space-y-6">
+        <div class="group">
+          <%= form.label :for_class, class: "block text-sm font-semibold text-gray-700 mb-2" do %>
+            <span class="flex items-center">
+              <svg class="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+              </svg>
+              Property Type
+              <span class="text-red-500 ml-1">*</span>
+            </span>
+          <% end %>
+          
+          <div class="grid grid-cols-2 gap-4 mt-3">
+            <label class="relative cursor-pointer">
+              <%= form.radio_button :for_class, "Parking", 
+                  class: "sr-only peer",
+                  data: { 
+                    action: "change->status-form#selectClass",
+                    status_form_target: "classField"
+                  } %>
+              <div class="flex items-center justify-center p-6 bg-gray-50 border-2 border-gray-200 rounded-xl peer-checked:border-blue-500 peer-checked:bg-blue-50 hover:bg-gray-100 transition-all duration-200 group">
+                <div class="text-center">
+                  <div class="w-12 h-12 mx-auto mb-3 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-blue-200 peer-checked:bg-blue-500 transition-all duration-200">
+                    <svg class="w-6 h-6 text-blue-600 peer-checked:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path>
+                    </svg>
+                  </div>
+                  <h3 class="font-semibold text-gray-900">Parking</h3>
+                  <p class="text-sm text-gray-500">For parking spaces</p>
+                </div>
+              </div>
+            </label>
+            
+            <label class="relative cursor-pointer">
+              <%= form.radio_button :for_class, "Flat", 
+                  class: "sr-only peer",
+                  data: { 
+                    action: "change->status-form#selectClass",
+                    status_form_target: "classField"
+                  } %>
+              <div class="flex items-center justify-center p-6 bg-gray-50 border-2 border-gray-200 rounded-xl peer-checked:border-purple-500 peer-checked:bg-purple-50 hover:bg-gray-100 transition-all duration-200 group">
+                <div class="text-center">
+                  <div class="w-12 h-12 mx-auto mb-3 bg-purple-100 rounded-xl flex items-center justify-center group-hover:bg-purple-200 peer-checked:bg-purple-500 transition-all duration-200">
+                    <svg class="w-6 h-6 text-purple-600 peer-checked:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 21l0-4m8 4l0-4m-8 0v-2a2 2 0 012-2h4a2 2 0 012 2v2"></path>
+                    </svg>
+                  </div>
+                  <h3 class="font-semibold text-gray-900">Flat</h3>
+                  <p class="text-sm text-gray-500">For apartments/flats</p>
+                </div>
+              </div>
+            </label>
+          </div>
+          <p class="mt-3 text-sm text-gray-500">Select the property type this status applies to</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hidden px-8 py-6 space-y-6" data-status-form-target="step" data-step="3">
+      <div class="space-y-6">
+        <!-- Tag Field -->
+        <div class="group">
+          <%= form.label :tag, class: "block text-sm font-semibold text-gray-700 mb-2" do %>
+            <span class="flex items-center">
+              <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+              </svg>
+              Status Tag
+              <span class="text-red-500 ml-1">*</span>
+            </span>
+          <% end %>
+          
+          <div class="grid grid-cols-1 gap-4 mt-3">
+            <label class="relative cursor-pointer">
+              <%= form.radio_button :tag, "available", 
+                  class: "sr-only peer",
+                  data: { 
+                    action: "change->status-form#selectTag",
+                    status_form_target: "tagField"
+                  } %>
+              <div class="flex items-center p-4 bg-gray-50 border-2 border-gray-200 rounded-xl peer-checked:border-green-500 peer-checked:bg-green-50 hover:bg-gray-100 transition-all duration-200 group">
+                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-4 peer-checked:bg-green-500 transition-all duration-200">
+                  <div class="w-3 h-3 bg-green-400 rounded-full peer-checked:bg-white"></div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-semibold text-gray-900">Available</h3>
+                  <p class="text-sm text-gray-500">Property is ready and available for booking</p>
+                </div>
+                <svg class="hidden w-5 h-5 text-green-500 peer-checked:block" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+            </label>
+            
+            <label class="relative cursor-pointer">
+              <%= form.radio_button :tag, "booked", 
+                  class: "sr-only peer",
+                  data: { 
+                    action: "change->status-form#selectTag",
+                    status_form_target: "tagField"
+                  } %>
+              <div class="flex items-center p-4 bg-gray-50 border-2 border-gray-200 rounded-xl peer-checked:border-orange-500 peer-checked:bg-orange-50 hover:bg-gray-100 transition-all duration-200 group">
+                <div class="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center mr-4 peer-checked:bg-orange-500 transition-all duration-200">
+                  <div class="w-3 h-3 bg-orange-400 rounded-full peer-checked:bg-white"></div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-semibold text-gray-900">Booked</h3>
+                  <p class="text-sm text-gray-500">Property is currently booked or reserved</p>
+                </div>
+                <svg class="hidden w-5 h-5 text-orange-500 peer-checked:block" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+            </label>
+            
+            <label class="relative cursor-pointer">
+              <%= form.radio_button :tag, "blocked", 
+                  class: "sr-only peer",
+                  data: { 
+                    action: "change->status-form#selectTag",
+                    status_form_target: "tagField"
+                  } %>
+              <div class="flex items-center p-4 bg-gray-50 border-2 border-gray-200 rounded-xl peer-checked:border-red-500 peer-checked:bg-red-50 hover:bg-gray-100 transition-all duration-200 group">
+                <div class="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mr-4 peer-checked:bg-red-500 transition-all duration-200">
+                  <div class="w-3 h-3 bg-red-400 rounded-full peer-checked:bg-white"></div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-semibold text-gray-900">Blocked</h3>
+                  <p class="text-sm text-gray-500">Property is temporarily blocked or unavailable</p>
+                </div>
+                <svg class="hidden w-5 h-5 text-red-500 peer-checked:block" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+            </label>
+          </div>
+          <p class="mt-3 text-sm text-gray-500">Choose the appropriate tag for this status</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="px-8 py-6 bg-gray-50 border-t border-gray-100 flex items-center justify-between">
+      <button type="button" 
+              class="hidden px-6 py-2.5 text-gray-600 font-medium rounded-xl hover:bg-gray-100 transition-all duration-200"
+              data-status-form-target="prevButton"
+              data-action="click->status-form#prevStep">
+        <span class="flex items-center">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+          Previous
+        </span>
+      </button>
+      
+      <div class="flex-1"></div>
+      <div class="flex space-x-3">
+        <button type="button" 
+                class="px-6 py-2.5 text-gray-600 font-medium rounded-xl hover:bg-gray-100 transition-all duration-200"
+                data-action="click->status-form#closeModal">
+          Cancel
+        </button>
+        
+        <button type="button" 
+                class="px-6 py-2.5 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 transition-all duration-200"
+                data-status-form-target="nextButton"
+                data-action="click->status-form#nextStep">
+          <span class="flex items-center" data-status-form-target="nextButtonText">
+            Next
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </span>
+        </button>
+        
+        <button type="submit" 
+                class="hidden px-8 py-2.5 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-xl hover:from-green-700 hover:to-emerald-700 transform hover:scale-105 transition-all duration-200 shadow-lg"
+                data-status-form-target="submitButton">
+          <span class="flex items-center">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span data-status-form-target="submitButtonText">
+              <%= status.persisted? ? 'Update Status' : 'Create Status' %>
+            </span>
+          </span>
+        </button>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<style>
+  .peer:checked ~ div {
+    transform: scale(1.02);
+  }
+  
+  .peer:checked ~ div .w-6 {
+    animation: bounceIn 0.3s ease-out;
+  }
+  
+  @keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  .group:hover .w-4 {
+    transform: rotate(5deg);
+  }
+</style>

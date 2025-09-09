@@ -6,7 +6,11 @@ Rails.application.routes.draw do
     # SysAdmin Settings
     resources :companies
     resources :banks
-    resources :statuses
+    resources :statuses do
+      collection do
+        get :stats
+      end
+    end
     resources :configurations
     resources :cost_maps
     resources :floors

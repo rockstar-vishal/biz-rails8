@@ -3,10 +3,6 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["searchInput", "table", "row"]
 
-  connect() {
-    console.log("Companies index controller connected")
-  }
-
   search() {
     const searchTerm = this.searchInputTarget.value.toLowerCase()
     

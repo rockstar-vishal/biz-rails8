@@ -1,0 +1,214 @@
+<%= turbo_frame_tag "status_modal" do %>
+  <div class="fixed inset-0 z-50 overflow-hidden"
+       data-controller="modal"
+       data-modal-target="backdrop"
+       data-status-show-status-value="<%= @status.to_json(only: [:id, :name, :for_class, :tag, :created_at, :updated_at]) %>"
+       data-action="click->modal#closeOnBackdrop">
+    
+    <div class="fixed inset-0 transition-opacity bg-black bg-opacity-50"
+         data-modal-target="overlay"
+         style="animation: fadeIn 0.3s ease-out"></div>
+
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
+
+    <div class="inline-block w-full max-w-3xl my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-2xl rounded-3xl modal-height-fixed"
+         data-modal-target="modal"
+         style="animation: slideInDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)">
+      
+      <div class="relative px-8 py-6 bg-gradient-to-r from-blue-50 to-purple-50 border-b border-gray-100">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <div class="relative">
+              <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl flex items-center justify-center shadow-xl transform -rotate-3">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                </svg>
+              </div>
+              <div class="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-br 
+                          <%= case @status.tag
+                              when 'available' then 'from-green-400 to-green-600'
+                              when 'booked' then 'from-orange-400 to-orange-600'
+                              when 'blocked' then 'from-red-400 to-red-600'
+                              end %> 
+                          rounded-full border-2 border-white shadow-lg animate-pulse"></div>
+            </div>
+            <div>
+              <h2 class="text-3xl font-bold text-gray-900 mb-1"><%= @status.name %></h2>
+              <div class="flex items-center space-x-3">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium 
+                            <%= @status.for_class == 'Parking' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800' %>">
+                  <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                    <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <%= @status.for_class %>
+                </span>
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium capitalize
+                            <%= case @status.tag
+                                when 'available' then 'bg-green-100 text-green-800'
+                                when 'booked' then 'bg-orange-100 text-orange-800'
+                                when 'blocked' then 'bg-red-100 text-red-800'
+                                end %>">
+                  <div class="w-2 h-2 rounded-full mr-2 
+                              <%= case @status.tag
+                                  when 'available' then 'bg-green-400'
+                                  when 'booked' then 'bg-orange-400'
+                                  when 'blocked' then 'bg-red-400'
+                                  end %>"></div>
+                  <%= @status.tag&.humanize %>
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          <button class="p-2 text-gray-400 hover:text-gray-600 hover:bg-white hover:bg-opacity-50 rounded-xl transition-all duration-200"
+                  data-action="click->modal#close">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div class="space-y-6">
+            <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 border border-gray-200">
+              <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <svg class="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Status Details
+              </h3>
+              <div class="space-y-4">
+                <div class="flex items-center justify-between py-3 border-b border-gray-200 last:border-b-0">
+                  <span class="text-sm font-medium text-gray-600">Name</span>
+                  <span class="text-sm text-gray-900 font-semibold"><%= @status.name %></span>
+                </div>
+                <div class="flex items-center justify-between py-3 border-b border-gray-200 last:border-b-0">
+                  <span class="text-sm font-medium text-gray-600">Property Type</span>
+                  <span class="inline-flex items-center text-sm font-medium
+                            <%= @status.for_class == 'Parking' ? 'text-blue-700' : 'text-purple-700' %>">
+                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                      <% if @status.for_class == 'Parking' %>
+                        <path d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path>
+                      <% else %>
+                        <path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                        <path d="M8 21l0-4m8 4l0-4m-8 0v-2a2 2 0 012-2h4a2 2 0 012 2v2"></path>
+                      <% end %>
+                    </svg>
+                    <%= @status.for_class %>
+                  </span>
+                </div>
+                <div class="flex items-center justify-between py-3">
+                  <span class="text-sm font-medium text-gray-600">Status Tag</span>
+                  <div class="flex items-center">
+                    <div class="w-3 h-3 rounded-full mr-2 animate-pulse
+                                <%= case @status.tag
+                                    when 'available' then 'bg-green-400'
+                                    when 'booked' then 'bg-orange-400'
+                                    when 'blocked' then 'bg-red-400'
+                                    end %>"></div>
+                    <span class="text-sm font-semibold capitalize
+                                <%= case @status.tag
+                                    when 'available' then 'text-green-700'
+                                    when 'booked' then 'text-orange-700'
+                                    when 'blocked' then 'text-red-700'
+                                    end %>">
+                      <%= @status.tag&.humanize %>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-200">
+              <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <svg class="w-5 h-5 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Timeline
+              </h3>
+              <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                  <div class="w-2 h-2 bg-green-400 rounded-full mt-2 animate-pulse"></div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-gray-900">Created</p>
+                    <p class="text-sm text-gray-600">
+                      <%= @status.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+                    </p>
+                    <p class="text-xs text-gray-500 mt-1">
+                      <%= time_ago_in_words(@status.created_at) %> ago
+                    </p>
+                  </div>
+                </div>
+                
+                <% if @status.updated_at != @status.created_at %>
+                  <div class="flex items-start space-x-3">
+                    <div class="w-2 h-2 bg-blue-400 rounded-full mt-2"></div>
+                    <div class="flex-1 min-w-0">
+                      <p class="text-sm font-medium text-gray-900">Last Updated</p>
+                      <p class="text-sm text-gray-600">
+                        <%= @status.updated_at.strftime("%B %d, %Y at %I:%M %p") %>
+                      </p>
+                      <p class="text-xs text-gray-500 mt-1">
+                        <%= time_ago_in_words(@status.updated_at) %> ago
+                      </p>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-200">
+              <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <svg class="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+                Usage Statistics
+              </h3>
+              <div class="text-center">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full mb-4">
+                  <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                  </svg>
+                </div>
+                <% count = (@status.for_class == 'Flat' ? @flat_statuses_count : @parking_statuses_count).fetch(@status.name, 0) %>
+                <p class="text-2xl font-bold text-gray-900 mb-1" data-status-show-target="usageCount"><%= count %></p>
+                <p class="text-sm text-gray-600">Times Used</p>
+                <p class="text-xs text-gray-500 mt-2">Based on property assignments</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideInDown {
+    from { 
+      opacity: 0;
+      transform: translate3d(0, -100px, 0) scale(0.9);
+    }
+    to { 
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+  
+  .group:hover .w-10 {
+    transform: scale(1.1);
+  }
+  
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+</style>

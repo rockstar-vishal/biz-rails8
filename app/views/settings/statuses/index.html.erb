@@ -1,0 +1,44 @@
+<div class="p-6" data-controller="status-index" data-status-index-statuses-value="<%= @statuses_json.to_json %>" data-status-index-current-search="<%= params[:search] %>" data-status-index-current-filter="<%= params[:filter] %>">
+  
+  <div id="flash_messages">
+    <%= render 'layouts/flash_messages' if defined?(render) %>
+  </div>
+  
+  <div id="stats_section">
+    <%= render 'stats_section', stats: calculate_stats %>
+  </div>
+
+  <div id="filter_section">
+    <%= render 'filter_section', statuses: @statuses %>
+  </div>
+
+  <div id="status_grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+       data-status-index-target="statusGrid" data-status-index-target="tbody">
+    <% @statuses.each do |status| %>
+      <%= render 'status_card', status: status %>
+    <% end %>
+  </div>
+  
+  <div data-status-index-target="emptyState" class="text-center py-16 hidden">
+    <div class="mx-auto h-24 w-24 text-gray-400 mb-4">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+      </svg>
+    </div>
+    <h3 class="text-lg font-medium text-gray-900 mb-2">No statuses found</h3>
+    <p class="text-gray-500 mb-6">Try adjusting your search criteria or create a new status.</p>
+    <%= link_to new_settings_status_path,
+        class: "px-6 py-3 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 transition-all duration-200",
+        data: { turbo_frame: "status_modal" } do %>
+      Create New Status
+    <% end %>
+  </div>
+  
+  <%= turbo_frame_tag "status_modal" %>
+</div>
+
+<% if @pagy.pages > 1 %>
+  <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+    <%= render 'layouts/pagination', pagy: @pagy %>
+  </div>
+<% end %>
