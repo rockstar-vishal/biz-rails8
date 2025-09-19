@@ -5,7 +5,7 @@
      data-company-form-bank-options-value="<%= Bank.all.pluck(:name).to_json %>"
      data-company-form-cost-map-options-value="<%= CostMap.all.pluck(:title).to_json %>"
      data-company-form-status-options-value="<%= Status.all.map { |s| { id: s.id, name: s.name } }.to_json %>"
-     class="max-w-4xl mx-auto">
+     class="w-full">
   <%= form_with(model: [:settings, company], data: { turbo: false }, local: true, class: "space-y-8") do |form| %>
     <% if company.errors.any? %>
       <div class="rounded-md bg-red-50 p-4 border border-red-200">
@@ -41,8 +41,8 @@
       </div>
       
       <div class="p-6 space-y-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div class="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-2">
             <%= form.label :name, class: "block text-sm font-medium text-gray-700 mb-2" do %>
               Company Name <span class="text-red-500">*</span>
             <% end %>
@@ -52,13 +52,13 @@
                 required: true %>
           </div>
           
-          <div>
+          <div class="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-2">
             <%= form.label :domain, class: "block text-sm font-medium text-gray-700 mb-2" do %>
-            Company Domain
-          <% end %>
-          <%= form.url_field :domain, 
-              class: "block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200",
-              placeholder: "https://example.com" %>
+              Company Domain
+            <% end %>
+            <%= form.url_field :domain, 
+                class: "block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200",
+                placeholder: "https://example.com" %>
           </div>
         </div>
       </div>
@@ -76,7 +76,7 @@
       </div>
       
       <div class="p-6 space-y-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div>
             <%= form.label :project_limit, class: "block text-sm font-medium text-gray-700 mb-2" %>
             <%= form.number_field :project_limit, 
@@ -92,14 +92,14 @@
                 placeholder: "0",
                 min: 0 %>
           </div>
-        </div>
-        
-        <div class="flex items-center">
-          <%= form.check_box :user_project_restricted, 
-              class: "h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" %>
-          <%= form.label :user_project_restricted, 
-              "User project restricted", 
-              class: "ml-2 block text-sm text-gray-900" %>
+          
+          <div class="flex items-center">
+            <%= form.check_box :user_project_restricted, 
+                class: "h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" %>
+            <%= form.label :user_project_restricted, 
+                "User project restricted", 
+                class: "ml-2 block text-sm text-gray-900" %>
+          </div>
         </div>
       </div>
     </div>
@@ -116,7 +116,7 @@
       </div>
       
       <div class="p-6 space-y-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div>
             <%= form.label :max_registration_charges, class: "block text-sm font-medium text-gray-700 mb-2" %>
             <div class="relative">
@@ -142,9 +142,7 @@
                   min: 0 %>
             </div>
           </div>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
           <div>
             <%= form.label :default_sdr_percent, class: "block text-sm font-medium text-gray-700 mb-2" %>
             <div class="relative">
@@ -260,7 +258,7 @@
 
         <div class="border-t border-gray-200 pt-8">
           <h4 class="text-sm font-semibold text-gray-900 mb-6">Allowed Configurations</h4>
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8">
             <!-- Allowed Configs Dropdown -->
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-3">Allowed Configs</label>
@@ -325,11 +323,7 @@
                 Add Bank
               </button>
             </div>
-          </div>
-        </div>
 
-        <div class="border-t border-gray-200 pt-8">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-3">Allowed Cost Maps</label>
               <div class="space-y-3" data-company-form-target="allowedCostMaps">
@@ -398,6 +392,7 @@
         </div>
       </div>
     </div>
+    
     <div class="flex items-center justify-between pt-6">
       <%= link_to settings_companies_path, 
           class: "inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200" do %>

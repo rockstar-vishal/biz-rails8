@@ -1,5 +1,6 @@
 class Blocking < ApplicationRecord
   include Codeable
+  include AdvancedSearchable
   CODEABLE = {
     prefix: "BL",
     length: 3

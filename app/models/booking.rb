@@ -1,5 +1,6 @@
 class Booking < ApplicationRecord
   include Codeable
+  include AdvancedSearchable
   CODEABLE = {
     prefix: "BO",
     length: 4

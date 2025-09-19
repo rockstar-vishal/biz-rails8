@@ -16,7 +16,6 @@
       <%= render 'shared/breadcrumb', record_class: 'Users' %>
     </span>
   </div>
-  
   <div class="flex gap-4">
     <div class="w-full border border-gray-200 rounded-lg bg-white/50 project-height-fix min-h-[calc(100vh-150px)]">
       <div class="">
@@ -26,15 +25,15 @@
                   value: params[:search],
                   placeholder: "Search by name, email or phone...", 
                   class: "h-auto p-2.5 min-w-[400px] rounded border-gray-300" %>
-            <%= form.button type: :submit, class: "bg-brand h-auto py-2 px-4 gap-2 hover:bg-brand/80 rounded text-white" do %>
-              <%= render 'icons/searchsm' %>
-            <% end %>
-            <%= link_to settings_users_path, class: "h-auto py-2 px-4 gap-2 rounded text-white flex items-center transition-colors #{params[:search].present? ? 'bg-gray-500 hover:bg-gray-600' : 'bg-gray-300 cursor-not-allowed'}" do %>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-      </svg>
-      <span class="ml-1">Reset</span>
-            <% end %>
+              <%= form.button type: :submit, class: "bg-brand h-auto py-2 px-4 gap-2 hover:bg-brand/80 rounded text-white" do %>
+                <%= render 'icons/searchsm' %>
+              <% end %>
+              <%= link_to settings_users_path, class: "h-auto py-2 px-4 gap-2 rounded text-white flex items-center transition-colors #{params[:search].present? ? 'bg-gray-500 hover:bg-gray-600' : 'bg-gray-300 cursor-not-allowed'}" do %>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                </svg>
+                <span class="ml-1">Reset</span>
+              <% end %>
           <% end %>
           
           <div class="ml-auto flex gap-2">

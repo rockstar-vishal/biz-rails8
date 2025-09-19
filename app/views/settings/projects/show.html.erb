@@ -1,0 +1,279 @@
+<div data-controller="project-dashboard" class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+  <div class="relative overflow-hidden bg-white shadow-lg border-b border-slate-200">
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-indigo-600/5"></div>
+    <div class="relative px-6 py-8">
+      <div class="flex items-center justify-between">
+        <div data-project-dashboard-target="header" class="opacity-0 transform translate-y-4">
+          <div class="flex items-center space-x-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-2m-2 0H7m5 0v-2a2 2 0 00-2-2H8v4m5-4v4h2m-2-4h2"></path>
+              </svg>
+            </div>
+            <div>
+              <h1 class="text-3xl font-bold text-slate-900 tracking-tight"><%= @project.name %></h1>
+              <p class="text-slate-600 mt-1">Project Overview & Management</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex items-center gap-3">
+          <%= render partial: 'layouts/edit_delete_actions',
+           locals: { 
+             object: @project,
+             object_class: 'Project',
+             form_partial: 'settings/projects/form',
+             delete_path: settings_project_path(@project)
+           } %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="px-6 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div class="lg:col-span-2 space-y-6">
+        <div data-project-dashboard-target="infoCard" 
+             class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden opacity-0 transform translate-y-8">
+          <div class="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4">
+            <h2 class="text-xl font-semibold text-white flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              Project Information
+            </h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-4">
+                <div data-action="mouseenter->project-dashboard#highlightField mouseleave->project-dashboard#unhighlightField" 
+                     class="transform transition-all duration-200 hover:scale-105 p-4 rounded-lg hover:bg-blue-50 cursor-pointer">
+                  <label class="text-sm font-medium text-slate-600">Project Name</label>
+                  <div class="text-lg font-semibold text-slate-900 mt-1"><%= @project.name %></div>
+                </div>
+                <div data-action="mouseenter->project-dashboard#highlightField mouseleave->project-dashboard#unhighlightField"
+                     class="transform transition-all duration-200 hover:scale-105 p-4 rounded-lg hover:bg-blue-50 cursor-pointer">
+                  <label class="text-sm font-medium text-slate-600">Company ID</label>
+                  <div class="text-lg font-semibold text-slate-900 mt-1"><%= @project.company_id %></div>
+                </div>
+                <div data-action="mouseenter->project-dashboard#highlightField mouseleave->project-dashboard#unhighlightField"
+                     class="transform transition-all duration-200 hover:scale-105 p-4 rounded-lg hover:bg-blue-50 cursor-pointer">
+                  <label class="text-sm font-medium text-slate-600">Created</label>
+                  <div class="text-lg font-semibold text-slate-900 mt-1"><%= @project.created_at.strftime("%B %d, %Y") %></div>
+                </div>
+              </div>
+              <div class="space-y-4">
+                <div data-action="mouseenter->project-dashboard#highlightField mouseleave->project-dashboard#unhighlightField"
+                     class="transform transition-all duration-200 hover:scale-105 p-4 rounded-lg hover:bg-blue-50 cursor-pointer">
+                  <label class="text-sm font-medium text-slate-600">Last Updated</label>
+                  <div class="text-lg font-semibold text-slate-900 mt-1"><%= @project.updated_at.strftime("%B %d, %Y") %></div>
+                </div>
+                <div data-action="mouseenter->project-dashboard#highlightField mouseleave->project-dashboard#unhighlightField"
+                     class="transform transition-all duration-200 hover:scale-105 p-4 rounded-lg hover:bg-blue-50 cursor-pointer">
+                  <label class="text-sm font-medium text-slate-600">Bank Restrictions</label>
+                  <div class="flex items-center mt-1">
+                    <span class="<%= @project.restrict_bank_for_transaction ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800' %> px-3 py-1 rounded-full text-sm font-medium">
+                      <%= @project.restrict_bank_for_transaction ? 'Restricted' : 'Unrestricted' %>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div data-project-dashboard-target="templatesCard"
+             class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden opacity-0 transform translate-y-8">
+          <div class="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-4">
+            <h2 class="text-xl font-semibold text-white flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+              Letter Builder Templates
+              <span class="ml-2 bg-white/20 px-2 py-1 rounded-full text-xs">
+                <%= @project.letter_builder_templates.keys.length %> templates
+              </span>
+            </h2>
+          </div>
+          <div class="p-6">
+            <% if @project.letter_builder_templates.present? %>
+              <div class="grid gap-4">
+                <% @project.letter_builder_templates.each_with_index do |(key, value), index| %>
+                  <div data-action="click->project-dashboard#expandTemplate"
+                       data-template-index="<%= index %>"
+                       class="p-4 border border-slate-200 rounded-lg hover:border-purple-300 hover:shadow-md transition-all duration-200 cursor-pointer transform hover:scale-102">
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <h4 class="font-medium text-slate-900"><%= key.humanize %></h4>
+                        <p class="text-sm text-slate-600 mt-1">Click to view template details</p>
+                      </div>
+                      <svg class="w-5 h-5 text-slate-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                      </svg>
+                    </div>
+                    <div class="hidden mt-4 p-3 bg-slate-50 rounded-lg">
+                      <pre class="text-sm text-slate-700 whitespace-pre-wrap"><%= value.to_json %></pre>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            <% else %>
+              <div class="text-center py-12">
+                <svg class="w-16 h-16 text-slate-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                <h3 class="text-lg font-medium text-slate-900 mb-2">No Templates Found</h3>
+                <p class="text-slate-600 mb-4">Get started by creating your first letter template.</p>
+                <button class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors duration-200">
+                  Create Template
+                </button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div data-project-dashboard-target="statsCard"
+             class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden opacity-0 transform translate-x-8">
+          <div class="bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-4">
+            <h2 class="text-xl font-semibold text-white flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+              Quick Stats
+            </h2>
+          </div>
+          <div class="p-6 space-y-4">
+            <div data-action="mouseenter->project-dashboard#animateCounter"
+                 class="flex items-center justify-between p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg">
+              <span class="text-slate-700 font-medium">Templates</span>
+              <span data-project-dashboard-target="templateCounter" class="text-2xl font-bold text-blue-600">
+                <%= @project.letter_builder_templates.keys.length %>
+              </span>
+            </div>
+            <div data-action="mouseenter->project-dashboard#animateCounter"
+                 class="flex items-center justify-between p-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg">
+              <span class="text-slate-700 font-medium">Days Active</span>
+              <span data-project-dashboard-target="daysCounter" class="text-2xl font-bold text-purple-600">
+                <% days_active = if ((Time.current - @project.created_at) / 1.day).to_i.zero?
+                                  'Today'
+                                else
+                                  ((Time.current - @project.created_at) / 1.day).to_i
+                                end
+                %>
+                <%= days_active %>
+              </span>
+            </div>
+            <div data-action="mouseenter->project-dashboard#animateCounter"
+                 class="flex items-center justify-between p-3 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg">
+              <span class="text-slate-700 font-medium">Bank Accounts</span>
+              <span data-project-dashboard-target="bankCounter" class="text-2xl font-bold text-emerald-600">
+                <%= @project.allowed_bank_accounts.length %>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div data-project-dashboard-target="bankCard"
+             class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden opacity-0 transform translate-x-8">
+          <div class="bg-gradient-to-r from-amber-600 to-orange-600 px-6 py-4">
+            <h2 class="text-xl font-semibold text-white flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+              </svg>
+              Allowed Bank Accounts
+            </h2>
+          </div>
+          <div class="p-6">
+            <% if @project.allowed_bank_accounts.any? %>
+              <div class="space-y-3">
+                <% @project.allowed_bank_accounts.each_with_index do |account_id, index| %>
+                <% account = Bank.find_by(id: account_id).name %> 
+                  <div class="p-3 border border-slate-200 rounded-lg hover:border-amber-300 hover:bg-amber-50 transition-all duration-200 cursor-pointer transform hover:scale-102">
+                    <div class="flex items-center justify-between">
+                      <span class="font-medium text-slate-900"><%= account %></span>
+                      <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                      </svg>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            <% else %>
+              <div class="text-center py-8">
+                <svg class="w-12 h-12 text-slate-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                </svg>
+                <p class="text-slate-600">No bank accounts configured</p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div data-project-dashboard-target="actionsCard"
+             class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden opacity-0 transform translate-x-8">
+          <div class="bg-gradient-to-r from-indigo-600 to-blue-600 px-6 py-4">
+            <h2 class="text-xl font-semibold text-white flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+              Quick Actions
+            </h2>
+          </div>
+          <div class="p-6 space-y-3">
+            <button data-action="click->project-dashboard#addTemplate"
+                    class="w-full p-3 text-left border border-slate-200 rounded-lg hover:border-indigo-300 hover:bg-indigo-50 transition-all duration-200 transform hover:scale-105">
+              <div class="flex items-center">
+                <svg class="w-5 h-5 text-indigo-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                <span class="font-medium text-slate-900">Add Template</span>
+              </div>
+            </button>
+            
+            <button data-action="click->project-dashboard#manageBankAccounts"
+                    class="w-full p-3 text-left border border-slate-200 rounded-lg hover:border-indigo-300 hover:bg-indigo-50 transition-all duration-200 transform hover:scale-105">
+              <div class="flex items-center">
+                <svg class="w-5 h-5 text-indigo-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <span class="font-medium text-slate-900">Manage Banks</span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div data-project-dashboard-target="modalOverlay" 
+       class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden opacity-0 transition-opacity duration-300">
+    <div data-project-dashboard-target="modal"
+         class="fixed inset-0 flex items-center justify-center p-4 transform scale-95 transition-transform duration-300">
+      <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-96 overflow-y-auto">
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 data-project-dashboard-target="modalTitle" class="text-xl font-semibold text-slate-900"></h3>
+            <button data-action="click->project-dashboard#closeModal"
+                    class="text-slate-400 hover:text-slate-600 transition-colors duration-200">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+          <div data-project-dashboard-target="modalContent" class="text-slate-700"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div data-project-dashboard-target="loadingIndicator" 
+       class="fixed top-4 right-4 bg-white rounded-lg shadow-lg p-4 z-40 hidden opacity-0 transform translate-x-4 transition-all duration-300">
+    <div class="flex items-center space-x-3">
+      <div class="animate-spin rounded-full h-4 w-4 border-2 border-blue-600 border-t-transparent"></div>
+      <span class="text-sm font-medium text-slate-700">Processing...</span>
+    </div>
+  </div>
+</div>

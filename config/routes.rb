@@ -15,12 +15,26 @@ Rails.application.routes.draw do
     resources :cost_maps
     resources :floors
     resources :users
+    get :adv_search_fields
+    post :update_adv_search_config
 
     # SuperAdmin Settings
-    resources :projects
-    resources :payment_plans
-    resources :clients
-    resources :brokers
+    resources :projects do
+      member do
+        get :flats
+      end
+    end
+    resources :projects_payment_plans
+    resources :clients do
+      member do
+        delete 'destroy_attachment/:attachment_type', to: 'clients#destroy_attachment', as: :destroy_attachment
+      end
+    end
+    resources :brokers do
+      member do
+        delete 'destroy_attachment/:attachment_type', to: 'brokers#destroy_attachment', as: :destroy_attachment
+      end
+    end
     resources :bookings
     resources :blockings
     resources :transactions

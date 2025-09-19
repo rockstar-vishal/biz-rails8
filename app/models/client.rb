@@ -1,5 +1,6 @@
 class Client < ApplicationRecord
   include Codeable
+  include AdvancedSearchable
   CODEABLE = {
     prefix: 'CL',
     length: 3

@@ -1,0 +1,143 @@
+<% payment_plan ||= @payment_plan || projects_payment_plan %>
+<%= form_with model: payment_plan, 
+              url: payment_plan.new_record? ? 
+                   settings_projects_payment_plans_path : 
+                   settings_projects_payment_plan_path(payment_plan), 
+              data: { turbo: true, controller: "payment-plan-stages" }, 
+              local: true do |form| %>
+  <% if payment_plan.errors.any? %>
+    <div class="rounded-md bg-red-50 p-4 border border-red-200">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="ml-3">
+          <h3 class="text-sm font-medium text-red-800">Please fix the following errors:</h3>
+          <div class="mt-2 text-sm text-red-700">
+            <ul class="list-disc list-inside space-y-1">
+              <% payment_plan.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  
+  <div class="">
+    <div class="p-4 flex items-center justify-between">
+      <h3 class="text-base font-semibold"><%= payment_plan.new_record? ? 'Add Payment Plan' : 'Edit Payment Plan' %></h3>
+    </div>
+    
+    <div class="modal-height p-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        
+        <!-- Basic Details Section -->
+        <div class="col-span-full flex items-center justify-between">
+          <h3 class="text-base font-semibold">Basic Details</h3>
+        </div>
+        
+        <div class="mb-2 col-span-2">
+          <%= form.label :name, "Plan Name", class: "mb-2 block text-sm font-medium text-gray-700" %>
+          <%= form.text_field :name, class: "w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none", placeholder: "Plan Name", required: true %>
+        </div>
+        
+        <div class="mb-2 col-span-2">
+          <%= form.label :project_id, "Select Project", class: "mb-2 block text-sm font-medium text-gray-700" %>
+          <%= form.select :project_id, 
+              options_from_collection_for_select(@projects, :id, :name, payment_plan.project_id), 
+              { include_blank: "Please select" }, 
+              { class: "w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none", required: true } %>
+        </div>
+
+        <div class="col-span-full flex items-center justify-between">
+          <h3 class="text-base font-semibold">Plan Stages</h3>
+          <button type="button" 
+                  data-action="click->payment-plan-stages#addStage" 
+                  class="inline-flex items-center px-3 py-1 text-sm bg-brand text-white rounded-lg hover:bg-brand/80 transition-colors gap-2">
+            <%= render 'icons/add' %>
+            <span>Add Stage</span>
+          </button>
+        </div>
+        
+        <div data-payment-plan-stages-target="stagesContainer" class="col-span-full space-y-4">
+          <%= form.fields_for :stages do |stage_form| %>
+            <%= render 'payment_plan_stage_fields', form: stage_form %>
+          <% end %>
+        </div>
+        
+        <template data-payment-plan-stages-target="stageTemplate">
+          <div class="stage-row col-span-full flex gap-2 items-stretch w-full bg-white rounded-lg border border-gray-200" data-payment-plan-stages-target="stageRow">
+            <div class="w-full grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4 p-4">
+              <div class="mb-2 w-full">
+                <label class="mb-2 block text-sm font-medium text-gray-700">Name</label>
+                <input type="text" 
+                       name="projects_payment_plan[stages_attributes][NEW_RECORD][name]" 
+                       class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none"
+                       placeholder="Stage Name">
+              </div>
+              
+              <div class="mb-2">
+                <label class="mb-2 block text-sm font-medium text-gray-700">Percentage</label>
+                <input type="number" 
+                       name="projects_payment_plan[stages_attributes][NEW_RECORD][percentage]" 
+                       class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none"
+                       placeholder="Percentage"
+                       step="0.01"
+                       min="0"
+                       max="100"
+                       data-action="input->payment-plan-stages#validateFields"
+                       data-payment-plan-stages-target="percentageInput">
+              </div>
+              
+              <div class="mb-2 w-full">
+                <label class="mb-2 block text-sm font-medium text-gray-700">Cost Type</label>
+                <select name="projects_payment_plan[stages_attributes][NEW_RECORD][cost_type_id]" 
+                        class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none">
+                  <option value="">Please select</option>
+                  <% @cost_types.each do |cost_type| %>
+                    <option value="<%= cost_type.id %>"><%= cost_type.name %></option>
+                  <% end %>
+                </select>
+              </div>
+              
+              <div class="mb-2">
+                <label class="mb-2 block text-sm font-medium text-gray-700">Amount</label>
+                <input type="number" 
+                       name="projects_payment_plan[stages_attributes][NEW_RECORD][amount]"
+                       class="w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none"
+                       placeholder="Amount"
+                       step="0.01"
+                       min="0"
+                       data-action="input->payment-plan-stages#validateFields"
+                       data-payment-plan-stages-target="amountInput">
+              </div>
+            </div>
+            
+            <div class="w-full max-w-[200px] flex items-center gap-2 bg-green-50 p-2 rounded-e-lg justify-center">
+              <button type="button" 
+                      data-action="click->payment-plan-stages#removeStage" 
+                      class="w-auto bg-red-500 text-white h-auto py-2 px-3 rounded-lg hover:bg-red-600 transition-colors gap-2 flex items-center">
+                <%= render 'icons/delete' %>
+              </button>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+    
+    <div class="bg-white border-t border-gray-300 p-4">
+      <div class="flex justify-between items-center">
+        <%= form.submit payment_plan.new_record? ? 'Create Payment Plan' : 'Update Payment Plan', 
+              class: "bg-brand text-white hover:bg-brand/80 h-auto rounded-md text-sm py-2 px-4 cursor-pointer" %>
+        <button type="button" data-ui--sheet-target="closeButton"
+          class="bg-gray-200 text-gray-800 hover:bg-gray-300 h-auto rounded-md text-sm py-2 px-4">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+<% end %>
