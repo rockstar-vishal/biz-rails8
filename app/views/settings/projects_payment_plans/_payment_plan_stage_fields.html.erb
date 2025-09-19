@@ -1,0 +1,56 @@
+<div class="stage-row col-span-full flex gap-2 items-stretch w-full bg-white rounded-lg border border-gray-200" data-payment-plan-stages-target="stageRow">
+  <%= form.hidden_field :id if form.object&.persisted? %>
+  
+  <div class="w-full grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4 p-4">
+    <div class="mb-2 w-full">
+      <%= form.label :name, "Name", class: "mb-2 block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :name, class: "w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none", placeholder: "Stage Name" %>
+    </div>
+    
+    <div class="mb-2">
+      <%= form.label :percentage, "Percentage", class: "mb-2 block text-sm font-medium text-gray-700" %>
+      <%= form.number_field :percentage, 
+          class: "w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none", 
+          placeholder: "Percentage",
+          step: 0.01,
+          min: 0,
+          max: 100,
+          data: { 
+            action: "input->payment-plan-stages#validateFields",
+            payment_plan_stages_target: "percentageInput"
+          } %>
+    </div>
+    
+    <div class="mb-2 w-full">
+      <%= form.label :cost_type_id, "Cost Type", class: "mb-2 block text-sm font-medium text-gray-700" %>
+      <%= form.select :cost_type_id, 
+          options_from_collection_for_select(@cost_types, :id, :name, form.object&.cost_type_id), 
+          { include_blank: "Please select" }, 
+          { class: "w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none" } %>
+    </div>
+    
+    <div class="mb-2">
+      <%= form.label :amount, "Amount", class: "mb-2 block text-sm font-medium text-gray-700" %>
+      <%= form.number_field :amount, 
+          class: "w-full rounded border-gray-300 p-3 text-sm focus:border-brand focus:ring-brand focus:ring-2 focus:ring-opacity-50 focus:outline-none", 
+          placeholder: "Amount",
+          step: 0.01,
+          min: 0,
+          data: { 
+            action: "input->payment-plan-stages#validateFields",
+            payment_plan_stages_target: "amountInput"
+          } %>
+    </div>
+  </div>
+  
+  <div class="w-full max-w-[200px] flex items-center gap-2 bg-green-50 p-2 rounded-e-lg justify-center">
+    <% unless form.object&.new_record? %>
+      <%= form.hidden_field :_destroy %>
+    <% end %>
+    <button type="button" 
+            data-action="click->payment-plan-stages#removeStage" 
+            class="w-auto bg-red-500 text-white h-auto py-2 px-3 rounded-lg hover:bg-red-600 transition-colors gap-2 flex items-center">
+      <%= render 'icons/delete' %>
+    </button>
+  </div>
+</div>

@@ -395,7 +395,7 @@
               <h4 class="text-sm font-semibold text-gray-900 mb-3">Allowed Statuses</h4>
               <% if @company.allowed_statuses.present? %>
                 <div class="flex flex-wrap gap-2">
-                  <% @company_allowed_statuses.each do |status| %>
+                  <% @company_allowed_statuses&.each do |status| %>
                     <span class="inline-flex px-2 py-1 text-xs font-medium rounded-full bg-orange-100 text-orange-800">
                       <%= status.name %>
                     </span>

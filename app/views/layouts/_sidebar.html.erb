@@ -1,132 +1,84 @@
 <aside class="text-gray-800 min-h-screen mini border-r fixed top-[65px] z-50 pb-2" id="sideBar">
   <nav id="sideBarScroll">
     <ul class="menu rounded-box space-y-0">
+    <% if super_admin_access? %>
       <li class="flex cursor-pointer items-center justify-between">
-        <!-- <#%= link_to dashboard_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand #{'active' if current_page?(dashboard_path) || current_page?(project_path) || current_page?(building_path) || current_page?(parking_path) || current_page?(paymentsPlan_path) || current_page?(inventory_path) || current_page?(cancelledBookings_path) || current_page?(exportBookingList_path) || current_page?(flatBooking_path) || current_page?(showBooking_path) || current_page?(projectSummary_path) || current_page?(todaysCall_path) || current_page?(backlog_path) || current_page?(demandLetter_path) || current_page?(reminderLetter_path)  }" do %> -->
-
-        <%= link_to dashboard_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand #{'active' if current_page?(dashboard_path) || current_page?(settings_projects_path)}" do %>
-        <div class="menu-div flex flex-col gap-2 items-center">
-          <%= render 'icons/project' %>
-          <span class="menu-text">Projects</span>
-        </div>
-        <% end %>
-      </li>
-
-      <li class="flex cursor-pointer items-center justify-between">
-        <%= link_to search_path, class: "w-full  p-3 text-gray-900 hover:bg-gray-50 hover:text-brand #{'active' if current_page?(search_path)}" do %> 
-          <div class="menu-div flex gap-2 items-center">
-            <%= render 'icons/search' %>
-            <span class="menu-text">Search</span>
+        <%= link_to settings_projects_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand" do %>
+          <div class="menu-div flex flex-col gap-2 items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+            <span class="menu-text">Projects</span>
           </div>
         <% end %>
       </li>
 
       <li class="flex cursor-pointer items-center justify-between">
-        <details class="w-full group [&_summary::-webkit-details-marker]:hidden"
-          <%= current_page?(employee_wise_booking_path) || current_page?(booking_report_path) || current_page?(mis_report_path) || current_page?(broker_report_path) || current_page?(status_report_project_path) || current_page?(status_report_building_path) || current_page?(status_report_configuration_path) || current_page?(status_report_areawise_path) || current_page?(collection_repor_project_path) || current_page?(collection_report_building_path) || current_page?(collection_report_slab_path)  ? 'open' : '' %>>
-          <summary
-            class="w-full flex cursor-pointer items-center justify-between  p-3 text-gray-900 hover:bg-gray-50 hover:text-brand <%= current_page?(employee_wise_booking_path) || current_page?(booking_report_path) || current_page?(mis_report_path) || current_page?(broker_report_path) || current_page?(status_report_project_path) || current_page?(status_report_building_path) || current_page?(status_report_configuration_path) || current_page?(status_report_areawise_path) || current_page?(collection_repor_project_path) || current_page?(collection_report_building_path) || current_page?(collection_report_slab_path)  ? 'active' : '' %>">
-            <div class="menu-div flex gap-2 items-center">
-              <%= render 'icons/charts' %>
-              <span class="menu-text">Reports</span>
-            </div>
-          </summary>
-          <ul class="my-2 mx-4 border  divide-y bg-base-100 rounded-lg shadow-xl  sub-menu overflow-hidden">
-            <li>
-              <%= link_to employee_wise_booking_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(employee_wise_booking_path)}" do %>
-
-              <span class="menu-text"> Employee Wise Booking</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to booking_report_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(booking_report_path)}" do %>
-
-              <span class="menu-text">Booking Report</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to mis_report_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(mis_report_path)}" do %>
-
-              <span class="menu-text">MIS Report</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to broker_report_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(broker_report_path)}" do %>
-
-              <span class="menu-text">Broker Report</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to status_report_project_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(status_report_project_path)}" do %>
-
-              <span class="menu-text">
-                <div class="flex flex-col">
-                  <span class="text-[10px] opacity-60">Status Report</span> Project Level
-                </div>
-              </span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to status_report_building_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(status_report_building_path)}" do %>
-              <span class="menu-text">
-                <div class="flex flex-col">
-                  <span class="text-[10px] opacity-60">Status Report</span> Building Level
-                </div>
-              </span>
-              <% end %>
-            </li>
-             <li>
-              <%= link_to status_report_configuration_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(status_report_configuration_path)}" do %>
-                  <span class="menu-text">
-                  <div class="flex flex-col">
-                    <span class="text-[10px] opacity-60">Status Report</span> Configuration Level
-                  </div>
-                </span>
-              <% end %>
-            </li>
-             <li>
-              <%= link_to status_report_areawise_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(status_report_areawise_path)}" do %>
-
-              <span class="menu-text">
-                  <div class="flex flex-col">
-                    <span class="text-[10px] opacity-60">Status Report</span> Areawise
-                  </div>
-                </span>
-              <% end %>
-            </li>
-             <li>
-              <%= link_to collection_repor_project_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(collection_repor_project_path)}" do %>
-
-               <span class="menu-text">
-                  <div class="flex flex-col">
-                    <span class="text-[10px] opacity-60">Collection Report</span> Project Level
-                  </div>
-                </span>
-              <% end %>
-            </li>
-             <li>
-              <%= link_to collection_report_building_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(collection_report_building_path)}" do %>
-
-              <span class="menu-text">
-                  <div class="flex flex-col">
-                    <span class="text-[10px] opacity-60">Collection Report</span> Building Level
-                  </div>
-                </span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to collection_report_slab_path, class: "menu-div flex gap-1  p-2  text-sm text-gray-600 font-semibold  hover:bg-gray-50 hover:text-brand #{'active' if current_page?(collection_report_slab_path)}" do %>
-
-             <span class="menu-text">
-                  <div class="flex flex-col">
-                    <span class="text-[10px] opacity-60">Collection Report</span> Slab
-                  </div>
-                </span>
-              <% end %>
-            </li>
-          </ul>
-        </details>
+        <%= link_to settings_projects_payment_plans_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand" do %>
+          <div class="menu-div flex flex-col gap-2 items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+            </svg>
+            <span class="menu-text">Payment Plans</span>
+          </div>
+        <% end %>
       </li>
+
+      <li class="flex cursor-pointer items-center justify-between">
+        <%= link_to settings_clients_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand" do %>
+          <div class="menu-div flex flex-col gap-2 items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            <span class="menu-text">Clients</span>
+          </div>
+        <% end %>
+      </li>
+
+      <li class="flex cursor-pointer items-center justify-between">
+        <%= link_to settings_brokers_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand" do %>
+          <div class="menu-div flex flex-col gap-2 items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            <span class="menu-text">Brokers</span>
+          </div>
+        <% end %>
+      </li>
+
+      <li class="flex cursor-pointer items-center justify-between">
+        <%= link_to settings_bookings_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand" do %>
+          <div class="menu-div flex flex-col gap-2 items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span class="menu-text">Bookings</span>
+          </div>
+        <% end %>
+      </li>
+
+      <li class="flex cursor-pointer items-center justify-between">
+        <%= link_to settings_blockings_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand" do %>
+          <div class="menu-div flex flex-col gap-2 items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            <span class="menu-text">Blockings</span>
+          </div>
+        <% end %>
+      </li>
+
+      <li class="flex cursor-pointer items-center justify-between">
+        <%= link_to settings_transactions_path, class: "w-full p-3 text-gray-900 hover:bg-gray-50 hover:text-brand" do %>
+          <div class="menu-div flex flex-col gap-2 items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            <span class="menu-text">Transactions</span>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
     </ul>
   </nav>
 </aside>

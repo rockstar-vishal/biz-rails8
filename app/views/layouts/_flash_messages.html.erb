@@ -1,10 +1,10 @@
-<div id="flash" class="fixed top-4 right-4 z-[1000]">
+<div id="flash-container" class="fixed top-4 right-4 z-[1000]">
   <% flash.each do |type, message| %>
     <div class="flash-message px-6 py-4 mb-2 rounded-md shadow-lg
-                <%= type == 'notice' ? 'bg-blue-600' : 'bg-red-500' %>
+                <%= type == 'notice' ? 'bg-green-500' : 'bg-red-500' %>
                 text-white text-sm font-medium flex items-center justify-between
                 animate-fade-in">
-      <span><%= message.is_a?(Array) ? message.join(', ') : message %></span>
+      <span><%= message %></span>
       <button onclick="this.closest('.flash-message').remove()" 
               class="ml-4 text-xl font-bold hover:text-gray-200 focus:outline-none">
         &times;
@@ -12,3 +12,25 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  document.querySelectorAll('.flash-message').forEach(flash => {
+    setTimeout(() => {
+      flash.style.opacity = '0';
+      setTimeout(() => flash.remove(), 300);
+    }, 5000);
+  });
+</script>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+  .flash-message {
+    transition: opacity 0.3s ease;
+  }
+</style>

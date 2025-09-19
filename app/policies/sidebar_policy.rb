@@ -36,6 +36,10 @@ class SidebarPolicy < ApplicationPolicy
     user.system_admin?
   end
 
+  def manage_adv_search_fields?
+    user.system_admin?
+  end
+
   # Super Admin permissions
   def manage_projects?
     user.super_admin? || user.system_admin?

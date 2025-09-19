@@ -1,0 +1,319 @@
+<div class="search-card">
+  <%= render_sheet direction: "right", width: "w-4xl sm:max-w-full lg:max-w-full md:w-4/5 lg:w-4/5 xl:w-3/5", class: "!slide-in-from-right bg-gradient-to-br from-white/95 to-slate-50/95 backdrop-blur-xl border border-white/20 shadow-2xl p-0 fixed" do %>
+    <%= sheet_trigger do %>
+      <%= render_button as: :link, href: "", class: "h-auto py-3 px-4 group relative overflow-hidden bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 text-white rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl" do %>
+        <div class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="relative flex items-center gap-3">
+          <div class="p-1 bg-white/20 rounded-lg backdrop-blur-sm">
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="group-hover:rotate-12 transition-transform duration-300">
+              <path d="M14 2H2L7 8.383V13L9 14V8.383L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="text-sm font-medium tracking-wide">Smart Search</span>
+          <div class="w-2 h-2 bg-white/40 rounded-full animate-pulse"></div>
+        </div>
+      <% end %> 
+    <% end %>
+
+    <%= sheet_content do %>
+      <div id="adv-searchbox" class="flex flex-col h-screen bg-gradient-to-br from-slate-50 to-white">
+        <% search_config = SearchConfig.find_by(klass_name: klass) %>
+        
+        <% if search_config.present? && search_config.searchable_fields.any? %>
+          <div class="relative overflow-hidden bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 px-8 py-8 shrink-0">
+            <div class="absolute inset-0 bg-black/10"></div>
+            <div class="absolute top-0 left-0 w-full h-full">
+              <div class="absolute top-4 left-8 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
+              <div class="absolute bottom-4 right-8 w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>
+            </div>
+            <div class="relative">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 21L16.514 16.506M19 10.5C19 15.194 15.194 19 10.5 19S2 15.194 2 10.5 5.806 2 10.5 2 19 5.806 19 10.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <h2 class="text-2xl font-bold text-white mb-1">Advanced Search</h2>
+                  <p class="text-white/80 text-sm">Find <%= klass.pluralize.downcase %> with precision and speed</p>
+                </div>
+              </div>
+              
+              <div class="flex items-center gap-6 text-white/70 text-sm">
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span><%= search_config.searchable_fields.count %> searchable fields</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                  <span>Smart filtering enabled</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <%= form_tag nil, method: :get, class: "advanced-search-form flex flex-col flex-1", data: { controller: "adv-search", "adv-search-form-target": "searchForm" } do %>
+            <div class="px-8 py-6 flex-1 overflow-y-auto">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6" data-adv-search-target="fieldsContainer">
+                <% search_config.searchable_fields.each_with_index do |field, index| %>
+                  <% 
+                    is_date_field = field.end_with?('_date') || field.include?('date_')
+                    is_foreign_key = is_foreign_key?(field, klass)
+                    is_boolean_field = is_boolean_field?(field, klass)
+                    
+                    if is_date_field
+                      next
+                    end
+                    
+                    field_value = params.dig(:advance_search, field)
+                    has_value = field_value.present?
+                  %>
+                  <div class="search-field-group" data-field="<%= field %>" data-adv-search-target="fieldGroup">
+                    <div class="relative group">
+                      <label class="block text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                        <div class="w-2 h-2 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"></div>
+                        <%= field.humanize %>
+                        <% if has_value %>
+                          <span class="px-2 py-1 bg-green-100 text-green-600 text-xs rounded-full" data-adv-search-target="activeLabel">Active</span>
+                        <% end %>
+                      </label>
+                      
+                      <div class="relative">
+                        <% if is_boolean_field %>
+                          <%= select_tag "advance_search[#{field}]", 
+                              options_for_select([["Select #{field.humanize.downcase}", ""], ["Yes", "true"], ["No", "false"]], field_value),
+                              class: "w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-0 transition-all duration-300 hover:border-gray-300 text-gray-700 shadow-sm hover:shadow-md focus:shadow-lg",
+                              data: { field: field, "adv-search-target": "searchField" } %>
+                              
+                        <% elsif is_foreign_key %>
+                          <% 
+                             options = foreign_key_options(field, klass)
+                          %>
+                          
+                          <% if options.any? %>
+                            <%= select_tag "advance_search[#{field}]", 
+                                options_for_select([["Select #{field.humanize.downcase.gsub(' id', '')}", ""]] + options, field_value),
+                                class: "w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-0 transition-all duration-300 hover:border-gray-300 text-gray-700 shadow-sm hover:shadow-md focus:shadow-lg",
+                                data: { field: field, "adv-search-target": "searchField" } %>
+                          <% else %>
+                            <%= text_field_tag "advance_search[#{field}]", field_value,
+                                class: "w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-0 transition-all duration-300 hover:border-gray-300 placeholder-gray-400 text-gray-700 shadow-sm hover:shadow-md focus:shadow-lg",
+                                placeholder: "Search by #{field.humanize.downcase}...",
+                                data: { field: field, "adv-search-target": "searchField" } %>
+                          <% end %>
+                        <% else %>
+                          <%= text_field_tag "advance_search[#{field}]", field_value,
+                              class: "w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-0 transition-all duration-300 hover:border-gray-300 placeholder-gray-400 text-gray-700 shadow-sm hover:shadow-md focus:shadow-lg",
+                              placeholder: "Search by #{field.humanize.downcase}...",
+                              data: { field: field, "adv-search-target": "searchField" } %>
+                        <% end %>
+                        
+                        <% if has_value %>
+                          <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500 transition-colors duration-200" data-field="<%= field %>" data-action="click->adv-search#clearField" data-adv-search-target="clearBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                          </button>
+                        <% end %>
+                        
+                        <div class="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-300 group-focus-within:w-full w-0" data-adv-search-target="fieldIndicator"></div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+
+                <% search_config.searchable_fields.each do |field| %>
+                  <% 
+                    is_date_field = field.end_with?('_date') || field.include?('date_')
+                    next unless is_date_field
+                    
+                    from_value = params.dig(:advance_search, "#{field}_from")
+                    to_value = params.dig(:advance_search, "#{field}_to")
+                    has_date_value = from_value.present? || to_value.present?
+                  %>
+                  <div class="search-field-group col-span-full md:col-span-2 lg:col-span-3" data-field="<%= field %>" data-adv-search-target="fieldGroup">
+                    <div class="relative group">
+                      <label class="block text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                        <div class="w-2 h-2 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"></div>
+                        <%= field.humanize %>
+                        <% if has_date_value %>
+                          <span class="px-2 py-1 bg-green-100 text-green-600 text-xs rounded-full" data-adv-search-target="activeLabel">Active</span>
+                        <% end %>
+                      </label>
+                      
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="relative">
+                          <label class="block text-xs font-medium text-gray-500 mb-1">From</label>
+                          <%= text_field_tag "advance_search[#{field}_from]", from_value,
+                              class: "w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-0 transition-all duration-300 hover:border-gray-300 placeholder-gray-400 text-gray-700 shadow-sm hover:shadow-md focus:shadow-lg",
+                              placeholder: "Start date...",
+                              type: "date",
+                              data: { field: "#{field}_from", "adv-search-target": "searchField" } %>
+                              
+                          <% if from_value.present? %>
+                            <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500 transition-colors duration-200" data-field="<%= field %>_from" data-action="click->adv-search#clearField" data-adv-search-target="clearBtn">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </button>
+                          <% end %>
+                        </div>
+                        
+                        <div class="relative">
+                          <label class="block text-xs font-medium text-gray-500 mb-1">To</label>
+                          <%= text_field_tag "advance_search[#{field}_to]", to_value,
+                              class: "w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-0 transition-all duration-300 hover:border-gray-300 placeholder-gray-400 text-gray-700 shadow-sm hover:shadow-md focus:shadow-lg",
+                              placeholder: "End date...",
+                              type: "date",
+                              data: { field: "#{field}_to", "adv-search-target": "searchField" } %>
+                              
+                          <% if to_value.present? %>
+                            <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500 transition-colors duration-200" data-field="<%= field %>_to" data-action="click->adv-search#clearField" data-adv-search-target="clearBtn">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </button>
+                          <% end %>
+                        </div>
+                      </div>
+                      
+                      <div class="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-300 group-focus-within:w-full w-0" data-adv-search-target="fieldIndicator"></div>
+                    </div>
+                  </div>
+                <% end %>
+
+                <% search_config.searchable_fields.each do |field| %>
+                  <% 
+                    is_numeric_field = field.end_with?('_amount') || field.end_with?('_percent') || 
+                                    field.end_with?('_price') || field.end_with?('_quantity')
+                    
+                    is_date_field = field.end_with?('_date') || field.include?('date_')
+                    is_foreign_key = field.end_with?('_id')
+                    
+                    next unless is_numeric_field && !is_date_field && !is_foreign_key
+                    
+                    from_value = params.dig(:advance_search, "#{field}_from")
+                    to_value = params.dig(:advance_search, "#{field}_to")
+                    exact_value = params.dig(:advance_search, field)
+                    has_numeric_value = from_value.present? || to_value.present? || exact_value.present?
+                  %>
+                  <div class="search-field-group col-span-full" data-field="<%= field %>" data-adv-search-target="fieldGroup">
+                    <div class="relative group">
+                      <label class="block text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                        <div class="w-2 h-2 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"></div>
+                        <%= field.humanize %>
+                        <% if has_numeric_value %>
+                          <span class="px-2 py-1 bg-green-100 text-green-600 text-xs rounded-full" data-adv-search-target="activeLabel">Active</span>
+                        <% end %>
+                      </label>
+                      
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="relative">
+                          <label class="block text-xs font-medium text-gray-500 mb-1">Exact Value</label>
+                          <%= number_field_tag "advance_search[#{field}]", exact_value,
+                              class: "w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-0 transition-all duration-300 hover:border-gray-300 placeholder-gray-400 text-gray-700 shadow-sm hover:shadow-md focus:shadow-lg",
+                              placeholder: "Exact value...",
+                              step: "any",
+                              data: { field: field, "adv-search-target": "searchField" } %>
+                        </div>
+                        
+                        <div class="relative">
+                          <label class="block text-xs font-medium text-gray-500 mb-1">From</label>
+                          <%= number_field_tag "advance_search[#{field}_from]", from_value,
+                              class: "w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-0 transition-all duration-300 hover:border-gray-300 placeholder-gray-400 text-gray-700 shadow-sm hover:shadow-md focus:shadow-lg",
+                              placeholder: "Minimum...",
+                              step: "any",
+                              data: { field: "#{field}_from", "adv-search-target": "searchField" } %>
+                        </div>
+                        
+                        <div class="relative">
+                          <label class="block text-xs font-medium text-gray-500 mb-1">To</label>
+                          <%= number_field_tag "advance_search[#{field}_to]", to_value,
+                              class: "w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-0 transition-all duration-300 hover:border-gray-300 placeholder-gray-400 text-gray-700 shadow-sm hover:shadow-md focus:shadow-lg",
+                              placeholder: "Maximum...",
+                              step: "any",
+                              data: { field: "#{field}_to", "adv-search-target": "searchField" } %>
+                        </div>
+                      </div>
+                      
+                      <div class="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-300 group-focus-within:w-full w-0" data-adv-search-target="fieldIndicator"></div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="sticky bottom-0 bg-white border-t border-gray-200 px-8 py-4 shadow-lg z-10">
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                  <%= link_to send("settings_#{klass.underscore.pluralize}_path"), class: "group flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-red-600 transition-colors duration-200 bg-gray-100 hover:bg-red-50 rounded-lg" do %>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                         xmlns="http://www.w3.org/2000/svg"
+                         class="group-hover:rotate-180 transition-transform duration-300">
+                      <path d="M3 6H5H21M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z" 
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="text-sm font-medium">Clear All</span>
+                  <% end %>
+
+                  <div class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full" data-adv-search-target="activeFiltersCount" style="<%= 'display: none;' if !params[:advance_search] || params[:advance_search].values.all?(&:blank?) %>">
+                    <span data-adv-search-target="filterCount"><%= params[:advance_search]&.values&.count(&:present?) || 0 %></span> active filters
+                  </div>
+                </div>
+
+                <%= button_tag type: "submit", class: "group relative overflow-hidden bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center gap-3 min-w-[140px] justify-center", data: { action: "click->adv-search#submitSearch" }, "data-adv-search-target": "submitBtn" do %>
+                  <div class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="relative group-hover:scale-110 transition-transform duration-300">
+                    <path d="M21 21L16.514 16.506M19 10.5C19 15.194 15.194 19 10.5 19S2 15.194 2 10.5 5.806 2 10.5 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="relative" data-adv-search-target="submitText">Search</span>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+
+        <% else %>
+          <div class="min-h-[60vh] flex items-center justify-center px-8 py-12">
+            <div class="text-center max-w-md mx-auto">
+              <div class="relative mb-8">
+                <div class="w-24 h-24 bg-gradient-to-r from-gray-300 to-gray-400 rounded-full mx-auto flex items-center justify-center mb-4 animate-pulse">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
+                    <path d="M12 9V13M12 17H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="absolute -top-2 -right-2 w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.29 3.86L1.82 18A2 2 0 0 0 3.24 21H20.76A2 2 0 0 0 22.18 18L13.71 3.86A2 2 0 0 0 10.29 3.86Z" fill="currentColor"/>
+                    <path d="M12 9V13M12 17H12.01" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <h3 class="text-2xl font-bold text-gray-800">Search Not Configured</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  Advanced search fields haven't been configured for <strong><%= klass %></strong> yet.
+                </p>
+                <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mt-6">
+                  <div class="flex items-start gap-3">
+                    <div class="p-1 bg-yellow-100 rounded-lg mt-0.5">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-yellow-600">
+                        <path d="M13 16H12V12H11M12 8H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                    <div class="text-left">
+                      <p class="text-sm font-medium text-yellow-800 mb-1">Next Steps</p>
+                      <p class="text-sm text-yellow-700">
+                        Please contact your system administrator to configure searchable fields for this model.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

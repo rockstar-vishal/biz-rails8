@@ -1,129 +1,157 @@
 <div>
-    <div class="mt-1 mb-4 flex  items-center w-full">
-        <span class="w-1/3 "><a href="/dashboard"
-                class=" inline-flex  justify-between items-center p-2 text-xs border border-gray-200 rounded-lg rounded-lg bg-white hover:shadow-md transition-all">
-                <div class="flex items-center gap-1">
-                    <span class="text-gray-800 "><%= render 'icons/back' %></span>
-                    <div class="flex flex-col">
-                        <span class="text-gray-500">Back</span>
+  <div class="mt-1 mb-4 flex items-center w-full">
+    <span class="w-1/3">
+      <%= link_to dashboard_path, class: "inline-flex justify-between items-center p-2 text-xs border border-gray-200 rounded-lg bg-white hover:shadow-md transition-all" do %>
+        <div class="flex items-center gap-1">
+          <span class="text-gray-800"><%= render 'icons/back' %></span>
+          <div class="flex flex-col">
+            <span class="text-gray-500">Back</span>
+          </div>
+        </div>
+      <% end %>
+    </span>
 
-                    </div>
-                </div>
-            </a></span>
-
-        <span class="w-1/3 text-black text-base font-semibold flex justify-center">Client List</span>
-        <span class="w-1/3 flex justify-end">
-            <%= render 'shared/breadcrumb' %>
-        </span>
-    </div>
+    <span class="w-1/3 text-black text-base font-semibold flex justify-center">Clients</span>
+    <span class="w-1/3 flex justify-end">
+      <%= render 'shared/breadcrumb', record_class: 'Clients' %>
+    </span>
+  </div>
+  
   <div class="flex gap-4">
-   
     <div class="w-full border border-gray-200 rounded-lg bg-white/50 project-height-fix min-h-[calc(100vh-150px)]">
-        <div class="">
-            <div class="flex justify-between p-2  items-center">
-               <div class="flex gap-2">
-            <%= render_input name: "search", id: "search", placeholder: "Search by name, email or phone...", class: "h-auto p-2.5 min-w-[400px]" %>
-            <%= render_button as: :link, href: "", class: "bg-brand h-auto py-2 px-4 gap-2  hover:bg-brand/80" do %>
-                <%= render 'icons/searchsm' %>
+      <div class="">
+        <div class="flex justify-between p-2 items-center">
+          <%= form_with url: settings_clients_path, method: :get, class: "flex gap-2" do |form| %>
+            <%= form.text_field :search, 
+                  value: params[:search],
+                  placeholder: "Search by name, email or phone...", 
+                  class: "h-auto p-2.5 min-w-[400px] rounded border-gray-300" %>
+            <%= form.button type: :submit, class: "bg-brand h-auto py-2 px-4 gap-2 hover:bg-brand/80 rounded text-white" do %>
+              <%= render 'icons/searchsm' %>
+            <% end %>
+            <%= link_to settings_clients_path, class: "h-auto py-2 px-4 gap-2 rounded text-white flex items-center transition-colors #{(params[:search].present? || params[:advance_search].present?) ? 'bg-gray-500 hover:bg-gray-600' : 'bg-gray-300 cursor-not-allowed'}" do %>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+              </svg>
+              <span class="ml-1">Reset</span>
+            <% end %>
+            <%= render 'layouts/advanced_search', klass: 'Client' %>
+          <% end %>
+          
+          <div class="ml-auto flex gap-2">
+            <%= render_sheet direction: "right", width: "w-full sm:max-w-full lg:max-w-full  md:w-3/5 lg:w-3/5 xl:w-1/2 ",  class:"!slide-in-from-right bg-white/50 backdrop-blur-xl p-0" do %>
+              <%= sheet_trigger do %>
+                <%= render_button as: :link, href: "", class: "bg-brand/5 text-brand border border-gray-200 gap-2 hover:bg-brand hover:text-white" do %>
+                  <%= render 'icons/add' %>
+                  <span>Add Client</span>
+                <% end %> 
               <% end %>
-        </div> 
-        <div class="ml-auto flex gap-2">
-          <%= render 'settings/clients/add' %>
-                <%= render 'settings/clients/filter' %>
+
+              <%= sheet_content do %>
+                <%= render 'form', client: Client.new %>
+              <% end %>
+            <% end %>
+          </div>
         </div>
-            </div>
-            <div class="table-responsive">
-                <%= render_table class:"overflow-hidden"  do %>
-                    <%= table_head class:"rounded-t-md  py-2 px-4 bg-gradient-to-bl from-[#ffe4e6] to-[#ccfbf1]" do %>
-                        <%= table_header  do %>
-                            <span class="text-gray-700 text-sm font-bold block">Name</span>	
-                        <% end %>
-                        <%= table_header  do %>
-                            <span class="text-gray-700 text-sm font-bold block">Mobile</span>	
-                        <% end %>
-                         <%= table_header  do %>
-                            <span class="text-gray-700 text-sm font-bold block">Email</span>	
-                        <% end %>
-                        <%= table_header  do %>
-                            <span class="text-gray-700 text-sm font-bold block">Project</span>	
-                        <% end %>
-                         <%= table_header  do %>
-                            <span class="text-gray-700 text-sm font-bold block">Aadhar No</span>	
-                        <% end %>
-                        <%= table_header  do %>
-                            <span class="text-gray-700 text-sm font-bold block">Pan Card No	</span>	
-                        <% end %>
-                        
-                        <%= table_header  do %>
-                            <span class="text-gray-700 text-sm font-bold block">Date Of Birth	</span>	
-                        <% end %>
-                        <%= table_header  do %>
-                            <span class="text-gray-700 text-sm font-bold block">Address</span>	
-                        <% end %>
-                        <%= table_header  do %>
-                            <span class="text-gray-700 text-sm font-bold block">Action</span>		
-                        <% end %>
+        
+        <div class="table-responsive">
+          <%= render_table class: "overflow-hidden" do %>
+            <%= table_head class: "rounded-t-md py-2 px-4 bg-gradient-to-bl from-[#ffe4e6] to-[#ccfbf1]" do %>
+              <%= table_header do %>
+                <span class="text-gray-700 text-sm font-bold block">Name</span>
+              <% end %>
+              <%= table_header do %>
+                <span class="text-gray-700 text-sm font-bold block">Company</span>
+              <% end %>
+              <%= table_header do %>
+                <span class="text-gray-700 text-sm font-bold block">Email</span>
+              <% end %>
+              <%= table_header do %>
+                <span class="text-gray-700 text-sm font-bold block">Phone</span>
+              <% end %>
+              <%= table_header do %>
+                <span class="text-gray-700 text-sm font-bold block">Code</span>
+              <% end %>
+              <%= table_header do %>
+                <span class="text-gray-700 text-sm font-bold block">Status</span>
+              <% end %>
+              <%= table_header do %>
+                <span class="text-gray-700 text-sm font-bold block">Action</span>
+              <% end %>
+            <% end %>
+            
+            <%= table_body do %>
+              <% if @clients.any? %>
+                <% @clients.each do |client| %>
+                  <%= table_row do %>
+                    <%= table_column do %>
+                      <div class="whitespace-nowrap">
+                        <%= client.name %>
+                      </div>
                     <% end %>
-                    <%= table_body do %>
-                        <%= table_row do %>
-                            <%= table_column do %>
-                                <div class="whitespace-nowrap">
-                                  <%= render 'settings/clients/show' %>
-                                </div>
-                            <% end %>
-                             <%= table_column do %>
-                                <div class="whitespace-nowrap">
-                                    981293949560			
-                                </div>
-                            <% end %>
-                             <%= table_column do %>
-                                <div class="whitespace-nowrap">
-                                    test@gmail.com			
-                                </div>
-                            <% end %>
-                             <%= table_column do %>
-                                <div class="whitespace-nowrap">
-                                    9834-5678-2948			
-                                </div>
-                            <% end %>
-                            <%= table_column do %>
-                                <div class="whitespace-nowrap uppercase">
-                                    oskks2441412			
-                                </div>
-                            <% end %>
-                            <%= table_column do %>
-                                <div class="whitespace-nowrap uppercase">
-                                    code			
-                                </div>
-                            <% end %>
-                            <%= table_column do %>
-                             <div class="whitespace-nowrap">
-                                12th jun 2000 		
-                             </div>
-                             
-                               	
-                            <% end %>
-                            <%= table_column do %>
-                             <div class="whitespace-nowrap">
-                                -		
-                             </div>
-                             
-                               	
-                            <% end %>
-                             <%= table_column do %>
-                             <div class="whitespace-nowrap flex">
-                                <%= render 'settings/clients/update' %>
-                                <%= render 'settings/clients/delete' %>
-                              
-                             </div>
-                                   	
-                            <% end %>
+                    <%= table_column do %>
+                      <div class="inline-flex items-center">
+                        <%= link_to settings_company_path(client.company), class: "inline-flex items-center px-3 py-2 rounded-full text-sm font-medium bg-blue-50 text-blue-700 hover:bg-blue-100 hover:text-blue-800 transition-colors duration-200" do %>
+                          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h6m-6 4h6m-2 4h2M7 7h.01M7 11h.01M7 15h.01"></path>
+                          </svg>
+                          <%= client.company&.name || "No Company" %>
                         <% end %>
-                     
+                      </div>
                     <% end %>
+                    <%= table_column do %>
+                      <div class="whitespace-nowrap">
+                        <%= client.email %>
+                      </div>
+                    <% end %>
+                    <%= table_column do %>
+                      <div class="whitespace-nowrap">
+                        <%= client.phone %>
+                      </div>
+                    <% end %>
+                    <%= table_column do %>
+                      <div class="whitespace-nowrap">
+                        <%= client.code %>
+                      </div>
+                    <% end %>
+                    <%= table_column do %>
+                      <div class="whitespace-nowrap">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                          Active
+                        </span>
+                      </div>
+                    <% end %>
+                    <%= table_column do %>
+                      <div class="whitespace-nowrap flex">
+                        <%= render 'layouts/action_buttons', 
+                          record: client, 
+                          module_name: 'client',
+                          show_path: 'settings_client',
+                          edit_path: 'edit_settings_client',
+                          delete_path: 'settings_client',
+                          sheet: true
+                        %>
+                      </div>
+                    <% end %>
+                  <% end %>
                 <% end %>
-            </div>
+              <% else %>
+                <%= table_row do %>
+                  <%= table_column colspan: 7, class: "text-center py-8 text-gray-500" do %>
+                    No clients found.
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
         </div>
+        
+        <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+          <% if @pagy.pages > 1 %>
+            <%= render 'layouts/pagination', pagy: @pagy %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

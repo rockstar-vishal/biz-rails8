@@ -1,5 +1,6 @@
 class Broker < ApplicationRecord
   include Nameable
+  include AdvancedSearchable
   nameable_with_scope :company
   validates_uniqueness_of :firm_name, case_sensitive: false, scope: :company
   validates_uniqueness_of :mobile, case_sensitive: false, scope: :company
